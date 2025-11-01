@@ -10,19 +10,19 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: 'Sobre Mí',
-      href: '#about',
+      href: '/#about',
     },
     {
       title: 'Proyectos',
-      href: '#projects',
+      href: '/#projects',
     },
     {
       title: 'Habilidades',
-      href: '#skills',
+      href: '/#skills',
     },
     {
       title: 'Contacto',
-      href: '#contact',
+      href: '/#contact',
     },
   ],
   links: {
