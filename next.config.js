@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
+  images: {
+    domains: ['github.com'],
+    unoptimized: true,
+  },
   experimental: {
     // Habilitar características experimentales si es necesario
   },
