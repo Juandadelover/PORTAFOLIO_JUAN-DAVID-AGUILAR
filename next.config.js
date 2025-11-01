@@ -3,12 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'standalone',
+  trailingSlash: true,
   images: {
     domains: ['github.com'],
     unoptimized: true,
   },
   experimental: {
-    // Habilitar características experimentales si es necesario
+    serverActions: true,
   },
   // Asegurarse de que Next.js maneje correctamente la hidratación
   webpack: (config, { dev, isServer }) => {
