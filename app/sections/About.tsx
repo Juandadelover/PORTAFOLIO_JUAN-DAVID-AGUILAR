@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { HiCode, HiDeviceMobile, HiDatabase, HiChip } from 'react-icons/hi';
 import { SkillCard } from '../components/ui/SkillCard';
 
@@ -69,27 +70,45 @@ export default function About() {
     }
   ];
 
+  const backgroundRef = useRef(null);
+
   return (
     <section className="relative py-20 overflow-hidden" id="sobre-mi">
       {/* Fondo con gradiente y efectos */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
-      >
+      <div className="absolute inset-0">
         <motion.div
-          animate={{
+          ref={backgroundRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="w-full h-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+        />
+        <motion.div
+          animate={{ 
             scale: [1, 1.1, 1],
-            opacity: [0.3, 0.2, 0.3],
+            opacity: [0.3, 0.2, 0.3]
           }}
-          transition={{
+          transition={{ 
             duration: 8,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "reverse"
           }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.15),transparent_50%)]"
+          className="absolute inset-0"
         />
+      </div>
+
+      <motion.div
+        animate={{ 
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.2, 0.3]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.15),transparent_50%)]"
+      />
       
       <motion.div
         initial={{ opacity: 0 }}

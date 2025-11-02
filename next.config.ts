@@ -18,11 +18,16 @@ interface NextConfigTyped extends NextConfig {
 
 const nextConfig: NextConfigTyped = {
   reactStrictMode: true,
-  swcMinify: true,
   webpack: (config: Configuration): Configuration => {
+    if (!config.resolve) {
+      config.resolve = {};
+    }
     (config.resolve as any).fallback = {
       ...(config.resolve as any).fallback,
       fs: false,
+      net: false,
+      tls: false,
+      crypto: false,
     };
     return config;
   },
