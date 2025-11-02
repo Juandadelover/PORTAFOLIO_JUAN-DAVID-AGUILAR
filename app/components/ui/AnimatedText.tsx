@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface AnimatedTextProps {
   text: string;
@@ -10,7 +10,7 @@ interface AnimatedTextProps {
 export const AnimatedText = ({ text, className = '' }: AnimatedTextProps) => {
   const words = text.split(' ');
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -18,24 +18,14 @@ export const AnimatedText = ({ text, className = '' }: AnimatedTextProps) => {
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
     },
     hidden: {
       opacity: 0,
       x: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
     },
   };
 
@@ -49,6 +39,11 @@ export const AnimatedText = ({ text, className = '' }: AnimatedTextProps) => {
       {words.map((word, index) => (
         <motion.span
           variants={child}
+          transition={{
+            type: "spring",
+            damping: 12,
+            stiffness: 100,
+          }}
           key={index}
           className="inline-block mr-2"
         >
