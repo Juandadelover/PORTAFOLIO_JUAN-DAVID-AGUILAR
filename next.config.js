@@ -8,9 +8,6 @@ const nextConfig = {
     domains: ['github.com'],
     unoptimized: true,
   },
-  experimental: {
-    serverActions: true,
-  },
   // Asegurarse de que Next.js maneje correctamente la hidratación
   webpack: (config, { dev, isServer }) => {
     // Asegurarse de que webpack maneje correctamente los módulos
