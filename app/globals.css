@@ -6,16 +6,86 @@
   :root {
     --background: #ffffff;
     --foreground: #171717;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #6366f1;
+    --accent: #8b5cf6;
   }
 
   .dark {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #60a5fa;
+    --primary-foreground: #ffffff;
+    --secondary: #818cf8;
+    --accent: #a78bfa;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 dark:bg-black/30 dark:border-white/10;
+  }
+
+  .glow-effect {
+    @apply hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10 transition-shadow duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  .gradient-border {
+    @apply border-2 border-transparent bg-gradient-to-r from-primary via-secondary to-accent bg-clip-border;
   }
 }
 
 * {
   @apply transition-colors duration-200;
+}
+
+/* Animaciones y efectos especiales */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Efectos de scroll */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Efectos de hover */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
 }
 
 body {
