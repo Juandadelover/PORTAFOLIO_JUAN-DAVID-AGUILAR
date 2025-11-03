@@ -17,12 +17,8 @@ export const siteConfig: SiteConfig = {
       href: '/#projects',
     },
     {
-      title: 'Habilidades',
-      href: '/#skills',
-    },
-    {
       title: 'Contacto',
-      href: '/#contact',
+      href: '/#contacto',
     },
   ],
   links: {

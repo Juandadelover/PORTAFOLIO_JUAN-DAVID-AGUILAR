@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   output: 'export',
-  trailingSlash: true,
   images: {
     unoptimized: true,
+  },
+  reactStrictMode: true,
+  experimental: {
+    serverActions: true,
   },
   typescript: {
     ignoreBuildErrors: true

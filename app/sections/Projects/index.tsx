@@ -1,226 +1,211 @@
-'use client'
+'use client';
 
-import { motion, Variants } from 'framer-motion'
-import { useState } from 'react'
-import type { FC } from 'react'
-import { HiExternalLink, HiCode } from 'react-icons/hi'
-import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder'
-import Image from 'next/image'
-import { projects } from '@/config/projects'
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { HiCode, HiExternalLink } from 'react-icons/hi';
+import { ProjectCard } from './ProjectCard';
 
-interface Project {
-  id: number
-  title: string
-  description: string
-  image: string
-  technologies: string[]
-  liveUrl?: string
-  githubUrl?: string
-  category: 'web' | 'mobile' | 'backend' | 'all'
-}
-
-interface ProjectsProps {}
-
-const Projects: FC<ProjectsProps> = () => {
-  const [filter, setFilter] = useState<'all' | 'web' | 'mobile' | 'backend'>('all')
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+const projects = [
+  {
+    title: "La Felicidá - Plataforma E-commerce de Café Premium",
+    description: "Transformamos la experiencia de compra de café premium en una aventura digital inmersiva, conectando productores locales con amantes del café en todo el mundo.",
+    fullDescription: "La Felicidá es más que una tienda en línea; es una ventana digital al mundo del café premium y la cultura local. Desarrollamos una plataforma e-commerce que no solo vende productos, sino que cuenta historias, crea conexiones y genera experiencias memorables. Desde la selección del café hasta la reserva de experiencias turísticas, cada aspecto fue diseñado pensando en la conversión y el engagement del usuario.\n\nLa plataforma integra ventas de café premium, productos artesanales y experiencias turísticas en una interfaz intuitiva y cautivadora. El diseño responsive, las animaciones fluidas y la carga optimizada garantizan una experiencia de usuario excepcional en cualquier dispositivo.",
+    tech: ["React", "TypeScript", "Next.js", "TailwindCSS", "Framer Motion", "i18n"],
+    images: [
+      {
+        url: "/img/Proyecto 1/lafelicidaHome.png",
+        caption: "Landing page moderna y atractiva que transmite la esencia de tu marca"
+      },
+      {
+        url: "/img/Proyecto 1/lafelicidaCafe.png",
+        caption: "Catálogo de productos que destaca la calidad de tu oferta"
+      },
+      {
+        url: "/img/Proyecto 1/lafelicidaDetalleCafe.png",
+        caption: "Detalles de producto que generan confianza y aumentan conversiones"
+      },
+      {
+        url: "/img/Proyecto 1/lafelicidaCarrito.png",
+        caption: "Carrito de compras optimizado para maximizar ventas"
+      },
+      {
+        url: "/img/Proyecto 1/lafelicidaServicios.png",
+        caption: "Presentación profesional de servicios y experiencias"
+      },
+      {
+        url: "/img/Proyecto 1/lafelicidaAgenteIA.png",
+        caption: "Asistente virtual con IA para atención 24/7"
       }
-    }
-  }
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20
+    ],
+    demo: "https://cafefelicida.vercel.app",
+    gradient: "from-amber-600 to-yellow-600",
+    category: "E-commerce"
+  },
+  {
+    title: "E-commerce App",
+    description: "Plataforma de comercio electrónico con carrito de compras, pagos en línea y sistema de inventario en tiempo real.",
+    fullDescription: "Plataforma completa de e-commerce con gestión de productos, carrito de compras, pasarela de pagos integrada, sistema de inventario automatizado y panel de administración.",
+    tech: ["Flutter", "Supabase", "Stripe", "REST API"],
+    images: [
+      {
+        url: "/assets/proyecto2/catalogo.jpg",
+        caption: "Catálogo de productos"
+      },
+      {
+        url: "/assets/proyecto2/carrito.jpg",
+        caption: "Carrito de compras integrado"
+      },
+      {
+        url: "/assets/proyecto2/pagos.jpg",
+        caption: "Proceso de pago seguro"
+      },
+      {
+        url: "/assets/proyecto2/inventario.jpg",
+        caption: "Panel de gestión de inventario"
       }
-    }
+    ],
+    github: "https://github.com/Juandadelover",
+    demo: "https://demo-proyecto2.com",
+    gradient: "from-purple-600 to-pink-600",
+    category: "E-commerce"
+  },
+  {
+    title: "Chat en Tiempo Real",
+    description: "Aplicación de mensajería instantánea con funciones de chat grupal, mensajes directos y compartición de archivos.",
+    fullDescription: "App de mensajería con chat en tiempo real, grupos, llamadas de voz, compartición de multimedia, cifrado end-to-end y sincronización multiplataforma.",
+    tech: ["Flutter", "Supabase Realtime", "Storage", "WebRTC"],
+    images: [
+      {
+        url: "/assets/proyecto3/chat.jpg",
+        caption: "Interfaz principal de chat"
+      },
+      {
+        url: "/assets/proyecto3/grupos.jpg",
+        caption: "Gestión de grupos y canales"
+      },
+      {
+        url: "/assets/proyecto3/llamadas.jpg",
+        caption: "Llamadas de voz y video"
+      },
+      {
+        url: "/assets/proyecto3/archivos.jpg",
+        caption: "Compartición de archivos multimedia"
+      }
+    ],
+    github: "https://github.com/Juandadelover",
+    demo: "https://demo-proyecto3.com",
+    gradient: "from-green-600 to-teal-600",
+    category: "Social App"
   }
+];
 
-  const filteredProjects = projects.filter(
-    project => filter === 'all' || project.category === filter
-  )
+export default function Projects() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="relative py-20">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="absolute inset-0 bg-gradient-to-b from-white to-primary-50/30 dark:from-gray-800 dark:to-gray-900"
-      />
-      
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-[linear-gradient(45deg,transparent,rgba(120,119,198,0.1),transparent)] dark:bg-[linear-gradient(45deg,transparent,rgba(120,119,198,0.05),transparent)] bg-repeat-y bg-[length:100%_100%]"
-      />
+    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900" id="proyectos">
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Efectos de fondo */}
+      <div className="absolute inset-0">
+        <motion.div
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.03, 0.06, 0.03]
+          }}
+          transition={{ 
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.03, 0.06, 0.03]
+          }}
+          transition={{ 
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-sm font-medium mb-6"
           >
-            Portfolio
+            <HiCode className="w-4 h-4" />
+            Portafolio
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400 text-transparent bg-clip-text">
-            Mis Proyectos
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            Proyectos{' '}
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-transparent bg-clip-text">
+              Destacados
+            </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Una selección de mis proyectos más destacados en desarrollo web, móvil y backend.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          >
+            Una selección de mis trabajos más recientes, donde combino diseño elegante con funcionalidad robusta.
+          </motion.p>
         </motion.div>
 
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              project={project}
+              index={index}
+              isHovered={hoveredIndex === index}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
+            />
+          ))}
+        </div>
+
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-16"
         >
-          {['all', 'web', 'mobile', 'backend'].map((category, index) => (
-            <motion.button
-              key={category}
-              onClick={() => setFilter(category as typeof filter)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.3,
-                delay: index * 0.1,
-                type: "spring",
-                stiffness: 200
-              }}
-              className={`px-6 py-2 rounded-full font-medium backdrop-blur-sm ${
-                filter === category
-                  ? 'bg-primary-600 dark:bg-primary-500 text-white shadow-lg shadow-primary-500/20 dark:shadow-primary-500/10'
-                  : 'bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-gray-700/90 border border-gray-200 dark:border-gray-700'
-              }`}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              whileHover={{ 
-                y: -5,
-                transition: { duration: 0.2 }
-              }}
-              className="group bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-xl shadow-xl dark:shadow-gray-800/30 overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-primary-500/10 hover:border-primary-500/20 dark:hover:border-primary-500/20"
-            >
-              <div className="relative h-48 overflow-hidden">
-                {project.image ? (
-                  <motion.div
-                    className="relative w-full h-full"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      onError={() => {
-                        console.log(`Error loading image for ${project.title}`)
-                      }}
-                    />
-                  </motion.div>
-                ) : (
-                  <ImagePlaceholder title={project.title} />
-                )}
-              </div>
-              <div className="p-6">
-                <motion.h3 
-                  className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {project.title}
-                </motion.h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-                <motion.div 
-                  className="flex flex-wrap gap-2 mb-6"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {project.technologies.map((tech) => (
-                    <motion.span
-                      key={tech}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-300 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </motion.div>
-                <div className="flex space-x-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  {project.liveUrl && (
-                    <motion.a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ x: 3 }}
-                      className="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
-                    >
-                      <HiExternalLink className="w-5 h-5 mr-2" />
-                      Ver Demo
-                    </motion.a>
-                  )}
-                  {project.githubUrl && (
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ x: 3 }}
-                      className="flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
-                    >
-                      <HiCode className="w-5 h-5 mr-2" />
-                      Ver Código
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <motion.a
+            href="https://github.com/Juandadelover"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+          >
+            <HiCode className="w-5 h-5" />
+            Ver más en GitHub
+            <HiExternalLink className="w-4 h-4" />
+          </motion.a>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
-export default Projects

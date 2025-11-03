@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { Navbar } from "./components/shared/Navbar";
+import Footer from "./components/shared/Footer";
 import WhatsAppButton from "./components/shared/WhatsAppButton";
 import { Suspense } from "react";
 import Providers from "./providers/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Desarrollador de Software",
-  description: "Portfolio profesional mostrando mis proyectos y habilidades como desarrollador de software",
-  keywords: ["desarrollo web", "software", "programación", "frontend", "backend", "full-stack"],
+  title: "Juan David Aguilar | Desarrollador Full Stack",
+  description: "Portfolio profesional de Juan David Aguilar - Desarrollador especializado en Flutter, Supabase y aplicaciones web modernas",
+  keywords: ["desarrollo web", "software", "programación", "frontend", "backend", "full-stack", "flutter", "supabase", "react"],
 };
 
 function Loading() {
@@ -26,9 +27,10 @@ export default function RootLayout({
         <Providers>
           <Suspense fallback={<Loading />}>
             <Navbar />
-            <main className="pt-16">
+            <main className="pt-20">
               {children}
             </main>
+            <Footer />
             <WhatsAppButton />
           </Suspense>
         </Providers>

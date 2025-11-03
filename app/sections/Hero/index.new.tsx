@@ -82,21 +82,21 @@ const Hero: React.FC<HeroProps> = () => {
       label: 'Proyectos', 
       suffix: '+',
       icon: HiCode,
-      color: 'from-purple-500 to-indigo-500' 
+      color: 'from-blue-500 to-purple-500' 
     },
     { 
       value: 3, 
       label: 'Años Exp.', 
       suffix: '+',
       icon: HiStar,
-      color: 'from-cyan-500 to-blue-500'
+      color: 'from-purple-500 to-pink-500'
     },
     { 
       value: 15, 
       label: 'Clientes', 
       suffix: '+',
       icon: HiCheckCircle,
-      color: 'from-green-500 to-emerald-500'
+      color: 'from-pink-500 to-blue-500'
     }
   ];
 
@@ -172,12 +172,12 @@ const Hero: React.FC<HeroProps> = () => {
         style={{
           background: `
             radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px,
-              rgba(99, 102, 241, 0.15),
-              rgba(6, 182, 212, 0.15),
+              rgba(59, 130, 246, 0.15),
+              rgba(139, 92, 246, 0.15),
               transparent 40%
             ),
             radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px,
-              rgba(147, 51, 234, 0.1),
+              rgba(236, 72, 153, 0.1),
               transparent 40%
             )
           `
@@ -201,7 +201,7 @@ const Hero: React.FC<HeroProps> = () => {
           }}
           className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px]"
         >
-          <div className="w-full h-full bg-[conic-gradient(from_0deg,theme(colors.purple.500/20),theme(colors.cyan.500/20),theme(colors.indigo.500/20),theme(colors.purple.500/20))] rounded-full blur-3xl animate-[spin_10s_linear_infinite]" />
+          <div className="w-full h-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
         </motion.div>
 
         <motion.div
@@ -219,7 +219,7 @@ const Hero: React.FC<HeroProps> = () => {
           }}
           className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px]"
         >
-          <div className="w-full h-full bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl" />
+          <div className="w-full h-full bg-gradient-to-tr from-purple-500/20 via-blue-500/20 to-pink-500/20 rounded-full blur-3xl" />
         </motion.div>
       </div>
 
@@ -243,7 +243,7 @@ const Hero: React.FC<HeroProps> = () => {
                 initial={{ scale: 1 }}
                 animate={{ scale: prefersReducedMotion ? 1 : [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-cyan-500/10 backdrop-blur-md border border-gray-700/50 shadow-lg shadow-purple-500/10"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md border border-gray-700/50 shadow-lg shadow-blue-500/10"
               >
                 <motion.div
                   animate={{ 
@@ -253,7 +253,7 @@ const Hero: React.FC<HeroProps> = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                   className="w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
                 />
-                <span className="text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-medium">
+                <span className="text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 font-medium">
                   Disponible para proyectos
                 </span>
               </motion.div>
@@ -265,11 +265,11 @@ const Hero: React.FC<HeroProps> = () => {
                 whileHover={{ scale: 1.05 }}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-cyan-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
-                <div className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/10 to-cyan-500/10 backdrop-blur-md border border-gray-700/50 shadow-xl">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
+                <div className="relative px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md border border-gray-700/50 shadow-xl">
                   <span className="relative flex items-center gap-2 text-sm sm:text-base font-semibold">
-                    <HiCode className="w-5 h-5 text-purple-400" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400">
+                    <HiCode className="w-5 h-5 text-blue-400" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
                       Desarrollador de Software
                     </span>
                   </span>
@@ -290,7 +290,7 @@ const Hero: React.FC<HeroProps> = () => {
                 <motion.span
                   animate={{ opacity: prefersReducedMotion ? 0 : [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="inline-block w-1 h-10 sm:h-12 lg:h-16 bg-gradient-to-b from-purple-400 to-cyan-400 ml-1 align-middle"
+                  className="inline-block w-1 h-10 sm:h-12 lg:h-16 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 ml-1 align-middle"
                 />
               </span>
             </motion.h1>
@@ -346,14 +346,14 @@ const Hero: React.FC<HeroProps> = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
             >
               <motion.a
-                href="#projects"
+                href="#proyectos"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 text-white rounded-xl font-semibold overflow-hidden shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 min-h-[44px] flex items-center justify-center"
+                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-semibold overflow-hidden shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 min-h-[44px] flex items-center justify-center"
                 aria-label="Ver proyectos"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-700 to-cyan-700"
+                  className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -376,15 +376,15 @@ const Hero: React.FC<HeroProps> = () => {
               </motion.a>
               
               <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(156, 163, 175, 0.8)' }}
+                href="#contacto"
+                whileHover={{ scale: 1.05, borderColor: 'rgba(59, 130, 246, 0.5)' }}
                 whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 bg-gray-800/50 backdrop-blur-sm border-2 border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white rounded-xl font-semibold transition-all duration-300 min-h-[44px] flex items-center justify-center shadow-lg"
-                aria-label="Descargar CV"
+                className="group px-8 py-4 bg-gray-800/50 backdrop-blur-sm border-2 border-gray-700 hover:border-blue-500 text-gray-300 hover:text-white rounded-xl font-semibold transition-all duration-300 min-h-[44px] flex items-center justify-center shadow-lg"
+                aria-label="Contactar"
               >
                 <span className="flex items-center gap-2 text-sm sm:text-base">
                   <HiDownload className="w-5 h-5 group-hover:animate-bounce" />
-                  Descargar CV
+                  Contactar
                 </span>
               </motion.a>
             </motion.div>
@@ -480,7 +480,7 @@ const Hero: React.FC<HeroProps> = () => {
                   <motion.div
                     className="absolute inset-0 rounded-full p-1.5"
                     style={{
-                      background: 'conic-gradient(from 0deg, #a855f7, #06b6d4, #6366f1, #a855f7)'
+                      background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6)'
                     }}
                     animate={{
                       rotate: prefersReducedMotion ? 0 : [0, 360],
@@ -499,23 +499,24 @@ const Hero: React.FC<HeroProps> = () => {
                       }
                     }}
                   >
-                    <div className="w-full h-full rounded-full bg-[#0A0F1C]" />
+                    <div className="w-full h-full rounded-full bg-gray-900" />
                   </motion.div>
 
                   {/* Imagen */}
-                  <div className="absolute inset-2 rounded-full overflow-hidden border-2 border-gray-700/50 backdrop-blur-sm">
+                  <div className="absolute inset-2 rounded-full overflow-hidden border-2 border-blue-500/30 backdrop-blur-sm shadow-2xl shadow-blue-500/20">
                     <Image
-                      src="/assets/profile.jpg"
+                      src="/img/FotoJuanda.png"
                       alt="Juan David Aguilar - Desarrollador de Software"
                       fill
                       priority
                       className="object-cover hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 768px) 300px, 400px"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/40" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/30" />
                     
                     {/* Overlay de brillo al hover */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-tr from-purple-500/0 to-cyan-500/0 hover:from-purple-500/10 hover:to-cyan-500/10 transition-all duration-500"
+                      className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-purple-500/0 to-pink-500/0 hover:from-blue-500/10 hover:via-purple-500/10 hover:to-pink-500/10 transition-all duration-500"
                     />
                   </div>
 
@@ -524,14 +525,15 @@ const Hero: React.FC<HeroProps> = () => {
                     className="absolute inset-0 rounded-full"
                     animate={{
                       boxShadow: prefersReducedMotion 
-                        ? '0 0 60px rgba(168, 85, 247, 0.4)' 
+                        ? '0 0 60px rgba(59, 130, 246, 0.5)' 
                         : [
-                            '0 0 60px rgba(168, 85, 247, 0.4)',
-                            '0 0 80px rgba(6, 182, 212, 0.4)',
-                            '0 0 60px rgba(168, 85, 247, 0.4)'
+                            '0 0 60px rgba(59, 130, 246, 0.5)',
+                            '0 0 80px rgba(139, 92, 246, 0.5)',
+                            '0 0 70px rgba(236, 72, 153, 0.4)',
+                            '0 0 60px rgba(59, 130, 246, 0.5)'
                           ]
                     }}
-                    transition={{ duration: 3, repeat: Infinity }}
+                    transition={{ duration: 4, repeat: Infinity }}
                   />
                 </motion.div>
               </div>
@@ -568,8 +570,8 @@ const Hero: React.FC<HeroProps> = () => {
                         ease: 'linear'
                       }}
                     >
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-gradient-to-r from-purple-400 to-cyan-400" style={{
-                        background: 'linear-gradient(to right, #c084fc, #22d3ee)',
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7" style={{
+                        background: 'linear-gradient(to right, #60a5fa, #a78bfa, #f472b6)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                       }} />
@@ -610,11 +612,11 @@ const Hero: React.FC<HeroProps> = () => {
           <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
             Scroll
           </span>
-          <div className="w-6 h-10 rounded-full border-2 border-gray-700 group-hover:border-gray-500 flex items-start justify-center p-2 transition-colors">
+          <div className="w-6 h-10 rounded-full border-2 border-gray-700 group-hover:border-blue-500 flex items-start justify-center p-2 transition-colors">
             <motion.div
               animate={{ y: prefersReducedMotion ? 0 : [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"
+              className="w-1 h-2 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full"
             />
           </div>
         </motion.div>

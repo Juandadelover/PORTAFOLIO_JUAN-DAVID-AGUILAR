@@ -5,8 +5,10 @@ import Contact from './sections/Contact';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Hero />
+    <main className="min-h-screen flex flex-col">
+      <div className="h-screen">
+        <Hero />
+      </div>
       <About />
       <Projects />
       <Contact />
