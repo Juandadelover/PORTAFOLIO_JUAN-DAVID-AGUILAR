@@ -1,9 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { HiChip, HiLightningBolt, HiArrowLeft } from 'react-icons/hi';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { HiChip, HiLightningBolt, HiArrowLeft, HiExternalLink, HiStar, HiTrendingUp, HiUsers, HiClock } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useRef } from 'react';
 
 interface Project {
   id: number;
@@ -21,36 +22,163 @@ interface Project {
 }
 
 export default function ProjectPageClient({ project }: { project: Project }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-12">
-      {/* Botón de regreso */}
-      <Link
-        href="/#proyectos"
-        className="fixed top-4 left-4 z-50 p-3 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 hover:border-white/40 transition-all duration-300"
+    <main ref={containerRef} className="min-h-screen bg-black">
+      {/* Navbar fijo */}
+      <motion.nav 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10"
       >
-        <HiArrowLeft className="w-6 h-6" />
-      </Link>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link
+            href="/#proyectos"
+            className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors group"
+          >
+            <HiArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Volver a Proyectos</span>
+          </Link>
+          
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full text-white font-medium transition-all hover:scale-105"
+            >
+              <span>Ver Demo</span>
+              <HiExternalLink className="w-4 h-4" />
+            </a>
+          )}
+        </div>
+      </motion.nav>
 
-      <div className="relative w-full max-w-4xl mx-auto px-4">
-        {/* Efectos de fondo */}
+      {/* Hero Section con imagen principal */}
+      <motion.section 
+        style={{ opacity, scale }}
+        className="relative h-screen flex items-end overflow-hidden pt-16"
+      >
+        {/* Imagen de fondo con parallax */}
+        <div className="absolute inset-0">
+          <Image
+            src={project.images[activeImage]?.url || project.images[0].url}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+            quality={100}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/95" />
+        </div>
+
+        {/* Contenido del hero */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mb-4"
+            >
+              {project.category && (
+                <span className="inline-block px-4 py-2 bg-blue-600/30 backdrop-blur-md border border-blue-400/40 rounded-full text-blue-300 text-sm font-semibold shadow-lg">
+                  {project.category}
+                </span>
+              )}
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl"
+              style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
+            >
+              {project.title}
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg sm:text-xl text-gray-200 mb-10 leading-relaxed drop-shadow-lg"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
+            >
+              {project.description}
+            </motion.p>
+
+            {/* Miniaturas de imágenes mejoradas */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex gap-3 flex-wrap"
+            >
+              {project.images.slice(0, 6).map((img, idx) => (
+                <motion.button
+                  key={idx}
+                  onClick={() => setActiveImage(idx)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border-3 transition-all shadow-lg ${
+                    activeImage === idx
+                      ? 'border-blue-500 ring-2 ring-blue-400/50 scale-105'
+                      : 'border-white/30 hover:border-white/60'
+                  }`}
+                >
+                  <Image
+                    src={img.url}
+                    alt={`Vista ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                  {activeImage === idx && (
+                    <div className="absolute inset-0 bg-blue-500/20 backdrop-blur-[1px]" />
+                  )}
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator mejorado */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.1 }}
-          className="fixed inset-0 overflow-hidden pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl" />
-          <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-2xl" />
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
+          >
+            <span className="text-white/60 text-xs font-medium">Scroll</span>
+            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
+              <motion.div 
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-2 bg-white/80 rounded-full" 
+              />
+            </div>
+          </motion.div>
         </motion.div>
+      </motion.section>
 
-        {/* Contenido principal */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: "spring", duration: 0.5 }}
-          className="relative w-full bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm overflow-hidden"
-        >
-          {/* Galería de imágenes */}
-          <div className="space-y-12 p-6">
+      {/* Contenido Principal */}
+      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {project.images.map((image, index) => (
               <motion.div
                 key={index}
@@ -229,9 +357,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       >
                         <motion.span 
                           className="mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex-shrink-0 group-hover:scale-125 transition-transform"
-                          animate={{
-                            scale: [1, 1.2, 1],
-                          }}
+                          animate={{ scale: [1, 1.2, 1] }}
                           transition={{
                             duration: 2,
                             repeat: Infinity,
@@ -302,8 +428,8 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
