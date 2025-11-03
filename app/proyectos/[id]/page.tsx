@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { projects } from '../../config/projects';
 import ProjectPageClient from './ProjectPageClient';
 
@@ -8,13 +9,14 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const project = projects[parseInt(id)];
-
-  if (!project) {
-    return null;
+export default async function ProjectPage({ params }: { params: { id: string } }) {
+  const projectId = parseInt(params.id);
+  
+  // Validación de ID
+  if (isNaN(projectId) || projectId < 0 || projectId >= projects.length) {
+    notFound();
   }
 
+  const project = projects[projectId];
   return <ProjectPageClient project={project} />;
 }

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: false,
   typescript: {
     // !! ADVERTENCIA !!
     // Permite que las builds de producción se completen incluso si hay errores de tipos.
