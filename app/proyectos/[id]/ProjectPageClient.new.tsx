@@ -63,313 +63,472 @@ export default function ProjectPageClient({ project }: { project: Project }) {
         </div>
       </motion.nav>
 
-      {/* Hero Section con imagen principal */}
-      <motion.section 
+      {/* Hero Section premium sin imagen de fondo plana */}
+      <motion.section
         style={{ opacity, scale }}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen overflow-hidden pt-24 pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
       >
-        {/* Imagen de fondo con parallax */}
-        <div className="absolute inset-0">
-          <Image
-            src={project.images[activeImage]?.url || project.images[0].url}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-            quality={100}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+        {/* Luces y destellos de fondo */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-40 -left-40 w-[520px] h-[520px] bg-gradient-to-br from-blue-500/30 via-purple-500/20 to-transparent blur-3xl" />
+          <div className="absolute -bottom-32 -right-32 w-[460px] h-[460px] bg-gradient-to-tl from-pink-500/20 via-blue-500/20 to-transparent blur-[120px]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] h-[280px] bg-gradient-to-br from-white/15 to-transparent blur-3xl opacity-60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_rgba(8,11,19,0.95))]" />
         </div>
 
-        {/* Contenido del hero */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-6"
-          >
-            {project.category && (
-              <span className="inline-block px-4 py-2 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium mb-4">
-                {project.category}
-              </span>
-            )}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-          >
-            {project.title}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8"
-          >
-            {project.description}
-          </motion.p>
-
-          {/* Miniaturas de imágenes */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex gap-2 justify-center flex-wrap max-w-2xl mx-auto"
-          >
-            {project.images.slice(0, 6).map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveImage(idx)}
-                className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                  activeImage === idx
-                    ? 'border-blue-500 scale-110'
-                    : 'border-white/20 hover:border-white/40'
-                }`}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-20 items-center">
+            {/* Columna de contenido */}
+            <div className="space-y-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl text-sm font-medium text-blue-200 shadow-[0_0_30px_rgba(59,130,246,0.25)]"
               >
-                <Image
-                  src={img.url}
-                  alt={`Vista ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </button>
-            ))}
-          </motion.div>
+                <span className="inline-flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                {project.category ?? 'Proyecto destacado'}
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white leading-tight"
+              >
+                {project.title}
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                className="text-lg sm:text-xl text-slate-200/90 max-w-2xl leading-relaxed"
+              >
+                {project.description}
+              </motion.p>
+
+              {/* Métricas destacadas */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
+              >
+                {[ 
+                  { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
+                  { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-400 to-pink-400' },
+                  { icon: HiStar, value: '4.9', label: 'Experiencia', color: 'from-amber-300 to-orange-400' },
+                  { icon: HiUsers, value: '+5K', label: 'Clientes', color: 'from-teal-300 to-emerald-400' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55 + index * 0.05 }}
+                    className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
+                    <div className="relative flex flex-col gap-2">
+                      <span className="w-fit rounded-full bg-white/10 p-2">
+                        <stat.icon className="w-4 h-4 text-white/80" />
+                      </span>
+                      <span className="text-2xl font-bold text-white">{stat.value}</span>
+                      <span className="text-xs uppercase tracking-[0.2em] text-white/60">{stat.label}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA principal */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-wrap items-center gap-4"
+              >
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all"
+                  >
+                    Ver demo en vivo
+                    <HiExternalLink className="w-5 h-5" />
+                  </a>
+                )}
+
+                <Link
+                  href="/#contacto"
+                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/15 text-white/90 hover:text-white hover:border-white/30 transition-colors"
+                >
+                  Hablemos del proyecto
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Tarjeta visual del proyecto */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="relative"
+            >
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
+
+              <div className="relative rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_35px_120px_-35px_rgba(15,23,42,0.9)] overflow-hidden">
+                <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                      {project.title.slice(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60">Proyecto destacado</p>
+                      <p className="text-lg font-semibold text-white">{project.title}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/60">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
+                      <HiStar className="w-4 h-4 text-amber-300" />
+                      4.9
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
+                      <HiClock className="w-4 h-4 text-blue-200" />
+                      3 meses
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative mx-4 mt-6 rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
+                  <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-[0.3em]">Preview</span>
+                    <span className="flex items-center gap-1 text-xs text-white/50">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      En vivo
+                    </span>
+                  </div>
+                  <div className="aspect-[4/3]">
+                    <Image
+                      src={project.images[activeImage]?.url || project.images[0].url}
+                      alt={project.images[activeImage]?.caption || project.title}
+                      fill
+                      className="object-cover"
+                      priority
+                      quality={95}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  </div>
+                </div>
+
+                {/* Controles / miniaturas */}
+                <div className="px-6 pt-6 pb-8">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Vistas del proyecto</p>
+                  <div className="flex gap-3 overflow-x-auto pb-1">
+                    {project.images.map((img, idx) => (
+                      <button
+                        key={`${img.url}-${idx}`}
+                        onClick={() => setActiveImage(idx)}
+                        className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border transition-all ${
+                          activeImage === idx
+                            ? 'border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]'
+                            : 'border-white/10 hover:border-white/30'
+                        }`}
+                      >
+                        <Image
+                          src={img.url}
+                          alt={img.caption || `${project.title} vista ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Indicador scroll */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 0.8 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2"
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-2 text-white/60 text-xs"
           >
-            <motion.div className="w-1 h-2 bg-white rounded-full" />
+            Desliza para explorar
+            <div className="w-6 h-10 border border-white/30 rounded-full flex items-start justify-center p-2">
+              <motion.span
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-1 h-2 rounded-full bg-white/70"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </motion.section>
 
-      {/* Estadísticas destacadas */}
+      {/* Contenido Principal */}
       <section className="relative py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { icon: HiTrendingUp, value: '+70%', label: 'Aumento en ventas', color: 'from-blue-500 to-cyan-500' },
-              { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-500 to-pink-500' },
-              { icon: HiStar, value: '+150%', label: 'ROI promedio', color: 'from-pink-500 to-red-500' },
-              { icon: HiUsers, value: '+5K', label: 'Clientes alcanzados', color: 'from-green-500 to-emerald-500' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative group"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl blur-xl transition-opacity`} />
-                <div className="relative bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all">
-                  <stat.icon className="w-8 h-8 mb-4 text-white" />
-                  <div className={`text-3xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Galería de imágenes mejorada */}
-      <section className="relative py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Galería del Proyecto
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Explora cada detalle de esta solución digital premium
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {project.images.map((image, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl"
+                transition={{ 
+                  duration: 0.8,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+                className="group relative w-full"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-30 blur-xl transition-opacity" />
-                <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-gray-800">
-                  <Image
-                    src={image.url}
-                    alt={image.caption || project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    quality={95}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-white font-medium">{image.caption}</p>
+                {/* Efecto de resplandor en hover */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
+                
+                <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                  {/* Contenedor de imagen con efecto parallax */}
+                  <motion.div
+                    className="relative"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Image
+                      src={image.url}
+                      alt={image.caption || project.title}
+                      width={1920}
+                      height={1080}
+                      className="w-full h-auto"
+                      priority={index === 0}
+                      quality={100}
+                    />
+                    
+                    {/* Overlay gradiente en hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Caption con animación */}
+                    {image.caption && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="absolute bottom-0 left-0 right-0 p-6"
+                      >
+                        <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4 transform group-hover:translate-y-0 translate-y-2 transition-transform duration-300">
+                          <p className="text-white text-sm md:text-base font-medium">
+                            {image.caption}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Indicador de número de imagen */}
+                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
+                      <p className="text-white text-sm font-medium">
+                        {index + 1} / {project.images.length}
+                      </p>
                     </div>
-                  )}
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Descripción y características */}
-      <section className="relative py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Descripción */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+          {/* Título del proyecto */}
+          <div className="px-6 pt-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Sobre el Proyecto
-              </h2>
-              <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                {project.longDescription}
-              </p>
+              {project.title}
+            </motion.h1>
+          </div>
 
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
-                    <HiLightningBolt className="w-5 h-5 text-white" />
-                  </div>
-                  Características Clave
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    'Diseño responsive y optimizado para todos los dispositivos',
-                    'Experiencia de usuario intuitiva y moderna',
-                    'Integración con sistemas de pago seguros',
-                    'Panel de administración completo',
-                    'Optimización SEO y rendimiento',
-                    'Soporte multiidioma',
-                  ].map((feature, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center gap-3 text-gray-300"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-                      {feature}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Tecnologías y CTA */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              {/* Tecnologías */}
+          {/* Contenido */}
+          <div className="p-6 sm:p-8">
+            <div className="grid lg:grid-cols-[2fr,1fr] gap-12">
               <div>
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
-                    <HiChip className="w-5 h-5 text-white" />
+                {/* Descripción */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mb-12"
+                >
+                  <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                    {project.description}
+                  </p>
+
+                  {/* Estadísticas */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 bg-white/5 rounded-2xl backdrop-blur-sm">
+                    <div className="text-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="text-3xl font-bold text-blue-400 mb-2"
+                      >
+                        +70%
+                      </motion.div>
+                      <div className="text-sm text-gray-400">Aumento en ventas</div>
+                    </div>
+                    <div className="text-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="text-3xl font-bold text-purple-400 mb-2"
+                      >
+                        24/7
+                      </motion.div>
+                      <div className="text-sm text-gray-400">Disponibilidad</div>
+                    </div>
+                    <div className="text-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.7 }}
+                        className="text-3xl font-bold text-pink-400 mb-2"
+                      >
+                        +150%
+                      </motion.div>
+                      <div className="text-sm text-gray-400">ROI promedio</div>
+                    </div>
+                    <div className="text-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                        className="text-3xl font-bold text-blue-400 mb-2"
+                      >
+                        +5K
+                      </motion.div>
+                      <div className="text-sm text-gray-400">Clientes alcanzados</div>
+                    </div>
                   </div>
-                  Stack Tecnológico
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {project.tech.map((tech, index) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05 }}
-                      className="px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium backdrop-blur-sm hover:border-blue-500/40 hover:bg-blue-500/20 transition-all"
+                </motion.div>
+
+                {/* ¿Por qué necesitas una web así? */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="mb-12"
+                >
+                  <div className="flex items-center gap-3 text-xl font-bold text-white mb-6">
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                      className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500"
                     >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
+                      <HiLightningBolt className="w-6 h-6 text-white" />
+                    </motion.div>
+                    Soluciones Digitales para Café Premium
+                  </div>
+                  <ul className="grid grid-cols-1 gap-6">
+                    {[
+                      "Maximiza el Alcance de tu Café Premium: Plataforma digital optimizada para conectar con conocedores del café a nivel global",
+                      "Experiencia de Marca Inmersiva: Narración visual y storytelling que transmite la autenticidad y calidad de tu café",
+                      "Comercio Electrónico Especializado: Sistema de venta personalizado para las particularidades del café premium",
+                      "Gestión Integral del Negocio: Automatización de inventario, pedidos y logística específica para café",
+                      "Comunidad y Educación: Espacios interactivos para compartir conocimientos sobre el café y cultura cafetera",
+                      "Análisis Avanzado del Mercado: Insights detallados sobre preferencias de café y comportamiento del consumidor",
+                      "Integración Omnicanal: Conexión perfecta entre tu presencia digital y experiencias físicas en la finca",
+                      "Escalabilidad Estratégica: Infraestructura robusta que crece con tu negocio cafetero"
+                    ].map((feature, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1 }}
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-4 group"
+                      >
+                        <motion.span 
+                          className="mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex-shrink-0 group-hover:scale-125 transition-transform"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.2,
+                          }}
+                        />
+                        <span className="text-gray-300 group-hover:text-white transition-colors">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
               </div>
 
-              {/* CTA Card */}
-              {project.demo && (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-xl opacity-20" />
-                  <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 border border-white/10 rounded-2xl p-8">
-                    <h4 className="text-2xl font-bold text-white mb-4">
-                      ¿Listo para ver el proyecto en acción?
-                    </h4>
-                    <p className="text-gray-400 mb-6">
-                      Explora la demo en vivo y descubre todas las funcionalidades
-                    </p>
+              <div>
+                {/* Tecnologías */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="mb-12"
+                >
+                  <div className="flex items-center gap-3 text-xl font-bold text-white mb-6">
+                    <motion.div
+                      whileHover={{ rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500"
+                    >
+                      <HiChip className="w-6 h-6 text-white" />
+                    </motion.div>
+                    Tecnologías
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {project.tech.map((tech, index) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ delay: 0.6 + index * 0.1 }}
+                        whileHover={{
+                          scale: 1.05,
+                          backgroundColor: "rgba(59, 130, 246, 0.2)",
+                        }}
+                        className="px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium backdrop-blur-sm hover:border-blue-500/40 transition-colors"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Botón de acción */}
+                {project.demo && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9 }}
+                  >
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 rounded-xl text-white font-bold transition-all duration-300 hover:scale-105 transform shadow-lg"
+                      className="block w-full text-center px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 rounded-xl text-white font-bold transition-all duration-300 hover:scale-105 transform shadow-lg"
                     >
-                      <span>Ver Proyecto en Vivo</span>
-                      <HiExternalLink className="w-5 h-5" />
+                      Ver Proyecto en Vivo
                     </a>
-                  </div>
-                </div>
-              )}
-            </motion.div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Footer CTA */}
-      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              ¿Tienes un proyecto en mente?
-            </h2>
-            <p className="text-lg text-gray-400 mb-8">
-              Trabajemos juntos para crear algo increíble
-            </p>
-            <Link
-              href="/#contacto"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black hover:bg-gray-100 rounded-full font-bold transition-all hover:scale-105"
-            >
-              Contáctame
-              <HiArrowLeft className="w-5 h-5 rotate-180" />
-            </Link>
-          </motion.div>
         </div>
       </section>
     </main>

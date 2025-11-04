@@ -63,112 +63,213 @@ export default function ProjectPageClient({ project }: { project: Project }) {
         </div>
       </motion.nav>
 
-      {/* Hero Section con imagen principal */}
-      <motion.section 
+      {/* Hero Section premium sin imagen de fondo plana */}
+      <motion.section
         style={{ opacity, scale }}
-        className="relative h-screen flex items-end overflow-hidden pt-16"
+        className="relative min-h-screen overflow-hidden pt-24 pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
       >
-        {/* Imagen de fondo con parallax */}
-        <div className="absolute inset-0">
-          <Image
-            src={project.images[activeImage]?.url || project.images[0].url}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-            quality={100}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/95" />
+        {/* Luces y destellos de fondo */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-40 -left-40 w-[520px] h-[520px] bg-gradient-to-br from-blue-500/30 via-purple-500/20 to-transparent blur-3xl" />
+          <div className="absolute -bottom-32 -right-32 w-[460px] h-[460px] bg-gradient-to-tl from-pink-500/20 via-blue-500/20 to-transparent blur-[120px]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] h-[280px] bg-gradient-to-br from-white/15 to-transparent blur-3xl opacity-60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_rgba(8,11,19,0.95))]" />
         </div>
 
-        {/* Contenido del hero */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-4"
-            >
-              {project.category && (
-                <span className="inline-block px-4 py-2 bg-blue-600/30 backdrop-blur-md border border-blue-400/40 rounded-full text-blue-300 text-sm font-semibold shadow-lg">
-                  {project.category}
-                </span>
-              )}
-            </motion.div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-20 items-center">
+            {/* Columna de contenido */}
+            <div className="space-y-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl text-sm font-medium text-blue-200 shadow-[0_0_30px_rgba(59,130,246,0.25)]"
+              >
+                <span className="inline-flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                {project.category ?? 'Proyecto destacado'}
+              </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl"
-              style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
-            >
-              {project.title}
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white leading-tight"
+              >
+                {project.title}
+              </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl text-gray-200 mb-10 leading-relaxed drop-shadow-lg"
-              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
-            >
-              {project.description}
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                className="text-lg sm:text-xl text-slate-200/90 max-w-2xl leading-relaxed"
+              >
+                {project.description}
+              </motion.p>
 
-            {/* Miniaturas de imágenes mejoradas */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex gap-3 flex-wrap"
-            >
-              {project.images.slice(0, 6).map((img, idx) => (
-                <motion.button
-                  key={idx}
-                  onClick={() => setActiveImage(idx)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border-3 transition-all shadow-lg ${
-                    activeImage === idx
-                      ? 'border-blue-500 ring-2 ring-blue-400/50 scale-105'
-                      : 'border-white/30 hover:border-white/60'
-                  }`}
+              {/* Métricas destacadas */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
+              >
+                {[ 
+                  { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
+                  { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-400 to-pink-400' },
+                  { icon: HiStar, value: '4.9', label: 'Experiencia', color: 'from-amber-300 to-orange-400' },
+                  { icon: HiUsers, value: '+5K', label: 'Clientes', color: 'from-teal-300 to-emerald-400' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55 + index * 0.05 }}
+                    className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
+                    <div className="relative flex flex-col gap-2">
+                      <span className="w-fit rounded-full bg-white/10 p-2">
+                        <stat.icon className="w-4 h-4 text-white/80" />
+                      </span>
+                      <span className="text-2xl font-bold text-white">{stat.value}</span>
+                      <span className="text-xs uppercase tracking-[0.2em] text-white/60">{stat.label}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA principal */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-wrap items-center gap-4"
+              >
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all"
+                  >
+                    Ver demo en vivo
+                    <HiExternalLink className="w-5 h-5" />
+                  </a>
+                )}
+
+                <Link
+                  href="/#contacto"
+                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/15 text-white/90 hover:text-white hover:border-white/30 transition-colors"
                 >
-                  <Image
-                    src={img.url}
-                    alt={`Vista ${idx + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                  {activeImage === idx && (
-                    <div className="absolute inset-0 bg-blue-500/20 backdrop-blur-[1px]" />
-                  )}
-                </motion.button>
-              ))}
+                  Hablemos del proyecto
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Tarjeta visual del proyecto */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="relative"
+            >
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
+
+              <div className="relative rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_35px_120px_-35px_rgba(15,23,42,0.9)] overflow-hidden">
+                <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                      {project.title.slice(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60">Proyecto destacado</p>
+                      <p className="text-lg font-semibold text-white">{project.title}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-white/60">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
+                      <HiStar className="w-4 h-4 text-amber-300" />
+                      4.9
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
+                      <HiClock className="w-4 h-4 text-blue-200" />
+                      3 meses
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative mx-4 mt-6 rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
+                  <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-[0.3em]">Preview</span>
+                    <span className="flex items-center gap-1 text-xs text-white/50">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      En vivo
+                    </span>
+                  </div>
+                  <div className="aspect-[4/3]">
+                    <Image
+                      src={project.images[activeImage]?.url || project.images[0].url}
+                      alt={project.images[activeImage]?.caption || project.title}
+                      fill
+                      className="object-cover"
+                      priority
+                      quality={95}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  </div>
+                </div>
+
+                {/* Controles / miniaturas */}
+                <div className="px-6 pt-6 pb-8">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Vistas del proyecto</p>
+                  <div className="flex gap-3 overflow-x-auto pb-1">
+                    {project.images.map((img, idx) => (
+                      <button
+                        key={`${img.url}-${idx}`}
+                        onClick={() => setActiveImage(idx)}
+                        className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border transition-all ${
+                          activeImage === idx
+                            ? 'border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]'
+                            : 'border-white/10 hover:border-white/30'
+                        }`}
+                      >
+                        <Image
+                          src={img.url}
+                          alt={img.caption || `${project.title} vista ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Scroll indicator mejorado */}
+        {/* Indicador scroll */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 0.8 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-2 text-white/60 text-xs"
           >
-            <span className="text-white/60 text-xs font-medium">Scroll</span>
-            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
-              <motion.div 
+            Desliza para explorar
+            <div className="w-6 h-10 border border-white/30 rounded-full flex items-start justify-center p-2">
+              <motion.span
                 animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-2 bg-white/80 rounded-full" 
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-1 h-2 rounded-full bg-white/70"
               />
             </div>
           </motion.div>
@@ -211,9 +312,6 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       quality={100}
                     />
                     
-                    {/* Overlay gradiente en hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                     {/* Caption con animación */}
                     {image.caption && (
                       <motion.div
