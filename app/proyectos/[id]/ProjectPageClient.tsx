@@ -79,7 +79,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
       {/* Hero Section premium sin imagen de fondo plana */}
       <motion.section
         style={{ opacity, scale }}
-        className="relative min-h-[calc(100vh-4rem)] md:min-h-screen overflow-hidden pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
+        className="relative min-h-[calc(100vh-3.5rem)] md:min-h-screen overflow-hidden pt-14 pb-10 sm:pt-20 sm:pb-16 md:pt-24 md:pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
       >
         {/* Luces y destellos de fondo */}
         <div className="absolute inset-0 pointer-events-none">
@@ -92,7 +92,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-6 sm:gap-8 md:gap-12 lg:gap-20 items-center">
             {/* Columna de contenido */}
-            <div className="space-y-4 sm:space-y-6 md:space-y-10">
+            <div className="space-y-3.5 sm:space-y-6 md:space-y-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-[1.1] sm:leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-[1.1] sm:leading-tight text-balance"
               >
                 {project.title}
               </motion.h1>
@@ -116,7 +116,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200/90 max-w-2xl leading-relaxed"
+                className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200/90 max-w-2xl leading-relaxed text-pretty"
               >
                 {project.description}
               </motion.p>
@@ -126,7 +126,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-3xl"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-2xl sm:max-w-3xl"
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -134,7 +134,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.55 + index * 0.05 }}
-                    className="group relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-2.5 sm:p-3 md:p-4"
+                    className="group relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-2.5 sm:p-3 md:p-4"
                   >
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
                     <div className="relative flex flex-col gap-1 sm:gap-1.5 md:gap-2">
@@ -160,7 +160,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 sm:gap-2 md:gap-3 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm md:text-base font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all active:scale-95"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 sm:gap-2 md:gap-3 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm md:text-base font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all active:scale-95"
                   >
                     <span className="whitespace-nowrap">Ver demo en vivo</span>
                     <HiExternalLink className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
@@ -169,7 +169,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
 
                 <Link
                   href="/#contacto"
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-4 rounded-full border border-white/15 text-white/90 text-sm md:text-base hover:text-white hover:border-white/30 transition-colors active:scale-95"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-4 rounded-full border border-white/15 text-white/90 text-sm md:text-base hover:text-white hover:border-white/30 transition-colors active:scale-95"
                 >
                   <span className="whitespace-nowrap">Hablemos del proyecto</span>
                 </Link>
@@ -183,8 +183,8 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               transition={{ delay: 0.35 }}
               className="relative mt-6 sm:mt-8 lg:mt-0"
             >
-              <div className="absolute -top-16 -right-16 sm:-top-20 sm:-right-20 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
-              <div className="absolute -bottom-12 -left-12 sm:-bottom-16 sm:-left-16 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
+              <div className="absolute -top-12 -right-12 sm:-top-20 sm:-right-20 w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 sm:-bottom-16 sm:-left-16 w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
 
               <div className="relative rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_35px_120px_-35px_rgba(15,23,42,0.9)] overflow-hidden">
                 <div className="flex items-center justify-between px-3 sm:px-4 md:px-6 pt-3 sm:pt-4 md:pt-6 pb-2.5 sm:pb-3 md:pb-4 border-b border-white/10">
