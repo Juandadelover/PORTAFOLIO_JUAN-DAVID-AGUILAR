@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
+  output: 'standalone',
   typescript: {
     // !! ADVERTENCIA !!
     // Permite que las builds de producción se completen incluso si hay errores de tipos.
