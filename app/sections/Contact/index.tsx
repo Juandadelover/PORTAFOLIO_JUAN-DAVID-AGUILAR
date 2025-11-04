@@ -8,7 +8,6 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 export default function Contact() {
   const [formData, setFormData] = useState({
     nombre: '',
-    email: '',
     asunto: '',
     mensaje: ''
   });
@@ -19,7 +18,7 @@ export default function Contact() {
     setIsSubmitting(true);
     
     // Crear el mensaje formateado para WhatsApp
-    const mensaje = `*Nuevo contacto desde el portafolio*%0A%0A*Nombre:* ${formData.nombre}%0A*Email:* ${formData.email}%0A*Asunto:* ${formData.asunto}%0A*Mensaje:* ${formData.mensaje}`;
+    const mensaje = `*Nuevo contacto desde el portafolio*%0A%0A*Nombre:* ${formData.nombre}%0A*Asunto:* ${formData.asunto}%0A*Mensaje:* ${formData.mensaje}`;
 
     // Número de WhatsApp (incluye el código de país)
     const telefono = '573113678555';
@@ -133,50 +132,37 @@ export default function Contact() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-3xl blur-3xl" />
               <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                      Nombre completo
-                    </label>
-                    <input
-                      type="text"
-                      id="nombre"
-                      name="nombre"
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 dark:border-gray-600 transition-all"
-                      placeholder="Juan Pérez"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                      Correo electrónico
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 dark:border-gray-600 transition-all"
-                      placeholder="juan@ejemplo.com"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="asunto" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                      Asunto
-                    </label>
-                    <input
-                      type="text"
-                      id="asunto"
-                      name="asunto"
-                      value={formData.asunto}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 dark:border-gray-600 transition-all"
-                      placeholder="Desarrollo de aplicación móvil"
-                    />
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        Nombre completo
+                      </label>
+                      <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        value={formData.nombre}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 dark:border-gray-600 transition-all"
+                        placeholder="Juan Pérez"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="asunto" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                        Asunto
+                      </label>
+                      <input
+                        type="text"
+                        id="asunto"
+                        name="asunto"
+                        value={formData.asunto}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 dark:border-gray-600 transition-all"
+                        placeholder="Desarrollo de aplicación móvil"
+                      />
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="mensaje" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
