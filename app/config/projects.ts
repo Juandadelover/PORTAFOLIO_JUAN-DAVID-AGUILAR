@@ -11,6 +11,7 @@ export interface Project {
   demo?: string;
   featured?: boolean;
   category?: string;
+  gradient: string;
 }
 
 export const projects: Project[] = [
@@ -48,7 +49,8 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS", "Framer Motion", "i18n"],
     demo: "https://cafefelicida.vercel.app",
     featured: true,
-    category: "E-commerce"
+    category: "E-commerce",
+    gradient: "from-amber-600 to-yellow-600"
   },
   {
     id: 1,
@@ -76,7 +78,8 @@ export const projects: Project[] = [
     tech: ["Flutter", "Supabase", "Stripe", "REST API"],
     demo: "https://demo-proyecto2.com",
     featured: true,
-    category: "E-commerce"
+    category: "E-commerce",
+    gradient: "from-purple-600 to-pink-600"
   },
   {
     id: 2,
@@ -104,6 +107,7 @@ export const projects: Project[] = [
     tech: ["Flutter", "Supabase Realtime", "Storage", "WebRTC"],
     demo: "https://demo-proyecto3.com",
     featured: false,
-    category: "Social App"
+    category: "Social App",
+    gradient: "from-green-600 to-teal-600"
   }
 ]

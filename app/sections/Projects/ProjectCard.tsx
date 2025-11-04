@@ -4,21 +4,10 @@ import { motion } from 'framer-motion';
 import { HiEye, HiStar } from 'react-icons/hi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Project } from '../../config/projects';
 
 interface ProjectCardProps {
-  project: {
-    title: string;
-    description: string;
-    fullDescription: string;
-    images: Array<{
-      url: string;
-      caption: string;
-    }>;
-    tech: string[];
-    demo: string;
-    gradient: string;
-    category: string;
-  };
+  project: Project;
   index: number;
   isHovered: boolean;
   onHoverStart: () => void;
@@ -42,7 +31,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
       className="group relative cursor-pointer transform transition-transform duration-300 hover:-translate-y-2"
-      onClick={() => router.push(`/proyectos/${index}`)}
+      onClick={() => router.push(`/proyectos/${project.id}`)}
     >
       {/* Glow effect */}
       <div className={`absolute -inset-0.5 bg-gradient-to-r ${project.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
@@ -67,7 +56,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
         <div className="relative h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
           <Image
             src={project.images[0].url}
-            alt={project.images[0].caption}
+            alt={project.images[0].caption || project.title}
             fill
             className="object-cover"
           />
@@ -114,7 +103,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
           </h3>
           
           <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed line-clamp-3">
-            {isHovered ? project.fullDescription : project.description}
+            {isHovered ? project.longDescription : project.description}
           </p>
 
           {/* Tech Stack */}

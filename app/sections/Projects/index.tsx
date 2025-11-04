@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiCode, HiExternalLink } from 'react-icons/hi';
 import { ProjectCard } from './ProjectCard';
+import { Project } from '../../config/projects';
 
-const projects = [
+const projects: Project[] = [
   {
+    id: 0,
     title: "La Felicidá - Plataforma E-commerce de Café Premium",
     description: "Transformamos la experiencia de compra de café premium en una aventura digital inmersiva, conectando productores locales con amantes del café en todo el mundo.",
-    fullDescription: "La Felicidá es más que una tienda en línea; es una ventana digital al mundo del café premium y la cultura local. Desarrollamos una plataforma e-commerce que no solo vende productos, sino que cuenta historias, crea conexiones y genera experiencias memorables. Desde la selección del café hasta la reserva de experiencias turísticas, cada aspecto fue diseñado pensando en la conversión y el engagement del usuario.\n\nLa plataforma integra ventas de café premium, productos artesanales y experiencias turísticas en una interfaz intuitiva y cautivadora. El diseño responsive, las animaciones fluidas y la carga optimizada garantizan una experiencia de usuario excepcional en cualquier dispositivo.",
+    longDescription: "La Felicidá es más que una tienda en línea; es una ventana digital al mundo del café premium y la cultura local. Desarrollamos una plataforma e-commerce que no solo vende productos, sino que cuenta historias, crea conexiones y genera experiencias memorables. Desde la selección del café hasta la reserva de experiencias turísticas, cada aspecto fue diseñado pensando en la conversión y el engagement del usuario.\n\nLa plataforma integra ventas de café premium, productos artesanales y experiencias turísticas en una interfaz intuitiva y cautivadora. El diseño responsive, las animaciones fluidas y la carga optimizada garantizan una experiencia de usuario excepcional en cualquier dispositivo.",
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS", "Framer Motion", "i18n"],
     images: [
       {
@@ -42,9 +44,10 @@ const projects = [
     category: "E-commerce"
   },
   {
+    id: 1,
     title: "E-commerce App",
     description: "Plataforma de comercio electrónico con carrito de compras, pagos en línea y sistema de inventario en tiempo real.",
-    fullDescription: "Plataforma completa de e-commerce con gestión de productos, carrito de compras, pasarela de pagos integrada, sistema de inventario automatizado y panel de administración.",
+    longDescription: "Plataforma completa de e-commerce con gestión de productos, carrito de compras, pasarela de pagos integrada, sistema de inventario automatizado y panel de administración.",
     tech: ["Flutter", "Supabase", "Stripe", "REST API"],
     images: [
       {
@@ -64,15 +67,15 @@ const projects = [
         caption: "Panel de gestión de inventario"
       }
     ],
-    github: "https://github.com/Juandadelover",
     demo: "https://demo-proyecto2.com",
     gradient: "from-purple-600 to-pink-600",
     category: "E-commerce"
   },
   {
+    id: 2,
     title: "Chat en Tiempo Real",
     description: "Aplicación de mensajería instantánea con funciones de chat grupal, mensajes directos y compartición de archivos.",
-    fullDescription: "App de mensajería con chat en tiempo real, grupos, llamadas de voz, compartición de multimedia, cifrado end-to-end y sincronización multiplataforma.",
+    longDescription: "App de mensajería con chat en tiempo real, grupos, llamadas de voz, compartición de multimedia, cifrado end-to-end y sincronización multiplataforma.",
     tech: ["Flutter", "Supabase Realtime", "Storage", "WebRTC"],
     images: [
       {
@@ -92,7 +95,6 @@ const projects = [
         caption: "Compartición de archivos multimedia"
       }
     ],
-    github: "https://github.com/Juandadelover",
     demo: "https://demo-proyecto3.com",
     gradient: "from-green-600 to-teal-600",
     category: "Social App"
