@@ -66,7 +66,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
       {/* Hero Section premium sin imagen de fondo plana */}
       <motion.section
         style={{ opacity, scale }}
-        className="relative min-h-screen overflow-hidden pt-24 pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
+        className="relative min-h-screen overflow-hidden pt-20 pb-16 md:pt-24 md:pb-24 bg-gradient-to-br from-[#05060d] via-[#0b1220] to-[#0f172a]"
       >
         {/* Luces y destellos de fondo */}
         <div className="absolute inset-0 pointer-events-none">
@@ -77,9 +77,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 md:gap-12 lg:gap-20 items-center">
             {/* Columna de contenido */}
-            <div className="space-y-10">
+            <div className="space-y-6 md:space-y-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white leading-tight"
               >
                 {project.title}
               </motion.h1>
@@ -103,7 +103,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="text-lg sm:text-xl text-slate-200/90 max-w-2xl leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-slate-200/90 max-w-2xl leading-relaxed"
               >
                 {project.description}
               </motion.p>
@@ -113,7 +113,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
+                className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl"
               >
                 {[ 
                   { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
@@ -126,15 +126,15 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.55 + index * 0.05 }}
-                    className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-4"
+                    className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-3 md:p-4"
                   >
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
-                    <div className="relative flex flex-col gap-2">
-                      <span className="w-fit rounded-full bg-white/10 p-2">
-                        <stat.icon className="w-4 h-4 text-white/80" />
+                    <div className="relative flex flex-col gap-1.5 md:gap-2">
+                      <span className="w-fit rounded-full bg-white/10 p-1.5 md:p-2">
+                        <stat.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-white/80" />
                       </span>
-                      <span className="text-2xl font-bold text-white">{stat.value}</span>
-                      <span className="text-xs uppercase tracking-[0.2em] text-white/60">{stat.label}</span>
+                      <span className="text-xl md:text-2xl font-bold text-white">{stat.value}</span>
+                      <span className="text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] text-white/60">{stat.label}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -145,23 +145,23 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex flex-wrap items-center gap-4"
+                className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 md:gap-4"
               >
                 {project.demo && (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all"
+                    className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm md:text-base font-semibold shadow-[0_20px_45px_rgba(59,130,246,0.35)] hover:shadow-[0_25px_60px_rgba(59,130,246,0.45)] transition-all"
                   >
                     Ver demo en vivo
-                    <HiExternalLink className="w-5 h-5" />
+                    <HiExternalLink className="w-4 h-4 md:w-5 md:h-5" />
                   </a>
                 )}
 
                 <Link
                   href="/#contacto"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-white/15 text-white/90 hover:text-white hover:border-white/30 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 md:py-4 rounded-full border border-white/15 text-white/90 text-sm md:text-base hover:text-white hover:border-white/30 transition-colors"
                 >
                   Hablemos del proyecto
                 </Link>
@@ -173,23 +173,23 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
-              className="relative"
+              className="relative mt-8 lg:mt-0"
             >
-              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
+              <div className="absolute -top-20 -right-20 w-40 h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
 
-              <div className="relative rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_35px_120px_-35px_rgba(15,23,42,0.9)] overflow-hidden">
-                <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10">
-                  <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+              <div className="relative rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_35px_120px_-35px_rgba(15,23,42,0.9)] overflow-hidden">
+                <div className="flex items-center justify-between px-4 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-3 md:gap-4">
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm md:text-base font-semibold">
                       {project.title.slice(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <p className="text-sm text-white/60">Proyecto destacado</p>
-                      <p className="text-lg font-semibold text-white">{project.title}</p>
+                      <p className="text-xs md:text-sm text-white/60">Proyecto destacado</p>
+                      <p className="text-base md:text-lg font-semibold text-white line-clamp-1">{project.title}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-white/60">
+                  <div className="hidden sm:flex items-center gap-2 text-xs text-white/60">
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
                       <HiStar className="w-4 h-4 text-amber-300" />
                       4.9
@@ -201,10 +201,10 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                   </div>
                 </div>
 
-                <div className="relative mx-4 mt-6 rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
-                  <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
-                    <span className="text-xs font-medium text-white/70 uppercase tracking-[0.3em]">Preview</span>
-                    <span className="flex items-center gap-1 text-xs text-white/50">
+                <div className="relative mx-3 md:mx-4 mt-4 md:mt-6 rounded-xl md:rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
+                  <div className="absolute inset-x-4 md:inset-x-6 top-4 md:top-6 z-10 flex items-center justify-between">
+                    <span className="text-[10px] md:text-xs font-medium text-white/70 uppercase tracking-[0.2em] md:tracking-[0.3em]">Preview</span>
+                    <span className="flex items-center gap-1 text-[10px] md:text-xs text-white/50">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
                       En vivo
                     </span>
@@ -223,14 +223,14 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 </div>
 
                 {/* Controles / miniaturas */}
-                <div className="px-6 pt-6 pb-8">
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Vistas del proyecto</p>
-                  <div className="flex gap-3 overflow-x-auto pb-1">
+                <div className="px-4 md:px-6 pt-4 md:pt-6 pb-6 md:pb-8">
+                  <p className="text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] text-white/50 mb-2 md:mb-3">Vistas del proyecto</p>
+                  <div className="flex gap-2 md:gap-3 overflow-x-auto pb-1 scrollbar-hide">
                     {project.images.map((img, idx) => (
                       <button
                         key={`${img.url}-${idx}`}
                         onClick={() => setActiveImage(idx)}
-                        className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border transition-all ${
+                        className={`relative h-12 w-20 md:h-16 md:w-24 flex-shrink-0 rounded-lg md:rounded-xl overflow-hidden border transition-all ${
                           activeImage === idx
                             ? 'border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]'
                             : 'border-white/10 hover:border-white/30'
