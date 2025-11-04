@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { HiChip, HiLightningBolt, HiArrowLeft, HiExternalLink, HiStar, HiTrendingUp, HiUsers, HiClock } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo, useCallback } from 'react';
 
 interface Project {
   id: number;
@@ -31,6 +31,19 @@ export default function ProjectPageClient({ project }: { project: Project }) {
   
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+
+  // Memoizar stats para evitar re-renders
+  const stats = useMemo(() => [
+    { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
+    { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-400 to-pink-400' },
+    { icon: HiStar, value: '4.9', label: 'Experiencia', color: 'from-amber-300 to-orange-400' },
+    { icon: HiUsers, value: '+5K', label: 'Clientes', color: 'from-teal-300 to-emerald-400' }
+  ], []);
+
+  // Callback optimizado para cambiar imagen
+  const handleImageChange = useCallback((idx: number) => {
+    setActiveImage(idx);
+  }, []);
 
   return (
     <main ref={containerRef} className="min-h-screen bg-black">
@@ -115,12 +128,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 transition={{ delay: 0.45 }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-3xl"
               >
-                {[ 
-                  { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
-                  { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-400 to-pink-400' },
-                  { icon: HiStar, value: '4.9', label: 'Experiencia', color: 'from-amber-300 to-orange-400' },
-                  { icon: HiUsers, value: '+5K', label: 'Clientes', color: 'from-teal-300 to-emerald-400' }
-                ].map((stat, index) => (
+                {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 12 }}
@@ -216,7 +224,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       fill
                       className="object-cover"
                       priority
-                      quality={95}
+                      quality={85}
+                      loading="eager"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     {project.images[activeImage]?.caption && (
@@ -235,8 +245,8 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                   <div className="flex gap-1.5 sm:gap-2 md:gap-3 overflow-x-auto pb-1 scrollbar-hide snap-x snap-mandatory">
                     {project.images.map((img, idx) => (
                       <button
-                        key={`${img.url}-${idx}`}
-                        onClick={() => setActiveImage(idx)}
+                        key={idx}
+                        onClick={() => handleImageChange(idx)}
                         className={`relative h-10 w-16 sm:h-12 sm:w-20 md:h-16 md:w-24 flex-shrink-0 rounded-md sm:rounded-lg md:rounded-xl overflow-hidden border transition-all snap-start ${
                           activeImage === idx
                             ? 'border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]'
@@ -248,6 +258,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                           alt={img.caption || `${project.title} vista ${idx + 1}`}
                           fill
                           className="object-cover"
+                          loading="lazy"
+                          quality={75}
+                          sizes="80px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       </button>
@@ -316,7 +329,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       height={1080}
                       className="w-full h-auto"
                       priority={index === 0}
-                      quality={100}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      quality={90}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
                     {/* Indicador de número de imagen - solo visible en hover */}
