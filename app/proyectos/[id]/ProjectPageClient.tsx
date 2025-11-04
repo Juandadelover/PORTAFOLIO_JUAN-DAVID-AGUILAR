@@ -219,6 +219,13 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       quality={95}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    {project.images[activeImage]?.caption && (
+                      <div className="absolute bottom-3 left-3 max-w-[85%]">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-black/55 backdrop-blur-md text-[10px] sm:text-xs font-medium text-white shadow-[0_8px_20px_rgba(15,23,42,0.45)]">
+                          {project.images[activeImage]?.caption}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -318,6 +325,14 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                         {index + 1} / {project.images.length}
                       </p>
                     </div>
+
+                    {image.caption && (
+                      <div className="absolute bottom-3 left-3 max-w-[85%]">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-xs md:text-sm font-medium text-white shadow-[0_10px_25px_rgba(15,23,42,0.45)]">
+                          {image.caption}
+                        </span>
+                      </div>
+                    )}
                   </motion.div>
                 </div>
               </motion.div>
