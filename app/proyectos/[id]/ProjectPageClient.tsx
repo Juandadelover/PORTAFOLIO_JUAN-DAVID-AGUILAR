@@ -311,27 +311,10 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       priority={index === 0}
                       quality={100}
                     />
-                    
-                    {/* Caption con animación */}
-                    {image.caption && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="absolute bottom-0 left-0 right-0 p-6"
-                      >
-                        <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4 transform group-hover:translate-y-0 translate-y-2 transition-transform duration-300">
-                          <p className="text-white text-sm md:text-base font-medium">
-                            {image.caption}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
 
-                    {/* Indicador de número de imagen */}
-                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <p className="text-white text-sm font-medium">
+                    {/* Indicador de número de imagen - solo visible en hover */}
+                    <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                      <p className="text-white text-xs md:text-sm font-medium">
                         {index + 1} / {project.images.length}
                       </p>
                     </div>
