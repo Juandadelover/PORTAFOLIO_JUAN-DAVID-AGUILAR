@@ -1,22 +1,20 @@
 import { notFound } from 'next/navigation';
-import { projects } from '../../config/projects';
+import { Project, projects } from '../../config/projects';
 import ProjectPageClient from './ProjectPageClient';
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return projects.map((_, index) => ({
-    id: index.toString()
+  return projects.map((project) => ({
+    id: project.id.toString()
   }));
 }
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
-  const projectId = parseInt(params.id);
+  const project = projects.find((p) => p.id.toString() === params.id);
   
-  if (isNaN(projectId) || projectId < 0 || projectId >= projects.length) {
+  if (!project) {
     notFound();
   }
-
-  const project = projects[projectId];
   return <ProjectPageClient project={project} />;
 }
