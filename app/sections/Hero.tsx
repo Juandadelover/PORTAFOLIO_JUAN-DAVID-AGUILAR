@@ -90,7 +90,7 @@ export default function Hero() {
 
       <motion.div 
         style={{ y, opacity, scale }}
-        className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+        className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-10 md:mt-16 space-y-6"
       >
         {/* Badge animado */}
         <motion.div
@@ -108,54 +108,81 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-8"
+          className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto"
         >
+          {/* Glow effect */}
           <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-2xl"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Rotating border */}
+          <motion.div
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[3px]"
             animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          />
+          >
+            <div className="w-full h-full rounded-full bg-gray-900/90" />
+          </motion.div>
+          {/* Image container */}
           <motion.div
-            className="absolute inset-1 rounded-full overflow-hidden ring-4 ring-gray-900"
+            className="absolute inset-2 rounded-full overflow-hidden ring-4 ring-blue-400/40 shadow-[0_25px_60px_rgba(59,130,246,0.45)]"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <img
               src="/img/FotoJuanda.webp"
               alt="Juan David Aguilar"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover brightness-105 contrast-105"
             />
+            {/* Overlay gradient for better contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/35" />
           </motion.div>
         </motion.div>
 
-        {/* Título principal */}
-        <motion.h1
+        {/* Saludo y Título principal */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6"
+          className="mb-6"
         >
-          <span className="block text-white mb-2">Juan David</span>
-          <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
-            Aguilar
-          </span>
-        </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl sm:text-2xl md:text-3xl text-gray-400 mb-4 font-light"
+          >
+            ¡Hola! 👋 Soy
+          </motion.p>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold">
+            <span className="block text-white mb-2">Juan David</span>
+            <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Aguilar
+            </span>
+          </h1>
+        </motion.div>
 
         {/* Subtítulo con iconos */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-6 text-gray-300"
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="flex justify-center mb-6"
         >
-          <div className="flex items-center gap-2">
-            <HiCode className="w-5 h-5 text-blue-400" />
-            <span className="text-lg sm:text-xl md:text-2xl font-medium">Desarrollador Full Stack</span>
-          </div>
-          <span className="hidden sm:inline text-blue-500/50">•</span>
-          <div className="flex items-center gap-2">
-            <HiLightningBolt className="w-5 h-5 text-purple-400" />
-            <span className="text-lg sm:text-xl">Flutter & Supabase</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-pink-500/15 border border-blue-400/30 backdrop-blur-xl shadow-[0_18px_45px_rgba(59,130,246,0.25)]">
+            <div className="flex items-center gap-2 text-white">
+              <HiCode className="w-5 h-5 text-blue-300" />
+              <span className="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide">Desarrollador Full Stack</span>
+            </div>
+            <span className="hidden sm:inline text-blue-300/80">•</span>
+            <div className="flex items-center gap-2 text-white">
+              <HiLightningBolt className="w-5 h-5 text-purple-300" />
+              <span className="text-lg sm:text-xl font-semibold tracking-wide">Flutter & Supabase</span>
+            </div>
           </div>
         </motion.div>
 
