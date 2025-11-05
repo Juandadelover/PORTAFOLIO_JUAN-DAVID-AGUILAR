@@ -1,6 +1,7 @@
 import Hero from './sections/Hero';
 import About from './sections/About/index';
 import Projects from './sections/Projects/index';
+import CTA from './sections/CTA/index';
 import Contact from './sections/Contact';
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       </div>
       <About />
       <Projects />
+      <CTA />
       <Contact />
     </main>
   );

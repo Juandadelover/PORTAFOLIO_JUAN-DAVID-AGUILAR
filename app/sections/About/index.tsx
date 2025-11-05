@@ -60,6 +60,13 @@ export default function About() {
 
   const education = [
     {
+      title: 'Ingeniería de Software',
+      institution: 'Por definir',
+      period: 'Próximamente',
+      description: 'Programa planificado orientado al diseño, desarrollo y despliegue de soluciones de software escalables.',
+      status: 'Próximamente'
+    },
+    {
       title: 'Tecnólogo en Análisis y Desarrollo de Software',
       institution: 'SENA',
       period: '2024-2026',
