@@ -193,17 +193,19 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              project={project}
-              index={index}
-              isHovered={hoveredIndex === index}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
-            />
-          ))}
+        <div className="flex justify-center">
+          <div className="max-w-md w-full">
+            {projects.filter(project => project.id === 0).map((project, index) => (
+              <ProjectCard
+                key={index}
+                project={project}
+                index={index}
+                isHovered={hoveredIndex === index}
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
+              />
+            ))}
+          </div>
         </div>
 
         {/* CTA */}
