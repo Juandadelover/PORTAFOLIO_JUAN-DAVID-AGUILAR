@@ -505,7 +505,7 @@ const Hero: React.FC<HeroProps> = () => {
                   {/* Imagen */}
                   <div className="absolute inset-2 rounded-full overflow-hidden border-2 border-blue-500/30 backdrop-blur-sm shadow-2xl shadow-blue-500/20">
                     <Image
-                      src="/img/FotoJuanda.png"
+                      src="/img/FotoJuanda.webp"
                       alt="Juan David Aguilar - Desarrollador de Software"
                       fill
                       priority

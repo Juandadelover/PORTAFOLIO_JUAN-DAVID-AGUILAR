@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { HiEye, HiStar } from 'react-icons/hi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -16,6 +16,30 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEnd }: ProjectCardProps) {
   const router = useRouter();
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 200, damping: 20 });
+  const springY = useSpring(rotateY, { stiffness: 200, damping: 20 });
+  const glowOpacity = useTransform(useSpring(isHovered ? 1 : 0, { stiffness: 150, damping: 20 }), [0, 1], [0, 0.6]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateAmountX = ((y - centerY) / centerY) * -8;
+    const rotateAmountY = ((x - centerX) / centerX) * 8;
+
+    rotateX.set(rotateAmountX);
+    rotateY.set(rotateAmountY);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   const handleDemoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -30,11 +54,17 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
-      className="group relative cursor-pointer transform transition-transform duration-300 hover:-translate-y-2"
+      className="group relative cursor-pointer transform transition-transform duration-300"
+      style={{ rotateX: springX, rotateY: springY, perspective: 1000 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       onClick={() => router.push(`/proyectos/${project.id}`)}
     >
       {/* Glow effect */}
-      <div className={`absolute -inset-0.5 bg-gradient-to-r ${project.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+      <motion.div
+        className={`absolute -inset-0.5 bg-gradient-to-r ${project.gradient} rounded-2xl blur-xl pointer-events-none`}
+        style={{ opacity: glowOpacity }}
+      />
       
       <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-blue-500/10">
         {/* Indicador de clic */}

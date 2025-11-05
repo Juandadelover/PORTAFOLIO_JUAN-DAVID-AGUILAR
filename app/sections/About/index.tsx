@@ -1,9 +1,19 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from 'react';
 import { HiCode, HiDeviceMobile, HiDatabase, HiChip, HiAcademicCap } from 'react-icons/hi';
 
 export default function About() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const backgroundFloat = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const backgroundRotate = useTransform(scrollYProgress, [0, 1], ['0deg', '6deg']);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.12, 0.05]);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,49 +93,44 @@ export default function About() {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800" id="sobre-mi">
+    <section
+      ref={sectionRef}
+      className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800"
+      id="sobre-mi"
+    >
       {/* Efectos de fondo mejorados */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.15, 0.05],
-            rotate: [0, 45, 0]
-          }}
-          transition={{ 
-            duration: 12,
+          style={{ y: backgroundFloat, rotate: backgroundRotate, opacity: glowOpacity }}
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{
+            duration: 14,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut'
           }}
           className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.05, 0.15, 0.05],
-            rotate: [0, -45, 0]
-          }}
-          transition={{ 
-            duration: 15,
+          style={{ y: useTransform(scrollYProgress, [0, 1], ['10%', '-10%']), opacity: glowOpacity }}
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{
+            duration: 16,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
+            ease: 'easeInOut',
+            delay: 1.2
           }}
-          className="absolute -bottom-20 -right-20 w-[40rem] h-[40rem] bg-gradient-to-bl from-purple-500 to-pink-400 rounded-full blur-3xl"
+          className="absolute -bottom-24 -right-24 w-[42rem] h-[42rem] bg-gradient-to-bl from-purple-500 to-pink-400 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
-            scale: [1, 1.4, 1],
-            opacity: [0.03, 0.1, 0.03],
-            y: [-20, 20, -20]
-          }}
-          transition={{ 
+          style={{ y: useTransform(scrollYProgress, [0, 1], ['-6%', '12%']) }}
+          animate={{ opacity: [0.04, 0.12, 0.04] }}
+          transition={{
             duration: 18,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
+            ease: 'easeInOut',
+            delay: 2.2
           }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-3xl"
         />
       </div>
 
@@ -178,8 +183,9 @@ export default function About() {
             <motion.div
               key={skill.title}
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="relative group"
+              whileHover={{ y: -8, scale: 1.03, rotateX: 4, rotateY: -4 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 16 }}
+              className="relative group [transform-style:preserve-3d]"
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${skill.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
               <div className="relative h-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent transition-all duration-500 group">
@@ -255,11 +261,12 @@ export default function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="relative pl-8 pb-8 border-l-2 border-blue-500/30 last:pb-0"
+                  className={`relative pl-8 pb-8 border-l-2 border-blue-500/30 last:pb-0 group`}
                 >
                   <motion.div 
-                    className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg"
-                    whileHover={{ scale: 1.2 }}
+                    className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg group-hover:shadow-blue-500/30"
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-20" />
                   </motion.div>
@@ -277,15 +284,25 @@ export default function About() {
                     </span>
                   </div>
                   
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold mb-1">
+                  <motion.p
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="text-blue-600 dark:text-blue-400 font-semibold mb-1"
+                  >
                     {edu.institution}
-                  </p>
+                  </motion.p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
                     {edu.period}
                   </p>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-gray-600 dark:text-gray-300 leading-relaxed"
+                  >
                     {edu.description}
-                  </p>
+                  </motion.p>
                 </motion.div>
               ))}
             </div>

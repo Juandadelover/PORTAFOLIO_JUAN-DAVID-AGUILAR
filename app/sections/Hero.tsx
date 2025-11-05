@@ -121,7 +121,7 @@ export default function Hero() {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <img
-              src="/img/FotoJuanda.png"
+              src="/img/FotoJuanda.webp"
               alt="Juan David Aguilar"
               className="w-full h-full object-cover"
             />

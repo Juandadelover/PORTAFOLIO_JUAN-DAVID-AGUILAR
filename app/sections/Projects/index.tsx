@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { HiCode, HiExternalLink } from 'react-icons/hi';
 import { ProjectCard } from './ProjectCard';
 import { Project } from '../../config/projects';
@@ -103,36 +103,56 @@ const projects: Project[] = [
 
 export default function Projects() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const topBlobY = useTransform(scrollYProgress, [0, 1], ['-15%', '5%']);
+  const bottomBlobY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.12, 0.08]);
 
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900" id="proyectos">
+    <section
+      ref={sectionRef}
+      className="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+      id="proyectos"
+    >
 
       {/* Efectos de fondo */}
       <div className="absolute inset-0">
         <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03]
-          }}
-          transition={{ 
-            duration: 10,
+          style={{ y: topBlobY, opacity: glowOpacity }}
+          animate={{ scale: [1, 1.18, 1], rotate: [0, 8, 0] }}
+          transition={{
+            duration: 16,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut'
           }}
-          className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.03, 0.06, 0.03]
-          }}
-          transition={{ 
-            duration: 12,
+          style={{ y: bottomBlobY, opacity: glowOpacity }}
+          animate={{ scale: [1, 1.25, 1], rotate: [0, -6, 0] }}
+          transition={{
+            duration: 18,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
+            ease: 'easeInOut',
+            delay: 1.4
           }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
+          className="absolute -bottom-44 -left-32 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl"
+        />
+        <motion.div
+          style={{ opacity: glowOpacity }}
+          animate={{ scale: [1, 1.05, 1], rotate: [0, 12, 0] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 2.5
+          }}
+          className="absolute inset-x-0 top-1/3 mx-auto w-[55rem] h-[55rem] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[150px]"
         />
       </div>
 

@@ -10,11 +10,11 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: 'Sobre Mí',
-      href: '/#about',
+      href: '/#sobre-mi',
     },
     {
       title: 'Proyectos',
-      href: '/#projects',
+      href: '/#proyectos',
     },
     {
       title: 'Contacto',

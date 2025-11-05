@@ -38,7 +38,7 @@ export const projects: Project[] = [
         caption: "Carrito de compras optimizado para maximizar ventas"
       },
       {
-        url: "/img/Proyecto 1/lafelicidaServicios.png",
+        url: "/img/Proyecto 1/lafelicidaServicios.webp",
         caption: "Presentación profesional de servicios y experiencias"
       },
       {
