@@ -60,19 +60,19 @@ export const projects: Project[] = [
     images: [
       {
         url: "/img/Proyecto 1/lafelicidaHome.png",
-        caption: "Catálogo de productos"
+        caption: "Catálogo de productos e-commerce desarrollado con Flutter y Supabase"
       },
       {
         url: "/img/Proyecto 1/lafelicidaCafe.png",
-        caption: "Carrito de compras integrado"
+        caption: "Carrito de compras integrado en aplicación móvil Flutter"
       },
       {
         url: "/img/Proyecto 1/lafelicidaDetalleCafe.png",
-        caption: "Proceso de pago seguro"
+        caption: "Proceso de pago seguro con integración Stripe en app Flutter"
       },
       {
         url: "/img/Proyecto 1/lafelicidaCarrito.png",
-        caption: "Panel de gestión de inventario"
+        caption: "Panel de gestión de inventario en tiempo real con Supabase"
       }
     ],
     tech: ["Flutter", "Supabase", "Stripe", "REST API"],

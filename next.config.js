@@ -13,12 +13,33 @@ const nextConfig = {
   // Configuración vacía de Turbopack para silenciar warnings
   turbopack: {},
   // Optimizaciones de rendimiento
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-  // Optimización de fuentes
-  optimizeFonts: true,
+  // Optimizaciones de performance
+  // Headers de caché para recursos estáticos
+  async headers() {
+    return [
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/public/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

@@ -253,7 +253,7 @@ const Hero: React.FC<HeroProps> = () => {
               }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 inline-block">
-                {displayedText} - Desarrollador Flutter
+                Juan David Aguilar - Desarrollador Full Stack
                 <motion.span
                   animate={{ opacity: prefersReducedMotion ? 0 : [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}

@@ -186,6 +186,7 @@ export default function Projects() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+            aria-label="Visitar repositorio de GitHub de Juan David Aguilar"
           >
             <HiCode className="w-5 h-5" />
             Ver más en GitHub
