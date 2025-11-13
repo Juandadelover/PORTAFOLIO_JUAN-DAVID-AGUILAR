@@ -184,43 +184,10 @@ const Hero: React.FC<HeroProps> = () => {
         }}
       />
 
-      {/* Gradientes de fondo animados */}
+      {/* Gradientes de fondo estáticos */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: prefersReducedMotion ? 1 : [0.3, 0.5, 0.3],
-            scale: prefersReducedMotion ? 1 : [1, 1.2, 1],
-            x: prefersReducedMotion ? 0 : [-100, 100, -100],
-            y: prefersReducedMotion ? 0 : [-50, 50, -50]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: 'linear' 
-          }}
-          className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px]"
-        >
-          <div className="w-full h-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: prefersReducedMotion ? 1 : [0.2, 0.4, 0.2],
-            scale: prefersReducedMotion ? 1 : [1.2, 1, 1.2],
-            x: prefersReducedMotion ? 0 : [100, -100, 100],
-            y: prefersReducedMotion ? 0 : [50, -50, 50]
-          }}
-          transition={{ 
-            duration: 25, 
-            repeat: Infinity, 
-            ease: 'linear' 
-          }}
-          className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px]"
-        >
-          <div className="w-full h-full bg-gradient-to-tr from-purple-500/20 via-blue-500/20 to-pink-500/20 rounded-full blur-3xl" />
-        </motion.div>
+        <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-purple-500/20 via-blue-500/20 to-pink-500/20 rounded-full blur-3xl" />
       </div>
 
       {/* Contenido principal */}
@@ -278,7 +245,7 @@ const Hero: React.FC<HeroProps> = () => {
             </motion.div>
             
             {/* Título con efecto de escritura */}
-            <motion.h1 
+            <motion.h1
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold"
               style={{
@@ -286,7 +253,7 @@ const Hero: React.FC<HeroProps> = () => {
               }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 inline-block">
-                {displayedText}
+                {displayedText} - Desarrollador Flutter
                 <motion.span
                   animate={{ opacity: prefersReducedMotion ? 0 : [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
@@ -450,24 +417,10 @@ const Hero: React.FC<HeroProps> = () => {
           >
             <div className="relative w-full max-w-[400px] aspect-square">
               
-              {/* Círculos orbitales animados */}
-              <motion.div
-                animate={{ rotate: prefersReducedMotion ? 0 : 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full border-2 border-gray-700/30 border-dashed"
-              />
-              
-              <motion.div
-                animate={{ rotate: prefersReducedMotion ? 0 : -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-6 rounded-full border border-gray-700/20"
-              />
-
-              <motion.div
-                animate={{ rotate: prefersReducedMotion ? 0 : 360 }}
-                transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-12 rounded-full border border-gray-700/10"
-              />
+              {/* Círculos orbitales estáticos */}
+              <div className="absolute inset-0 rounded-full border-2 border-gray-700/30 border-dashed" />
+              <div className="absolute inset-6 rounded-full border border-gray-700/20" />
+              <div className="absolute inset-12 rounded-full border border-gray-700/10" />
 
               {/* Contenedor principal de la imagen con glassmorphism */}
               <div className="absolute inset-16 sm:inset-20">
@@ -476,31 +429,15 @@ const Hero: React.FC<HeroProps> = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  {/* Borde animado con gradiente mejorado */}
-                  <motion.div
+                  {/* Borde estático con gradiente */}
+                  <div
                     className="absolute inset-0 rounded-full p-1.5"
                     style={{
                       background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6)'
                     }}
-                    animate={{
-                      rotate: prefersReducedMotion ? 0 : [0, 360],
-                      scale: prefersReducedMotion ? 1 : [1, 1.02, 1]
-                    }}
-                    transition={{
-                      rotate: {
-                        duration: 5,
-                        repeat: Infinity,
-                        ease: 'linear'
-                      },
-                      scale: {
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                      }
-                    }}
                   >
                     <div className="w-full h-full rounded-full bg-gray-900" />
-                  </motion.div>
+                  </div>
 
                   {/* Imagen */}
                   <div className="absolute inset-2 rounded-full overflow-hidden border-2 border-blue-500/30 backdrop-blur-sm shadow-2xl shadow-blue-500/20">
@@ -520,30 +457,16 @@ const Hero: React.FC<HeroProps> = () => {
                     />
                   </div>
 
-                  {/* Sombra de neón pulsante */}
-                  <motion.div
+                  {/* Sombra de neón estática */}
+                  <div
                     className="absolute inset-0 rounded-full"
-                    animate={{
-                      boxShadow: prefersReducedMotion 
-                        ? '0 0 60px rgba(59, 130, 246, 0.5)' 
-                        : [
-                            '0 0 60px rgba(59, 130, 246, 0.5)',
-                            '0 0 80px rgba(139, 92, 246, 0.5)',
-                            '0 0 70px rgba(236, 72, 153, 0.4)',
-                            '0 0 60px rgba(59, 130, 246, 0.5)'
-                          ]
-                    }}
-                    transition={{ duration: 4, repeat: Infinity }}
+                    style={{ boxShadow: '0 0 60px rgba(59, 130, 246, 0.5)' }}
                   />
                 </motion.div>
               </div>
 
-              {/* Iconos orbitales con tooltips */}
-              <motion.div
-                animate={{ rotate: prefersReducedMotion ? 0 : -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0"
-              >
+              {/* Iconos orbitales estáticos con tooltips */}
+              <div className="absolute inset-0">
                 {[
                   { Icon: HiCode, rotation: 0, label: 'Código limpio' },
                   { Icon: HiLightningBolt, rotation: 72, label: 'Alto rendimiento' },
@@ -551,39 +474,28 @@ const Hero: React.FC<HeroProps> = () => {
                   { Icon: HiCheckCircle, rotation: 216, label: 'Probado' },
                   { Icon: HiChip, rotation: 288, label: 'Tecnología' }
                 ].map(({ Icon, rotation, label }, index) => (
-                  <motion.div
+                  <div
                     key={rotation}
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group"
                     style={{
                       transform: `rotate(${rotation}deg) translateY(-${window.innerWidth < 640 ? '140px' : '180px'}) rotate(-${rotation}deg)`
                     }}
-                    whileHover={{ scale: 1.3 }}
                   >
-                    <motion.div 
-                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/80 backdrop-blur-md border border-gray-700/50 flex items-center justify-center shadow-lg cursor-pointer"
-                      animate={{
-                        rotate: prefersReducedMotion ? 0 : [0, 360]
-                      }}
-                      transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: 'linear'
-                      }}
-                    >
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/80 backdrop-blur-md border border-gray-700/50 flex items-center justify-center shadow-lg cursor-pointer">
                       <Icon className="w-6 h-6 sm:w-7 sm:h-7" style={{
                         background: 'linear-gradient(to right, #60a5fa, #a78bfa, #f472b6)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                       }} />
-                    </motion.div>
-                    
+                    </div>
+
                     {/* Tooltip */}
                     <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 border border-gray-700 rounded-lg px-3 py-1 text-xs text-gray-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                       {label}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>

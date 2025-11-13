@@ -104,14 +104,6 @@ const projects: Project[] = [
 export default function Projects() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start']
-  });
-
-  const topBlobY = useTransform(scrollYProgress, [0, 1], ['-15%', '5%']);
-  const bottomBlobY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']);
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.12, 0.08]);
 
   return (
     <section
@@ -120,40 +112,11 @@ export default function Projects() {
       id="proyectos"
     >
 
-      {/* Efectos de fondo */}
+      {/* Efectos de fondo estáticos */}
       <div className="absolute inset-0">
-        <motion.div
-          style={{ y: topBlobY, opacity: glowOpacity }}
-          animate={{ scale: [1, 1.18, 1], rotate: [0, 8, 0] }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-          className="absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: bottomBlobY, opacity: glowOpacity }}
-          animate={{ scale: [1, 1.25, 1], rotate: [0, -6, 0] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1.4
-          }}
-          className="absolute -bottom-44 -left-32 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ opacity: glowOpacity }}
-          animate={{ scale: [1, 1.05, 1], rotate: [0, 12, 0] }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2.5
-          }}
-          className="absolute inset-x-0 top-1/3 mx-auto w-[55rem] h-[55rem] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[150px]"
-        />
+        <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-10" />
+        <div className="absolute -bottom-44 -left-32 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl opacity-10" />
+        <div className="absolute inset-x-0 top-1/3 mx-auto w-[55rem] h-[55rem] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[150px] opacity-5" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

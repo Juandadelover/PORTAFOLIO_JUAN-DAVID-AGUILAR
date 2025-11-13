@@ -28,35 +28,10 @@ export default function CTA() {
 
   return (
     <section className="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-      {/* Efectos de fondo */}
+      {/* Efectos de fondo estáticos */}
       <div className="absolute inset-0">
-        <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.15, 0.05],
-            rotate: [0, 90, 0]
-          }}
-          transition={{ 
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-0 left-1/4 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.05, 0.15, 0.05],
-            rotate: [0, -90, 0]
-          }}
-          transition={{ 
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute bottom-0 right-1/4 w-[35rem] h-[35rem] bg-gradient-to-tl from-pink-500 to-orange-500 rounded-full blur-3xl"
-        />
+        <div className="absolute top-0 left-1/4 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-3xl opacity-10" />
+        <div className="absolute bottom-0 right-1/4 w-[35rem] h-[35rem] bg-gradient-to-tl from-pink-500 to-orange-500 rounded-full blur-3xl opacity-10" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -123,13 +98,9 @@ export default function CTA() {
                 >
                   <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
                   <div className="relative bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-600 group-hover:border-transparent transition-all">
-                    <motion.div
-                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                      className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.gradient} mb-4 shadow-lg`}
-                    >
+                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.gradient} mb-4 shadow-lg`}>
                       <feature.icon className="w-6 h-6 text-white" />
-                    </motion.div>
+                    </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                       {feature.title}
                     </h3>
@@ -164,12 +135,7 @@ export default function CTA() {
                   className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   <span>Hablemos de tu proyecto</span>
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <HiArrowRight className="w-6 h-6" />
-                  </motion.div>
+                  <HiArrowRight className="w-6 h-6" />
                 </motion.button>
               </Link>
               

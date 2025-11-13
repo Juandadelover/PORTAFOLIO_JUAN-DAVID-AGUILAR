@@ -6,14 +6,6 @@ import { HiCode, HiDeviceMobile, HiDatabase, HiChip, HiAcademicCap } from 'react
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start']
-  });
-
-  const backgroundFloat = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-  const backgroundRotate = useTransform(scrollYProgress, [0, 1], ['0deg', '6deg']);
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.12, 0.05]);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,40 +90,11 @@ export default function About() {
       className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800"
       id="sobre-mi"
     >
-      {/* Efectos de fondo mejorados */}
+      {/* Efectos de fondo estáticos */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          style={{ y: backgroundFloat, rotate: backgroundRotate, opacity: glowOpacity }}
-          animate={{ scale: [1, 1.15, 1] }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-          className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], ['10%', '-10%']), opacity: glowOpacity }}
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1.2
-          }}
-          className="absolute -bottom-24 -right-24 w-[42rem] h-[42rem] bg-gradient-to-bl from-purple-500 to-pink-400 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], ['-6%', '12%']) }}
-          animate={{ opacity: [0.04, 0.12, 0.04] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2.2
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-3xl"
-        />
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full blur-3xl opacity-10" />
+        <div className="absolute -bottom-24 -right-24 w-[42rem] h-[42rem] bg-gradient-to-bl from-purple-500 to-pink-400 rounded-full blur-3xl opacity-10" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-3xl opacity-5" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -154,9 +117,9 @@ export default function About() {
             Sobre Mí
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Conoce mi{' '}
+            Sobre mí - Desarrollador{' '}
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
-              trayectoria
+              Full Stack
             </span>
           </h2>
           <motion.p
@@ -183,9 +146,9 @@ export default function About() {
             <motion.div
               key={skill.title}
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.03, rotateX: 4, rotateY: -4 }}
+              whileHover={{ y: -8, scale: 1.03 }}
               transition={{ type: 'spring', stiffness: 200, damping: 16 }}
-              className="relative group [transform-style:preserve-3d]"
+              className="relative group"
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${skill.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
               <div className="relative h-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent transition-all duration-500 group">
@@ -228,28 +191,24 @@ export default function About() {
           transition={{ duration: 0.8, type: "spring" }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl animate-pulse" />
-          <motion.div 
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl" />
+          <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
             className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-blue-500/10"
           >
-            <motion.div 
+            <motion.div
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex items-center gap-4 mb-10"
             >
-              <motion.div 
-                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-                className="p-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl shadow-lg"
-              >
+              <div className="p-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl shadow-lg">
                 <HiAcademicCap className="w-7 h-7 text-white" />
-              </motion.div>
+              </div>
               <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Educación
+                Formación en Desarrollo de Software
               </h3>
             </motion.div>
             
@@ -263,13 +222,7 @@ export default function About() {
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   className={`relative pl-8 pb-8 border-l-2 border-blue-500/30 last:pb-0 group`}
                 >
-                  <motion.div 
-                    className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg group-hover:shadow-blue-500/30"
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-20" />
-                  </motion.div>
+                  <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg" />
                   
                   <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white">

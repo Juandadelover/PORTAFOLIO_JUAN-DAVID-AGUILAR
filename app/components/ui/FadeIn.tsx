@@ -1,8 +1,6 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -11,13 +9,6 @@ interface FadeInProps {
   className?: string;
   duration?: number;
   distance?: number;
-  threshold?: number;
-  once?: boolean;
-  withGlow?: boolean;
-  glowColor?: string;
-  scale?: number;
-  rotate?: number;
-  blur?: boolean;
 }
 
 export const FadeIn = ({
@@ -27,93 +18,33 @@ export const FadeIn = ({
   className = '',
   duration = 0.7,
   distance = 40,
-  threshold = 0.2,
-  once = true,
-  withGlow = false,
-  glowColor = 'rgba(66, 153, 225, 0.6)',
-  scale = 1,
-  rotate = 0,
-  blur = false,
 }: FadeInProps) => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [ref, inView] = useInView({
-    triggerOnce: once,
-    threshold: threshold,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      setHasAnimated(true);
-    }
-  }, [inView]);
-
-  const getDirectionOffset = () => {
+  const getInitialOffset = () => {
     switch (direction) {
       case 'down':
-        return { y: -distance };
+        return { y: -distance, opacity: 0 };
       case 'left':
-        return { x: distance };
+        return { x: distance, opacity: 0 };
       case 'right':
-        return { x: -distance };
+        return { x: -distance, opacity: 0 };
       default:
-        return { y: distance };
+        return { y: distance, opacity: 0 };
     }
   };
 
-  const variants: Variants = {
-    hidden: {
-      opacity: 0,
-      scale: scale * 0.95,
-      rotate: rotate,
-      filter: blur ? 'blur(10px)' : 'none',
-      ...getDirectionOffset(),
-    },
-    visible: {
-      opacity: 1,
-      scale: scale,
-      rotate: 0,
-      filter: 'none',
-      x: 0,
-      y: 0,
-      transition: {
-        type: "spring",
+  return (
+    <motion.div
+      initial={getInitialOffset()}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
         duration: duration,
         delay: delay,
-        bounce: 0.3,
-        damping: 20,
-      },
-    },
-  };
-
-  const content = (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView || hasAnimated ? "visible" : "hidden"}
-      variants={variants}
-      className={`transform-gpu ${className}`}
-      whileHover={withGlow ? {
-        boxShadow: `0 0 20px ${glowColor}`,
-        scale: scale * 1.05,
-      } : undefined}
-      transition={{
-        duration: 0.2,
+        ease: "easeOut",
       }}
+      className={className}
     >
       {children}
     </motion.div>
   );
-
-  return withGlow ? (
-    <div className="relative group">
-      <motion.div
-        className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(circle at center, ${glowColor}, transparent 70%)`,
-          filter: 'blur(20px)',
-        }}
-      />
-      {content}
-    </div>
-  ) : content;
 };

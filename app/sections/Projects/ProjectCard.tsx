@@ -1,4 +1,4 @@
-'use client';
+jora'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { HiEye, HiStar } from 'react-icons/hi';
@@ -16,30 +16,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEnd }: ProjectCardProps) {
   const router = useRouter();
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 200, damping: 20 });
-  const springY = useSpring(rotateY, { stiffness: 200, damping: 20 });
   const glowOpacity = useTransform(useSpring(isHovered ? 1 : 0, { stiffness: 150, damping: 20 }), [0, 1], [0, 0.6]);
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateAmountX = ((y - centerY) / centerY) * -8;
-    const rotateAmountY = ((x - centerX) / centerX) * 8;
-
-    rotateX.set(rotateAmountX);
-    rotateY.set(rotateAmountY);
-  };
-
-  const handleMouseLeave = () => {
-    rotateX.set(0);
-    rotateY.set(0);
-  };
 
   const handleDemoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -55,9 +32,6 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
       className="group relative cursor-pointer transform transition-transform duration-300"
-      style={{ rotateX: springX, rotateY: springY, perspective: 1000 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       onClick={() => router.push(`/proyectos/${project.id}`)}
     >
       {/* Glow effect */}
@@ -68,19 +42,10 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       
       <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-blue-500/10">
         {/* Indicador de clic */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium z-10"
-        >
-          <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium z-10">
+          <span className="w-2 h-2 bg-blue-400 rounded-full" />
           Click para ver más
-        </motion.div>
+        </div>
 
         {/* Image Container */}
         <div className="relative h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
