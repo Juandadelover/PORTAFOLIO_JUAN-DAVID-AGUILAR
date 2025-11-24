@@ -20,6 +20,8 @@
     --primary-foreground: #ffffff;
     --secondary: #6366f1;
     --accent: #8b5cf6;
+    --muted: #f1f5f9;
+    --border: #e2e8f0;
   }
 
   .dark {
@@ -29,6 +31,8 @@
     --primary-foreground: #ffffff;
     --secondary: #818cf8;
     --accent: #a78bfa;
+    --muted: #1e293b;
+    --border: #334155;
   }
 
   * {
@@ -97,10 +101,34 @@
   }
 }
 
-/* Scroll suave */
+/* Scroll suave mejorado */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 100px; /* Offset para navbar fixed y mejor posicionamiento */
+}
+
+/* Mejorar scroll en iOS Safari */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Padding bottom para navbar mobile (evitar solapamiento) */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 80px; /* Espacio para navbar bottom en mobile */
+  }
+  
+  /* Asegurar que WhatsApp button no interfiera con navbar */
+  .whatsapp-button {
+    bottom: 120px !important; /* Mover arriba del navbar en mobile */
+  }
+}
+
+/* En tablets y desktop, posición normal del WhatsApp button */
+@media (min-width: 768px) {
+  .whatsapp-button {
+    bottom: 24px !important; /* Posición normal en desktop */
+  }
 }
 
 /* Scrollbar personalizado */

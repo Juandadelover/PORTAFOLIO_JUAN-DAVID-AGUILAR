@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Navbar } from "./components/shared/Navbar";
+import { NavBar } from "./components/ui/tubelight-navbar";
+import { navItems } from "./components/ui/navbar-config";
 import Footer from "./components/shared/Footer";
 import WhatsAppButton from "./components/shared/WhatsAppButton";
 import Analytics from "./components/Analytics";
@@ -159,8 +160,8 @@ export default function RootLayout({
         <Analytics />
         <Providers>
           <Suspense fallback={<Loading />}>
-            <Navbar />
-            <main className="pt-20">
+            <NavBar items={navItems} />
+            <main>
               {children}
             </main>
             <Footer />
