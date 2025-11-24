@@ -2,6 +2,18 @@
   "name": "myportafolio",
   "version": "0.1.0",
   "private": true,
+  "description": "Portafolio profesional de Juan David Aguilar, desarrollador full stack especializado en Flutter, Supabase, React y Next.js. Muestra proyectos innovadores y habilidades en desarrollo móvil y web.",
+  "author": "Juan David Aguilar <tuemail@example.com>",
+  "keywords": ["portafolio", "desarrollador", "full-stack", "flutter", "supabase", "react", "nextjs", "typescript", "desarrollo-web", "desarrollo-movil"],
+  "homepage": "https://eljuandadeloper.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Juandadelover/PORTAFOLIO_JUAN-DAVID-AGUILAR.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Juandadelover/PORTAFOLIO_JUAN-DAVID-AGUILAR/issues"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

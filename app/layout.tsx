@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Juan David Aguilar | Desarrollador Full Stack",
     description: "Portafolio profesional de desarrollador especializado en Flutter, Supabase y aplicaciones web modernas.",
     images: ['/img/FotoJuanda.webp'],
-    creator: '@tuusuario', // Reemplaza con tu Twitter
+    creator: '@juandadeloper', // Reemplaza con tu Twitter
   },
   robots: {
     index: true,
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'tu-codigo-verification', // Agrega tu código de verificación de Google Search Console
+    google: 'google56f152f973b4f71f', // Código de verificación de Google Search Console
   },
 };
 
@@ -133,6 +133,8 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="manifest" href="/manifest.json" />
         {/* Preload fonts for better Core Web Vitals */}
         <link

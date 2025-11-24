@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portafolio de Juan David Aguilar
 
-## Getting Started
+Portafolio profesional de Juan David Aguilar, desarrollador full stack especializado en Flutter, Supabase, React y Next.js. Este proyecto muestra mis habilidades en el desarrollo de aplicaciones móviles y web innovadoras, con énfasis en código limpio, arquitectura escalable y mejores prácticas.
 
-First, run the development server:
+## 🚀 Tecnologías Utilizadas
+
+- **Frontend**: Next.js, React, TypeScript, Tailwind CSS
+- **Animaciones**: Framer Motion, GSAP, React Spring
+- **Backend**: Supabase
+- **Móvil**: Flutter
+- **Herramientas**: ESLint, Prettier, Turbopack
+
+## 📦 Instalación y Uso
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Juandadelover/PORTAFOLIO_JUAN-DAVID-AGUILAR.git
+   cd PORTAFOLIO_JUAN-DAVID-AGUILAR
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+## 🏗️ Construcción para Producción
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📱 Características
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Diseño responsivo y moderno
+- Modo oscuro/claro
+- Animaciones fluidas
+- Optimización SEO
+- PWA (Progressive Web App)
+- Integración con WhatsApp
+- Análisis con Google Analytics
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 Licencia
 
-## Learn More
+Este proyecto está bajo la Licencia MIT.
 
-To learn more about Next.js, take a look at the following resources:
+## 📞 Contacto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Email**: [tuemail@example.com]
+- **LinkedIn**: [Tu LinkedIn]
+- **GitHub**: [https://github.com/Juandadelover]
+- **Twitter**: [@juandadeloper]
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desarrollado con ❤️ por Juan David Aguilar
