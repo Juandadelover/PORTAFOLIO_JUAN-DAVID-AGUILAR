@@ -84,7 +84,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="relative py-12 sm:py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
       id="sobre-mi"
     >
       {/* Efectos de fondo */}
@@ -93,7 +93,7 @@ export default function About() {
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         
         {/* Header Section - Foto + Info Personal */}
         <motion.div
@@ -108,7 +108,7 @@ export default function About() {
             {/* Gradiente decorativo */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/5 via-purple-500/5 to-transparent" />
             
-            <div className="relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <div className="relative flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
               {/* Foto de perfil */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -118,7 +118,7 @@ export default function About() {
                 className="relative flex-shrink-0"
               >
                 {/* Contenedor de la foto */}
-                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64">
+                <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
                   {/* Glow effect */}
                   <motion.div
                     className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-2xl"
@@ -159,23 +159,23 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                 >
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
-                    <HiSparkles className="w-4 h-4" />
+                  <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium mb-3 sm:mb-4">
+                    <HiSparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Sobre Mí
                   </span>
                   
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                     Juan David{' '}
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
                       Aguilar
                     </span>
                   </h2>
                   
-                  <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium mb-4">
+                  <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium mb-3 sm:mb-4">
                     Desarrollador Full Stack
                   </p>
                   
-                  <p className="text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-4 sm:mb-6">
                     Desarrollador apasionado por crear soluciones tecnológicas innovadoras. 
                     Especializado en <span className="text-blue-600 dark:text-blue-400 font-semibold">Flutter</span> y 
                     <span className="text-purple-600 dark:text-purple-400 font-semibold"> Supabase</span>, 
@@ -184,17 +184,17 @@ export default function About() {
                   </p>
 
                   {/* Info adicional */}
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                      <HiLocationMarker className="w-5 h-5 text-blue-500" />
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                      <HiLocationMarker className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 flex-shrink-0" />
                       <span>Colombia</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                      <HiAcademicCap className="w-5 h-5 text-purple-500" />
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                      <HiAcademicCap className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500 flex-shrink-0" />
                       <span>SENA</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                      <HiCode className="w-5 h-5 text-pink-500" />
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                      <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500 flex-shrink-0" />
                       <span>+2 años exp.</span>
                     </div>
                   </div>
@@ -212,10 +212,10 @@ export default function About() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Habilidades & Tecnologías
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Tecnologías que domino para crear soluciones completas
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
           >
             {skills.map((skill) => (
               <motion.div
@@ -236,7 +236,7 @@ export default function About() {
                 className="relative group"
               >
                 <div className={`absolute inset-0 bg-gradient-to-r ${skill.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
-                <div className="relative h-full bg-white dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent transition-all duration-300">
+                <div className="relative h-full bg-white dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent transition-all duration-300 flex flex-col items-center sm:items-start text-center sm:text-left">
                   <motion.div
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                     transition={{ duration: 0.5 }}
@@ -247,11 +247,11 @@ export default function About() {
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
                     {skill.title}
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 w-full">
                     {skill.items.map((item) => (
                       <li
                         key={item}
-                        className="text-gray-600 dark:text-gray-400 flex items-center text-sm"
+                        className="text-gray-600 dark:text-gray-400 flex items-center justify-center sm:justify-start text-sm"
                       >
                         <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${skill.gradient} mr-2 flex-shrink-0`} />
                         {item}
@@ -272,15 +272,15 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Formación Académica
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Mi trayectoria de aprendizaje en desarrollo de software
             </p>
           </div>
 
-          <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg sm:shadow-xl border border-gray-200/50 dark:border-gray-700/50">
             <div className="space-y-8">
               {education.map((edu, index) => (
                 <motion.div
