@@ -6,6 +6,8 @@ import Link from "next/link"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useActiveSection } from "@/lib/hooks/useActiveSection"
+import { useTheme } from "@/context/ThemeContext"
+import { HiSun, HiMoon } from "react-icons/hi"
 
 export interface NavItem {
   name: string
@@ -20,6 +22,8 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [isMobile, setIsMobile] = useState(false)
+  const { theme, toggleTheme } = useTheme()
+  const isDark = theme === 'dark'
   
   // Hook personalizado para detección automática de sección activa
   const activeSection = useActiveSection(['sobre-mi', 'proyectos', 'contacto'])
@@ -94,6 +98,34 @@ export function NavBar({ items, className }: NavBarProps) {
             </Link>
           )
         })}
+        
+        {/* Theme Toggle Button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleTheme}
+          className={cn(
+            "relative cursor-pointer p-2.5 rounded-full transition-all duration-300",
+            isDark 
+              ? "bg-gray-800 hover:bg-gray-700 text-yellow-400" 
+              : "bg-blue-100 hover:bg-blue-200 text-blue-600"
+          )}
+          aria-label="Cambiar tema"
+        >
+          <motion.div
+            initial={false}
+            animate={{ 
+              rotate: isDark ? 0 : 360,
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            {isDark ? (
+              <HiSun className="w-5 h-5" />
+            ) : (
+              <HiMoon className="w-5 h-5" />
+            )}
+          </motion.div>
+        </motion.button>
       </div>
     </div>
   )
