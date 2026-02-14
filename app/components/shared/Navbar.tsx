@@ -75,9 +75,9 @@ export function Navbar() {
               >
                 <HiCode className="w-6 h-6 text-white" />
               </motion.div>
-              <div className="hidden sm:block">
+              <div className="hidden md:flex flex-col">
                 <span
-                  className={`font-bold text-xl bg-gradient-to-r ${
+                  className={`font-bold text-lg bg-gradient-to-r ${
                     isDark
                       ? 'from-blue-400 to-purple-400'
                       : 'from-indigo-600 via-purple-500 to-blue-500'
@@ -89,6 +89,9 @@ export function Navbar() {
                   Full Stack Developer
                 </p>
               </div>
+              <span className="md:hidden text-sm font-bold text-slate-900 dark:text-white">
+                {siteConfig.name.split(' ')[0]}
+              </span>
             </Link>
           </motion.div>
 

@@ -53,7 +53,7 @@ export default function Contact() {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800" id="contacto">
+    <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800" id="contacto">
       {/* Efectos de fondo */}
       <div className="absolute inset-0">
         <motion.div

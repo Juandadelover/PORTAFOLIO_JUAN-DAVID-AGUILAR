@@ -108,7 +108,7 @@ export default function Projects() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
       id="proyectos"
     >
 

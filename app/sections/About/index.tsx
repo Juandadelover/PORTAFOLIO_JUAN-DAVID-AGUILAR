@@ -84,7 +84,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 sm:py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
       id="sobre-mi"
     >
       {/* Efectos de fondo */}
@@ -93,7 +93,7 @@ export default function About() {
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section - Foto + Info Personal */}
         <motion.div
@@ -118,7 +118,7 @@ export default function About() {
                 className="relative flex-shrink-0"
               >
                 {/* Contenedor de la foto */}
-                <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+                <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
                   {/* Glow effect */}
                   <motion.div
                     className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-2xl"

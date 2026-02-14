@@ -19,8 +19,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       {/* Card principal con escena 3D */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8 md:py-6 lg:py-8">
-        <Card className="w-full min-h-auto sm:min-h-[550px] md:h-[580px] lg:h-[620px] bg-white/90 dark:bg-black/[0.96] border-gray-200 dark:border-gray-800 relative overflow-hidden shadow-lg sm:shadow-2xl transition-colors duration-300 rounded-xl sm:rounded-2xl">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-0">
+        <Card className="w-full min-h-[500px] sm:min-h-[550px] md:h-[580px] lg:h-[620px] bg-white/90 dark:bg-black/[0.96] border-gray-200 dark:border-gray-800 relative overflow-hidden shadow-lg sm:shadow-2xl transition-colors duration-300 rounded-xl sm:rounded-2xl">
           {/* Spotlight estático fijo detrás del robot - posicionado en el lado derecho */}
           <SpotlightStatic
             className="-top-40 -right-20 md:-right-10 md:-top-20"
@@ -29,7 +29,7 @@ export default function Hero() {
           
           <div className="flex flex-col md:flex-row h-full items-center">
             {/* Contenido izquierdo */}
-            <div className="w-full md:w-[55%] lg:w-[58%] p-4 sm:p-6 md:p-6 lg:p-10 relative z-10 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+            <div className="w-full md:w-[55%] lg:w-[58%] p-6 sm:p-8 md:p-8 lg:p-10 relative z-10 flex flex-col justify-center items-center md:items-start text-center md:text-left">
               {/* Badge animado */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function Hero() {
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-1.5 sm:mb-2 font-light">
                   ¡Hola! 👋 Soy
                 </p>
-                <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                   <span className="block text-gray-900 dark:text-white mb-1 sm:mb-2">Juan David</span>
                   <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
                     Aguilar
@@ -69,7 +69,7 @@ export default function Hero() {
                 <div className="flex flex-col sm:flex-row sm:flex-wrap items-center sm:items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/15 dark:via-purple-500/15 dark:to-pink-500/15 border border-blue-400/30 backdrop-blur-xl w-fit mx-auto md:mx-0">
                   <div className="flex items-center gap-1.5 sm:gap-2 text-gray-800 dark:text-white">
                     <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 dark:text-blue-300 flex-shrink-0" />
-                    <span className="text-xs sm:text-base sm:text-lg font-semibold">Full Stack</span>
+                    <span className="text-sm sm:text-base md:text-lg font-semibold">Full Stack</span>
                   </div>
                 </div>
               </motion.div>
@@ -79,7 +79,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-lg mb-4 sm:mb-6 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-lg mb-4 sm:mb-6 leading-relaxed"
               >
                 Creando experiencias digitales excepcionales con código limpio. Especializado en desarrollo móvil y aplicaciones web.
               </motion.p>
