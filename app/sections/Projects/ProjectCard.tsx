@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useSpring, useTransform } from 'framer-motion';
 import { HiEye, HiStar } from 'react-icons/hi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -18,8 +18,15 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
   const router = useRouter();
   const glowOpacity = useTransform(useSpring(isHovered ? 1 : 0, { stiffness: 150, damping: 20 }), [0, 1], [0, 0.6]);
 
-  const handleDemoClick = (e: React.MouseEvent) => {
+  const handleNavigate = () => {
+    router.push(`/proyectos/${project.id}`);
+  };
+
+  const handleDemoClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    if (!project.demo) {
+      return;
+    }
     window.open(project.demo, '_blank', 'noopener,noreferrer');
   };
 
@@ -31,8 +38,16 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
-      className="group relative cursor-pointer transform transition-transform duration-300"
-      onClick={() => router.push(`/proyectos/${project.id}`)}
+      className="group relative min-w-[280px] snap-center cursor-pointer transform transition-transform duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500/40 sm:min-w-0 sm:w-full"
+      tabIndex={0}
+      role="button"
+      onClick={handleNavigate}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleNavigate();
+        }
+      }}
     >
       {/* Glow effect */}
       <motion.div
@@ -42,18 +57,19 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       
       <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-blue-500/10">
         {/* Indicador de clic */}
-        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium z-10">
+        <div className="hidden sm:flex absolute top-4 right-4 items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium z-10">
           <span className="w-2 h-2 bg-blue-400 rounded-full" />
           Click para ver más
         </div>
 
         {/* Image Container */}
-        <div className="relative h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+        <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
           <Image
             src={project.images[0].url}
             alt={project.images[0].caption || project.title}
             fill
             className="object-cover"
+            sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 420px"
           />
           <motion.div 
             className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`}
@@ -85,12 +101,16 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
         </div>
 
         {/* Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+        <div className="p-5 sm:p-6">
+          <div className="mb-3 flex items-center justify-between text-xs font-medium text-gray-500 dark:text-gray-400 sm:hidden">
+            <span>Toque para ver detalles</span>
+            <HiEye className="w-4 h-4" aria-hidden="true" />
+          </div>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
             {project.title}
           </h3>
           
-          <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed line-clamp-3">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed line-clamp-3">
             {isHovered ? project.longDescription : project.description}
           </p>
 
@@ -103,7 +123,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 + techIndex * 0.05 }}
-                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full font-medium"
+                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-[11px] sm:text-xs rounded-full font-medium"
               >
                 {tech}
               </motion.span>
@@ -113,13 +133,11 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
           {/* Action button */}
           <div className="flex pt-4 border-t border-gray-200 dark:border-gray-700">
             <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(project.demo, '_blank');
-              }}
+              onClick={handleDemoClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium`}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r ${project.gradient} text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium`}
+              aria-label={`Abrir demo del proyecto ${project.title}`}
             >
               <HiEye className="w-4 h-4" />
               Ver Proyecto

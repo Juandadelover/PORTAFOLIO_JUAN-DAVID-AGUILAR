@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import Hero from './sections/Hero';
+import PerformanceOptimizer from './lib/hooks/usePerformance';
 
 const About = dynamic(() => import('./sections/About/index'), {
   loading: () => <div className="min-h-screen bg-gray-100 dark:bg-gray-900 animate-pulse" />
@@ -16,14 +17,17 @@ const Contact = dynamic(() => import('./sections/Contact'), {
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
-      <div className="h-screen">
-        <Hero />
-      </div>
-      <About />
-      <Projects />
-      <CTA />
-      <Contact />
-    </main>
+    <>
+      <PerformanceOptimizer />
+      <main className="min-h-screen flex flex-col">
+        <div className="h-screen">
+          <Hero />
+        </div>
+        <About />
+        <Projects />
+        <CTA />
+        <Contact />
+      </main>
+    </>
   );
 }

@@ -270,7 +270,7 @@ const Hero: React.FC<HeroProps> = () => {
                 fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)'
               }}
             >
-              Desarrollador móvil especializado en Flutter y Supabase. 
+              Desarrollador móvil. 
               Creando soluciones digitales innovadoras y experiencias de usuario excepcionales 
               con código limpio y arquitectura escalable.
             </motion.p>

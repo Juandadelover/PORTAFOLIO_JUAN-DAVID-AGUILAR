@@ -21,7 +21,7 @@ export default function CTA() {
     {
       icon: HiLightningBolt,
       title: 'Tecnología Moderna',
-      description: 'Flutter, Supabase y IA al servicio de tu marca',
+      description: 'Tecnologías modernas al servicio de tu marca',
       gradient: 'from-orange-500 to-yellow-500'
     }
   ];

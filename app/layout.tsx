@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from 'next/font/google';
 import { NavBar } from "./components/ui/tubelight-navbar";
 import { navItems } from "./components/ui/navbar-config";
 import Footer from "./components/shared/Footer";
@@ -7,6 +8,15 @@ import Analytics from "./components/Analytics";
 import { Suspense } from "react";
 import Providers from "./providers/Providers";
 import "./globals.css";
+
+// Optimización de fuentes con next/font
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+});
 
 // Componente para registrar Service Worker
 function ServiceWorker() {
@@ -33,8 +43,8 @@ function ServiceWorker() {
 
 export const metadata: Metadata = {
   title: "Juan David Aguilar | Desarrollador Full Stack - Portafolio Profesional",
-  description: "Portafolio de Juan David Aguilar, desarrollador full stack especializado en Flutter, Supabase, React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
-  keywords: ["desarrollador web", "portafolio desarrollador", "flutter developer", "supabase developer", "desarrollo móvil", "full stack developer", "react", "next.js", "typescript", "desarrollo de software"],
+  description: "Portafolio de Juan David Aguilar, desarrollador full stack especializado en React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
+  keywords: ["desarrollador web", "portafolio desarrollador", "desarrollo móvil", "full stack developer", "react", "next.js", "typescript", "desarrollo de software"],
   authors: [{ name: "Juan David Aguilar" }],
   creator: "Juan David Aguilar",
   publisher: "Juan David Aguilar",
@@ -49,7 +59,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Juan David Aguilar | Desarrollador Full Stack",
-    description: "Portafolio profesional de desarrollador especializado en Flutter, Supabase y aplicaciones web modernas. Explora mis proyectos y habilidades.",
+    description: "Portafolio profesional de desarrollador especializado en aplicaciones web modernas. Explora mis proyectos y habilidades.",
     url: 'https://eljuandadeloper.vercel.app',
     siteName: 'Juan David Aguilar Portfolio',
     images: [
@@ -131,25 +141,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning className={inter.variable}>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="manifest" href="/manifest.json" />
-        {/* Preload fonts for better Core Web Vitals */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -157,7 +153,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-gray-100 dark:bg-gray-900">
+      <body className={`${inter.className} antialiased bg-gray-100 dark:bg-gray-900`}>
         <ServiceWorker />
         <Analytics />
         <Providers>

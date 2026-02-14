@@ -108,15 +108,15 @@ export default function Projects() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+      className="relative py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
       id="proyectos"
     >
 
       {/* Efectos de fondo estáticos */}
       <div className="absolute inset-0">
-        <div className="absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-10" />
-        <div className="absolute -bottom-44 -left-32 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl opacity-10" />
-        <div className="absolute inset-x-0 top-1/3 mx-auto w-[55rem] h-[55rem] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[150px] opacity-5" />
+        <div className="hidden sm:block absolute -top-40 -right-40 w-[28rem] h-[28rem] bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-10" />
+        <div className="hidden md:block absolute -bottom-44 -left-32 w-[30rem] h-[30rem] bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl opacity-10" />
+        <div className="hidden lg:block absolute inset-x-0 top-1/3 mx-auto w-[55rem] h-[55rem] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[150px] opacity-5" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -138,7 +138,7 @@ export default function Projects() {
             <HiCode className="w-4 h-4" />
             Portafolio
           </motion.span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             Proyectos{' '}
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-transparent bg-clip-text">
               Destacados
@@ -149,18 +149,19 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Una selección de mis trabajos más recientes, donde combino diseño elegante con funcionalidad robusta.
           </motion.p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="flex justify-center">
-          <div className="max-w-md w-full">
-            {projects.filter(project => project.id === 0).map((project, index) => (
+        {/* Projects Grid / Carousel responsive */}
+        <div className="mt-12 -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-6 sm:mx-0 sm:mt-16 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:justify-items-center lg:grid-cols-3">
+          {projects
+            .filter(project => project.id === 0)
+            .map((project, index) => (
               <ProjectCard
-                key={index}
+                key={project.id}
                 project={project}
                 index={index}
                 isHovered={hoveredIndex === index}
@@ -168,7 +169,6 @@ export default function Projects() {
                 onHoverEnd={() => setHoveredIndex(null)}
               />
             ))}
-          </div>
         </div>
 
         {/* CTA */}

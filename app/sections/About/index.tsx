@@ -177,9 +177,7 @@ export default function About() {
                   
                   <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-4 sm:mb-6">
                     Desarrollador apasionado por crear soluciones tecnológicas innovadoras. 
-                    Especializado en <span className="text-blue-600 dark:text-blue-400 font-semibold">Flutter</span> y 
-                    <span className="text-purple-600 dark:text-purple-400 font-semibold"> Supabase</span>, 
-                    transformo ideas en aplicaciones funcionales y elegantes. Me enfoco en escribir 
+                    Transformo ideas en aplicaciones funcionales y elegantes. Me enfoco en escribir 
                     código limpio y crear experiencias de usuario excepcionales.
                   </p>
 

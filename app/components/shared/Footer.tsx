@@ -81,7 +81,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              Creando soluciones digitales innovadoras con Flutter y Supabase.
+              Creando soluciones digitales innovadoras.
               Transformo ideas en aplicaciones funcionales y elegantes.
             </p>
             <div className="flex gap-4">

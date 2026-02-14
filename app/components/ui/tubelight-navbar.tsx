@@ -46,9 +46,19 @@ export function NavBar({ items, className }: NavBarProps) {
       setIsMobile(window.innerWidth < 768)
     }
 
+    // ✅ Optimización: Debounce para resize listener
+    let timeoutId: NodeJS.Timeout
+    const debouncedResize = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleResize, 150)
+    }
+
     handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    window.addEventListener("resize", debouncedResize)
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener("resize", debouncedResize)
+    }
   }, [])
 
   return (

@@ -46,17 +46,17 @@ export default function ProjectPageClient({ project }: { project: Project }) {
   }, []);
 
   return (
-    <main ref={containerRef} className="min-h-screen bg-black">
+    <main ref={containerRef} className="min-h-screen bg-black overflow-x-hidden">
       {/* Navbar fijo */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl pt-[env(safe-area-inset-top)]"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/#proyectos"
-            className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors group"
+            className="flex items-center gap-2 text-sm sm:text-base text-white hover:text-blue-400 transition-colors group"
           >
             <HiArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-medium">Volver a Proyectos</span>
@@ -67,7 +67,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full text-white font-medium transition-all hover:scale-105"
+              className="flex items-center gap-2 rounded-full px-4 py-2 text-sm sm:px-6 sm:text-base bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium transition-all hover:scale-105"
             >
               <span>Ver Demo</span>
               <HiExternalLink className="w-4 h-4" />
@@ -83,14 +83,14 @@ export default function ProjectPageClient({ project }: { project: Project }) {
       >
         {/* Luces y destellos de fondo */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -left-40 w-[520px] h-[520px] bg-gradient-to-br from-blue-500/30 via-purple-500/20 to-transparent blur-3xl" />
-          <div className="absolute -bottom-32 -right-32 w-[460px] h-[460px] bg-gradient-to-tl from-pink-500/20 via-blue-500/20 to-transparent blur-[120px]" />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] h-[280px] bg-gradient-to-br from-white/15 to-transparent blur-3xl opacity-60" />
+          <div className="hidden sm:block absolute -top-40 -left-40 w-[520px] h-[520px] bg-gradient-to-br from-blue-500/30 via-purple-500/20 to-transparent blur-3xl" />
+          <div className="hidden md:block absolute -bottom-32 -right-32 w-[460px] h-[460px] bg-gradient-to-tl from-pink-500/20 via-blue-500/20 to-transparent blur-[120px]" />
+          <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] h-[280px] bg-gradient-to-br from-white/15 to-transparent blur-3xl opacity-60" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_rgba(8,11,19,0.95))]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-6 sm:gap-8 md:gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.05fr_0.95fr] gap-6 sm:gap-8 md:gap-12 lg:gap-20 items-center">
             {/* Columna de contenido */}
             <div className="space-y-3.5 sm:space-y-6 md:space-y-10">
               <motion.div
@@ -107,26 +107,26 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-[1.1] sm:leading-tight text-balance"
+                className="font-black tracking-tight text-white text-[clamp(2rem,6vw,4rem)] leading-tight sm:leading-[1.04] max-w-[48ch] sm:max-w-[64ch] break-words text-balance"
               >
                 {project.title}
               </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200/90 max-w-2xl leading-relaxed text-pretty"
-              >
-                {project.description}
-              </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="text-sm sm:text-base md:text-lg text-slate-200/90 max-w-[60ch] leading-relaxed text-pretty break-words"
+                >
+                  {project.description}
+                </motion.p>
 
               {/* Métricas destacadas */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-2xl sm:max-w-3xl"
+                className="-mx-1 flex snap-x gap-3 overflow-x-auto px-1 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-3 md:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 max-w-2xl sm:max-w-3xl"
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -134,7 +134,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.55 + index * 0.05 }}
-                    className="group relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-2.5 sm:p-3 md:p-4"
+                    className="group relative min-w-[140px] snap-center overflow-hidden rounded-lg sm:min-w-0 sm:rounded-xl md:rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-2.5 sm:p-3 md:p-4"
                   >
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
                     <div className="relative flex flex-col gap-1 sm:gap-1.5 md:gap-2">
@@ -181,7 +181,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
-              className="relative mt-6 sm:mt-8 lg:mt-0"
+              className="relative mt-10 w-full max-w-xl sm:max-w-full lg:max-w-xl mx-auto sm:mt-8 lg:mt-0 lg:mx-0 px-2 sm:px-0"
             >
               <div className="absolute -top-12 -right-12 sm:-top-20 sm:-right-20 w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-transparent blur-3xl" />
               <div className="absolute -bottom-10 -left-10 sm:-bottom-16 sm:-left-16 w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-transparent blur-3xl" />
@@ -217,7 +217,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       <span className="hidden sm:inline">En vivo</span>
                     </span>
                   </div>
-                  <div className="aspect-[4/3]">
+                  <div className="aspect-[4/3] sm:aspect-video">
                     <Image
                       src={project.images[activeImage]?.url || project.images[0].url}
                       alt={project.images[activeImage]?.caption || project.title}
@@ -297,9 +297,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
       </motion.section>
 
       {/* Contenido Principal */}
-      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="relative py-16 sm:py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {project.images.map((image, index) => (
               <motion.div
                 key={index}
@@ -377,7 +377,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                   transition={{ delay: 0.4 }}
                   className="mb-12"
                 >
-                  <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
                     {project.description}
                   </p>
 
