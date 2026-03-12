@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -15,7 +17,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   // Configuración vacía de Turbopack para silenciar warnings
-  turbopack: {},
+  // Indica la raíz del proyecto para Turbopack (evita que infiera `/app` como root)
+  turbopack: {
+    // Use an absolute string path to be explicit and match docs recommendations
+    root: path.resolve(__dirname),
+  },
   // Optimizaciones de rendimiento
   compress: true,
   poweredByHeader: false,
