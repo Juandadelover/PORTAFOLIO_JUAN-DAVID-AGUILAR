@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { HiArrowLeft } from 'react-icons/hi';
+import Link from "next/link";
+import { HiArrowLeft } from "react-icons/hi";
 
 export default function ProjectNotFound() {
   return (
@@ -12,9 +12,10 @@ export default function ProjectNotFound() {
           Proyecto no encontrado
         </h2>
         <p className="text-gray-400 mb-8 text-lg">
-          Lo sentimos, el proyecto que estás buscando no existe o ha sido movido.
+          Lo sentimos, el proyecto que estás buscando no existe o ha sido
+          movido.
         </p>
-        
+
         <Link
           href="/#proyectos"
           className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-medium rounded-full transition-all duration-300 hover:scale-105"
@@ -24,5 +25,5 @@ export default function ProjectNotFound() {
         </Link>
       </div>
     </div>
-    );
-  }
+  );
+}

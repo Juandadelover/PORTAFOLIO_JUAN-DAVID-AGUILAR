@@ -13,17 +13,20 @@ Portafolio profesional de Juan David Aguilar, desarrollador full stack especiali
 ## 📦 Instalación y Uso
 
 1. Clona el repositorio:
+
    ```bash
    git clone https://github.com/Juandadelover/PORTAFOLIO_JUAN-DAVID-AGUILAR.git
    cd PORTAFOLIO_JUAN-DAVID-AGUILAR
    ```
 
 2. Instala las dependencias:
+
    ```bash
    npm install
    ```
 
 3. Ejecuta el servidor de desarrollo:
+
    ```bash
    npm run dev
    ```

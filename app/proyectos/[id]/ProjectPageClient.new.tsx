@@ -1,10 +1,19 @@
-'use client';
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { HiChip, HiLightningBolt, HiArrowLeft, HiExternalLink, HiStar, HiTrendingUp, HiUsers, HiClock } from 'react-icons/hi';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  HiChip,
+  HiLightningBolt,
+  HiArrowLeft,
+  HiExternalLink,
+  HiStar,
+  HiTrendingUp,
+  HiUsers,
+  HiClock,
+} from "react-icons/hi";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useRef } from "react";
 
 interface Project {
   id: number;
@@ -26,16 +35,16 @@ export default function ProjectPageClient({ project }: { project: Project }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
+
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
     <main ref={containerRef} className="min-h-screen bg-black">
       {/* Navbar fijo */}
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10"
@@ -48,7 +57,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
             <HiArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-medium">Volver a Proyectos</span>
           </Link>
-          
+
           {project.demo && (
             <a
               href={project.demo}
@@ -87,7 +96,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl text-sm font-medium text-blue-200 shadow-[0_0_30px_rgba(59,130,246,0.25)]"
               >
                 <span className="inline-flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
-                {project.category ?? 'Proyecto destacado'}
+                {project.category ?? "Proyecto destacado"}
               </motion.div>
 
               <motion.h1
@@ -115,11 +124,31 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 transition={{ delay: 0.45 }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
               >
-                {[ 
-                  { icon: HiTrendingUp, value: '+70%', label: 'Ventas', color: 'from-blue-400 to-cyan-300' },
-                  { icon: HiClock, value: '24/7', label: 'Disponibilidad', color: 'from-purple-400 to-pink-400' },
-                  { icon: HiStar, value: '4.9', label: 'Experiencia', color: 'from-amber-300 to-orange-400' },
-                  { icon: HiUsers, value: '+5K', label: 'Clientes', color: 'from-teal-300 to-emerald-400' }
+                {[
+                  {
+                    icon: HiTrendingUp,
+                    value: "+70%",
+                    label: "Ventas",
+                    color: "from-blue-400 to-cyan-300",
+                  },
+                  {
+                    icon: HiClock,
+                    value: "24/7",
+                    label: "Disponibilidad",
+                    color: "from-purple-400 to-pink-400",
+                  },
+                  {
+                    icon: HiStar,
+                    value: "4.9",
+                    label: "Experiencia",
+                    color: "from-amber-300 to-orange-400",
+                  },
+                  {
+                    icon: HiUsers,
+                    value: "+5K",
+                    label: "Clientes",
+                    color: "from-teal-300 to-emerald-400",
+                  },
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}
@@ -128,13 +157,19 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                     transition={{ delay: 0.55 + index * 0.05 }}
                     className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] backdrop-blur-lg p-4"
                   >
-                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`} />
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${stat.color} blur-xl`}
+                    />
                     <div className="relative flex flex-col gap-2">
                       <span className="w-fit rounded-full bg-white/10 p-2">
                         <stat.icon className="w-4 h-4 text-white/80" />
                       </span>
-                      <span className="text-2xl font-bold text-white">{stat.value}</span>
-                      <span className="text-xs uppercase tracking-[0.2em] text-white/60">{stat.label}</span>
+                      <span className="text-2xl font-bold text-white">
+                        {stat.value}
+                      </span>
+                      <span className="text-xs uppercase tracking-[0.2em] text-white/60">
+                        {stat.label}
+                      </span>
                     </div>
                   </motion.div>
                 ))}
@@ -185,8 +220,12 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       {project.title.slice(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <p className="text-sm text-white/60">Proyecto destacado</p>
-                      <p className="text-lg font-semibold text-white">{project.title}</p>
+                      <p className="text-sm text-white/60">
+                        Proyecto destacado
+                      </p>
+                      <p className="text-lg font-semibold text-white">
+                        {project.title}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-white/60">
@@ -195,15 +234,16 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       4.9
                     </span>
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10">
-                      <HiClock className="w-4 h-4 text-blue-200" />
-                      3 meses
+                      <HiClock className="w-4 h-4 text-blue-200" />3 meses
                     </span>
                   </div>
                 </div>
 
                 <div className="relative mx-4 mt-6 rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
                   <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between">
-                    <span className="text-xs font-medium text-white/70 uppercase tracking-[0.3em]">Preview</span>
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-[0.3em]">
+                      Preview
+                    </span>
                     <span className="flex items-center gap-1 text-xs text-white/50">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
                       En vivo
@@ -211,8 +251,13 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                   </div>
                   <div className="aspect-[4/3]">
                     <Image
-                      src={project.images[activeImage]?.url || project.images[0].url}
-                      alt={project.images[activeImage]?.caption || project.title}
+                      src={
+                        project.images[activeImage]?.url ||
+                        project.images[0].url
+                      }
+                      alt={
+                        project.images[activeImage]?.caption || project.title
+                      }
                       fill
                       className="object-cover"
                       priority
@@ -224,7 +269,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
 
                 {/* Controles / miniaturas */}
                 <div className="px-6 pt-6 pb-8">
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Vistas del proyecto</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">
+                    Vistas del proyecto
+                  </p>
                   <div className="flex gap-3 overflow-x-auto pb-1">
                     {project.images.map((img, idx) => (
                       <button
@@ -232,13 +279,15 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                         onClick={() => setActiveImage(idx)}
                         className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border transition-all ${
                           activeImage === idx
-                            ? 'border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]'
-                            : 'border-white/10 hover:border-white/30'
+                            ? "border-blue-400 ring-2 ring-blue-400/40 scale-[1.02]"
+                            : "border-white/10 hover:border-white/30"
                         }`}
                       >
                         <Image
                           src={img.url}
-                          alt={img.caption || `${project.title} vista ${idx + 1}`}
+                          alt={
+                            img.caption || `${project.title} vista ${idx + 1}`
+                          }
                           fill
                           className="object-cover"
                         />
@@ -261,14 +310,18 @@ export default function ProjectPageClient({ project }: { project: Project }) {
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2 text-white/60 text-xs"
           >
             Desliza para explorar
             <div className="w-6 h-10 border border-white/30 rounded-full flex items-start justify-center p-2">
               <motion.span
                 animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="w-1 h-2 rounded-full bg-white/70"
               />
             </div>
@@ -286,15 +339,15 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
+                transition={{
                   duration: 0.8,
-                  ease: [0.4, 0, 0.2, 1]
+                  ease: [0.4, 0, 0.2, 1],
                 }}
                 className="group relative w-full"
               >
                 {/* Efecto de resplandor en hover */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
-                
+
                 <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden shadow-2xl border border-white/10">
                   {/* Contenedor de imagen con efecto parallax */}
                   <motion.div
@@ -311,7 +364,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       priority={index === 0}
                       quality={100}
                     />
-                    
+
                     {/* Overlay gradiente en hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -382,7 +435,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       >
                         +70%
                       </motion.div>
-                      <div className="text-sm text-gray-400">Aumento en ventas</div>
+                      <div className="text-sm text-gray-400">
+                        Aumento en ventas
+                      </div>
                     </div>
                     <div className="text-center">
                       <motion.div
@@ -393,7 +448,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       >
                         24/7
                       </motion.div>
-                      <div className="text-sm text-gray-400">Disponibilidad</div>
+                      <div className="text-sm text-gray-400">
+                        Disponibilidad
+                      </div>
                     </div>
                     <div className="text-center">
                       <motion.div
@@ -415,7 +472,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       >
                         +5K
                       </motion.div>
-                      <div className="text-sm text-gray-400">Clientes alcanzados</div>
+                      <div className="text-sm text-gray-400">
+                        Clientes alcanzados
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -446,7 +505,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                       "Comunidad y Educación: Espacios interactivos para compartir conocimientos sobre el café y cultura cafetera",
                       "Análisis Avanzado del Mercado: Insights detallados sobre preferencias de café y comportamiento del consumidor",
                       "Integración Omnicanal: Conexión perfecta entre tu presencia digital y experiencias físicas en la finca",
-                      "Escalabilidad Estratégica: Infraestructura robusta que crece con tu negocio cafetero"
+                      "Escalabilidad Estratégica: Infraestructura robusta que crece con tu negocio cafetero",
                     ].map((feature, index) => (
                       <motion.li
                         key={index}
@@ -456,7 +515,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                         whileHover={{ x: 5 }}
                         className="flex items-start gap-4 group"
                       >
-                        <motion.span 
+                        <motion.span
                           className="mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex-shrink-0 group-hover:scale-125 transition-transform"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{
@@ -465,7 +524,9 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                             delay: index * 0.2,
                           }}
                         />
-                        <span className="text-gray-300 group-hover:text-white transition-colors">{feature}</span>
+                        <span className="text-gray-300 group-hover:text-white transition-colors">
+                          {feature}
+                        </span>
                       </motion.li>
                     ))}
                   </ul>

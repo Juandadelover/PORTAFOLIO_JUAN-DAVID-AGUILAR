@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { HiX, HiLink, HiCode, HiChip, HiLightningBolt } from 'react-icons/hi';
-import Image from 'next/image';
+import { motion } from "framer-motion";
+import { HiX, HiLink, HiCode, HiChip, HiLightningBolt } from "react-icons/hi";
+import Image from "next/image";
 
 interface ProjectDetailProps {
   project: {
@@ -23,7 +23,11 @@ interface ProjectDetailProps {
   isOpen: boolean;
 }
 
-export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetailProps) {
+export default function ProjectDetail({
+  project,
+  onClose,
+  isOpen,
+}: ProjectDetailProps) {
   if (!isOpen) return null;
 
   return (
@@ -38,15 +42,15 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
       {/* Fondo con blur y animación */}
       <motion.div
         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-        animate={{ 
+        animate={{
           opacity: 1,
           backdropFilter: "blur(8px)",
-          transition: { duration: 0.4 }
+          transition: { duration: 0.4 },
         }}
-        exit={{ 
+        exit={{
           opacity: 0,
           backdropFilter: "blur(0px)",
-          transition: { duration: 0.3 }
+          transition: { duration: 0.3 },
         }}
         className="fixed inset-0 bg-gradient-to-br from-gray-900/95 via-gray-900/95 to-blue-900/95"
       />
@@ -68,7 +72,7 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
         exit={{ scale: 0.9, opacity: 0, y: 20 }}
         transition={{ type: "spring", duration: 0.5 }}
         className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Carrusel de imágenes */}
         <div className="relative h-72 sm:h-96">
@@ -79,7 +83,10 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
             className="relative h-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
           >
             {project.images.map((image, index) => (
-              <div key={index} className="relative w-full flex-shrink-0 snap-center">
+              <div
+                key={index}
+                className="relative w-full flex-shrink-0 snap-center"
+              >
                 <Image
                   src={image.url}
                   alt={image.caption || project.title}
@@ -97,7 +104,7 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
               </div>
             ))}
           </motion.div>
-          
+
           {/* Indicadores de navegación */}
           <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
             {project.images.map((_, index) => (
@@ -105,13 +112,13 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
                 key={index}
                 className="w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors"
                 onClick={() => {
-                  const elements = document.querySelectorAll('.snap-center');
-                  elements[index]?.scrollIntoView({ behavior: 'smooth' });
+                  const elements = document.querySelectorAll(".snap-center");
+                  elements[index]?.scrollIntoView({ behavior: "smooth" });
                 }}
               />
             ))}
           </div>
-          
+
           {/* Overlay con título flotante */}
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
             <motion.h2
@@ -123,7 +130,7 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
               {project.title}
             </motion.h2>
           </div>
-          
+
           {/* Botón de cerrar mejorado */}
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
@@ -262,7 +269,7 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
                 "Automatiza procesos y reduce costos operativos",
                 "Construye una comunidad alrededor de tu marca",
                 "Analiza y mejora basado en datos reales",
-                "Crece y escala tu negocio sin limitaciones"
+                "Crece y escala tu negocio sin limitaciones",
               ].map((feature, index) => (
                 <motion.li
                   key={index}
@@ -272,7 +279,7 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4 group"
                 >
-                  <motion.span 
+                  <motion.span
                     className="mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 flex-shrink-0 group-hover:scale-125 transition-transform"
                     animate={{
                       scale: [1, 1.2, 1],
@@ -283,14 +290,16 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
                       delay: index * 0.2,
                     }}
                   />
-                  <span className="text-gray-300 group-hover:text-white transition-colors">{feature}</span>
+                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                    {feature}
+                  </span>
                 </motion.li>
               ))}
             </ul>
           </motion.div>
 
           {/* Enlaces mejorados */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
@@ -308,15 +317,15 @@ export default function ProjectDetail({ project, onClose, isOpen }: ProjectDetai
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"
                   animate={{
-                    backgroundPosition: ['100% 0%', '0% 0%', '100% 0%'],
+                    backgroundPosition: ["100% 0%", "0% 0%", "100% 0%"],
                   }}
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: 'linear',
+                    ease: "linear",
                   }}
                   style={{
-                    backgroundSize: '200% 100%'
+                    backgroundSize: "200% 100%",
                   }}
                 />
                 <span className="relative flex items-center gap-2">

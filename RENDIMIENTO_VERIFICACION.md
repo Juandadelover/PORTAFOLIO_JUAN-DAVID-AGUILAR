@@ -3,22 +3,26 @@
 ## Comandos rápidos para medir el impacto
 
 ### 1. Build de producción
+
 ```bash
 npm run build
 ```
 
 ### 2. Iniciar servidor de producción
+
 ```bash
 npm run start
 ```
 
 ### 3. Ejecutar Lighthouse
+
 ```bash
 # En otra terminal
 npm run lighthouse
 ```
 
 O manualmente:
+
 1. Abre Chrome DevTools (F12)
 2. Ve a la pestaña "Lighthouse"
 3. Selecciona "Performance" y "Desktop" o "Mobile"
@@ -29,6 +33,7 @@ O manualmente:
 ## 📊 Métricas Clave a Verificar
 
 ### Core Web Vitals
+
 - **FCP (First Contentful Paint)**: Objetivo < 1.8s
 - **LCP (Largest Contentful Paint)**: Objetivo < 2.5s
 - **CLS (Cumulative Layout Shift)**: Objetivo < 0.1
@@ -36,6 +41,7 @@ O manualmente:
 - **Speed Index**: Objetivo < 3.4s
 
 ### Performance Score
+
 - **Objetivo**: > 90 (móvil y escritorio)
 
 ---
@@ -43,12 +49,14 @@ O manualmente:
 ## 🔍 Antes vs Después
 
 ### Antes de las optimizaciones
+
 - FCP: ~2.0s
 - LCP: ~3.5s
 - Bundle size: ~450KB
 - Performance Score: ~70-75
 
 ### Después de las optimizaciones
+
 - FCP: ~1.2s ⚡ (40% mejor)
 - LCP: ~1.8s ⚡ (49% mejor)
 - Bundle size: ~320KB ⚡ (29% más pequeño)
@@ -59,21 +67,26 @@ O manualmente:
 ## 🛠️ Herramientas Adicionales
 
 ### WebPageTest
+
 ```
 https://www.webpagetest.org/
 ```
+
 1. Pega la URL de tu sitio
 2. Selecciona ubicación y dispositivo
 3. Ejecuta test
 
 ### PageSpeed Insights
+
 ```
 https://pagespeed.web.dev/
 ```
+
 1. Pega la URL de tu sitio
 2. Analiza resultados para móvil y escritorio
 
 ### Chrome DevTools Performance
+
 1. F12 → Pestaña "Performance"
 2. Click en "Record" (círculo)
 3. Recarga la página
@@ -99,6 +112,7 @@ https://pagespeed.web.dev/
 ## 📈 Monitoreo Continuo
 
 Considera usar estas herramientas para monitoreo continuo:
+
 - **Vercel Analytics** (gratis con Vercel)
 - **Google Analytics 4** con Web Vitals
 - **Sentry Performance Monitoring**

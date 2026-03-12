@@ -3,6 +3,7 @@
 ## Fases de Desarrollo
 
 ### Fase 1: Fundamentos y Estructura Base ⚡
+
 - [x] Configuración inicial del proyecto
   - [x] Next.js setup
   - [x] TypeScript configuración
@@ -40,6 +41,7 @@
   - CV descargable
 
 ## 2. Diseño y UI/UX
+
 - [x] Tema y Paleta de Colores
   - [x] Modo claro/oscuro
   - [x] Toggle de tema
@@ -53,6 +55,7 @@
   - Menú adaptativo
 
 ## 3. Animaciones y Transiciones
+
 - [x] Framer Motion setup
 - [ ] Animaciones de entrada
 - [ ] Transiciones entre secciones
@@ -60,6 +63,7 @@
 - [ ] Scroll animations
 
 ## 4. Funcionalidades
+
 - [ ] Navegación
   - Navbar responsive
   - Smooth scroll a secciones
@@ -77,6 +81,7 @@
   - Feedback visual
 
 ## 5. SEO y Rendimiento
+
 - [x] Metadata
   - [x] Títulos y descripciones
   - [ ] Open Graph tags
@@ -93,6 +98,7 @@
   - [ ] Optimización de fuentes
 
 ## 6. Integraciones
+
 - [ ] Backend/API
   - Endpoint para formulario de contacto
   - API routes en Next.js
@@ -105,6 +111,7 @@
   - Events tracking
 
 ## 7. Despliegue
+
 - [ ] Preparación
   - Environment variables
   - Build optimizations
@@ -116,6 +123,7 @@
   - Redirecciones
 
 ## 8. Testing y QA
+
 - [ ] Unit Tests
   - Componentes
   - Utilidades
@@ -127,6 +135,7 @@
   - Mobile browsers
 
 ## Estructura de Archivos
+
 ```
 myportafolio/
 ├── app/
@@ -156,7 +165,9 @@ myportafolio/
 ```
 
 ## Plan de Trabajo
+
 ### Semana 1: Estructura Base
+
 - [x] Configuración inicial ✓
 - [x] Hero section ✓
 - [x] Estructura de archivos ✓
@@ -165,30 +176,35 @@ myportafolio/
 - [ ] Componentes UI base (En progreso)
 
 ### Semana 2: Contenido Principal
+
 - About section
 - Projects section
 - Skills section
 - Grid y layouts
 
 ### Semana 3: Interactividad
+
 - Animaciones
 - Dark mode
 - Filtros de proyectos
 - Navegación
 
 ### Semana 4: Funcionalidad y Pulido
+
 - Formulario de contacto
 - Integraciones
 - Testing
 - Optimizaciones
 
 ### Semana 5: Despliegue y Lanzamiento
+
 - SEO
 - Analytics
 - Deployment
 - DNS y dominio
 
 ## Próximos Pasos Inmediatos
+
 1. [x] Implementar About section ✓
 2. [x] Crear componentes UI base ✓
 3. [x] Configurar sistema de diseño ✓
@@ -200,6 +216,7 @@ myportafolio/
    - [ ] Configurar metadata SEO y social tags
 
 ## Notas Técnicas
+
 - Next.js 14 con App Router
 - TypeScript para type safety
 - Tailwind CSS para estilos
@@ -207,18 +224,17 @@ myportafolio/
 - Supabase para backend (pendiente)
 
 ## Estado Actual del Proyecto
-- **Completado**: 
+
+- **Completado**:
   - Estructura base del proyecto
   - Sistema de navegación
   - Tema oscuro/claro
   - Componentes principales (Hero, About, Projects)
   - Animaciones básicas
-  
 - **En Progreso**:
   - Optimización de imágenes
   - Modal de detalles de proyectos
   - Sistema de contacto
-  
 - **Pendiente**:
   - Integración con Supabase
   - Formulario de contacto
@@ -226,6 +242,7 @@ myportafolio/
   - Despliegue
 
 ## Problemas Conocidos
+
 1. Imágenes faltantes en `/public/projects/`:
    - ecommerce.jpg
    - taskapp.jpg
@@ -234,6 +251,7 @@ myportafolio/
 3. Implementar placeholders para imágenes faltantes
 
 ## Siguientes Pasos
+
 1. Resolver issues de imágenes
 2. Completar metadata SEO
 3. Implementar formulario de contacto

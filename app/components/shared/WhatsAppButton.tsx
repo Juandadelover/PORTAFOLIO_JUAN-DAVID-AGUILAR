@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
   return (
@@ -38,12 +38,12 @@ export default function WhatsAppButton() {
         >
           {/* Círculo exterior con efecto de pulso */}
           <div className="absolute inset-0 bg-green-500 rounded-full blur-sm animate-pulse" />
-          
+
           {/* Contenedor principal del botón */}
           <div className="relative bg-gradient-to-r from-green-500 to-green-600 p-4 rounded-full shadow-lg hover:shadow-green-500/50 transition-shadow duration-300">
             {/* Efecto de brillo */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            
+
             {/* Icono de WhatsApp */}
             <svg
               className="w-7 h-7 text-white relative z-10 transform group-hover:scale-110 transition-transform duration-300"

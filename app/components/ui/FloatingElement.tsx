@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface FloatingElementProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface FloatingElementProps {
 
 export const FloatingElement = ({
   children,
-  className = '',
+  className = "",
 }: FloatingElementProps) => {
   return (
     <motion.div

@@ -6,30 +6,32 @@ Este documento detalla todas las optimizaciones de rendimiento aplicadas al port
 
 ## ✅ Optimizaciones Implementadas
 
-### 1. **Optimización de Fuentes con next/font** 
+### 1. **Optimización de Fuentes con next/font**
+
 - ❌ **Antes**: Carga de fuentes desde Google Fonts mediante `<link>` en el `<head>`
 - ✅ **Después**: Uso de `next/font` con preload automático y font-display swap
-- **Impacto**: 
+- **Impacto**:
   - Reduce FOUT (Flash of Unstyled Text)
   - Mejora FCP (First Contentful Paint) en ~200-300ms
   - Optimiza CLS (Cumulative Layout Shift)
 
 ```typescript
 // app/layout.tsx
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
   preload: true,
-  variable: '--font-inter',
-  weight: ['300', '400', '500', '600', '700'],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
 });
 ```
 
 ---
 
 ### 2. **Optimización de Imágenes**
+
 - ❌ **Antes**: `unoptimized: true` (sin optimización)
 - ✅ **Después**: Optimización habilitada con AVIF y WebP
 - **Impacto**:
@@ -50,6 +52,7 @@ images: {
 ---
 
 ### 3. **Lazy Loading Inteligente de Spline 3D** ⭐
+
 - ❌ **Antes**: Carga inmediata de la escena 3D pesada (~2-3MB)
 - ✅ **Después**: Carga diferida con Intersection Observer
 - **Impacto**:
@@ -63,19 +66,20 @@ useEffect(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
-        setShouldLoad(true)
-        observer.disconnect()
+        setShouldLoad(true);
+        observer.disconnect();
       }
     },
-    { rootMargin: '100px', threshold: 0.1 }
-  )
+    { rootMargin: "100px", threshold: 0.1 },
+  );
   // ...
-}, [])
+}, []);
 ```
 
 ---
 
 ### 4. **Reducción de Animaciones Complejas**
+
 - ❌ **Antes**: Múltiples animaciones de fondo simultáneas en Hero
 - ✅ **Después**: Gradientes estáticos, animaciones reducidas
 - **Impacto**:
@@ -84,6 +88,7 @@ useEffect(() => {
   - Mejor experiencia en dispositivos de gama baja
 
 **Cambios específicos**:
+
 - Eliminada animación de fondo con `motion.div` compleja
 - Reducidos delays de animaciones iniciales
 - Simplificadas transiciones
@@ -93,20 +98,24 @@ useEffect(() => {
 ### 5. **Optimizaciones de Next.js Config**
 
 #### a) **SWC Minification**
+
 ```javascript
 swcMinify: true, // Minificación 17x más rápida que Terser
 ```
 
 #### b) **Tree Shaking de Dependencias**
+
 ```javascript
 experimental: {
   optimizeCss: true,
   optimizePackageImports: ['framer-motion', 'lucide-react', 'react-icons'],
 }
 ```
+
 - **Impacto**: Reducción del bundle size en ~20-30%
 
 #### c) **Headers de Caché Optimizados**
+
 ```javascript
 async headers() {
   return [
@@ -121,11 +130,13 @@ async headers() {
   ]
 }
 ```
+
 - **Impacto**: Visitas subsecuentes instantáneas
 
 ---
 
 ### 6. **Optimizaciones de CSS**
+
 - Añadido `text-rendering: optimizeLegibility`
 - Añadido `-webkit-font-smoothing: antialiased`
 - Mejora la renderización de texto en navegadores modernos
@@ -133,6 +144,7 @@ async headers() {
 ---
 
 ### 7. **Debouncing en Event Listeners**
+
 - ❌ **Antes**: Listener de resize sin throttling
 - ✅ **Después**: Debounce de 150ms en navbar
 - **Impacto**: Reduce llamadas innecesarias en resize
@@ -141,20 +153,22 @@ async headers() {
 
 ## 📊 Mejoras Esperadas en Core Web Vitals
 
-| Métrica | Antes | Después | Mejora |
-|---------|-------|---------|--------|
-| **FCP** | ~2.0s | ~1.2s | ⬇️ 40% |
-| **LCP** | ~3.5s | ~1.8s | ⬇️ 49% |
-| **CLS** | 0.15 | 0.05 | ⬇️ 67% |
-| **TTI** | ~4.0s | ~2.5s | ⬇️ 38% |
-| **Bundle Size** | ~450KB | ~320KB | ⬇️ 29% |
+| Métrica         | Antes  | Después | Mejora |
+| --------------- | ------ | ------- | ------ |
+| **FCP**         | ~2.0s  | ~1.2s   | ⬇️ 40% |
+| **LCP**         | ~3.5s  | ~1.8s   | ⬇️ 49% |
+| **CLS**         | 0.15   | 0.05    | ⬇️ 67% |
+| **TTI**         | ~4.0s  | ~2.5s   | ⬇️ 38% |
+| **Bundle Size** | ~450KB | ~320KB  | ⬇️ 29% |
 
 ---
 
 ## 🎯 Recomendaciones Adicionales
 
 ### Prioridad Alta
+
 1. **Convertir imágenes PNG a WebP/AVIF**
+
    ```bash
    # Usar herramientas como squoosh.app o sharp
    npm install sharp
@@ -170,15 +184,18 @@ async headers() {
    ```
 
 ### Prioridad Media
+
 4. **Lazy load de secciones no críticas**
+
    ```typescript
    // Ya implementado en page.tsx, pero considera dynamic imports más agresivos
-   const Contact = dynamic(() => import('./sections/Contact'), {
+   const Contact = dynamic(() => import("./sections/Contact"), {
      ssr: false, // No renderizar en servidor si no es crítico
    });
    ```
 
 5. **Implementar ISR (Incremental Static Regeneration)**
+
    ```typescript
    export const revalidate = 3600; // Revalidar cada hora
    ```
@@ -188,6 +205,7 @@ async headers() {
    - Usar `React.lazy()` para componentes pesados
 
 ### Prioridad Baja
+
 7. **Considerar eliminar GSAP si no se usa intensivamente**
    - Framer Motion ya cubre la mayoría de animaciones
    - Ahorro de ~30KB gzipped
@@ -206,11 +224,13 @@ async headers() {
 ## 🛠️ Herramientas de Monitoreo
 
 ### Monitoreo Continuo
+
 - **Google Lighthouse**: `npm run build && npm start` → Lighthouse en Chrome DevTools
 - **WebPageTest**: https://www.webpagetest.org/
 - **PageSpeed Insights**: https://pagespeed.web.dev/
 
 ### Análisis de Bundle
+
 ```bash
 # Instalar bundle analyzer
 npm install --save-dev @next/bundle-analyzer

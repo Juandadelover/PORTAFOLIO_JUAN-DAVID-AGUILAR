@@ -1,30 +1,60 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { HiHeart, HiCode, HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaTwitter } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import {
+  HiHeart,
+  HiCode,
+  HiMail,
+  HiPhone,
+  HiLocationMarker,
+} from "react-icons/hi";
+import { FaGithub, FaLinkedin, FaWhatsapp, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Inicio', href: '#' },
-    { name: 'Sobre Mí', href: '#sobre-mi' },
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: "Inicio", href: "#" },
+    { name: "Sobre Mí", href: "#sobre-mi" },
+    { name: "Proyectos", href: "#proyectos" },
+    { name: "Contacto", href: "#contacto" },
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/Juandadelover', label: 'GitHub', color: 'hover:text-gray-400' },
-    { icon: FaLinkedin, href: 'https://linkedin.com/in/tu-perfil', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: FaWhatsapp, href: 'https://wa.me/573113678555', label: 'WhatsApp', color: 'hover:text-green-400' },
-    { icon: FaTwitter, href: 'https://twitter.com/tu-usuario', label: 'Twitter', color: 'hover:text-sky-400' },
+    {
+      icon: FaGithub,
+      href: "https://github.com/Juandadelover",
+      label: "GitHub",
+      color: "hover:text-gray-400",
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://linkedin.com/in/tu-perfil",
+      label: "LinkedIn",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: FaWhatsapp,
+      href: "https://wa.me/573113678555",
+      label: "WhatsApp",
+      color: "hover:text-green-400",
+    },
+    {
+      icon: FaTwitter,
+      href: "https://twitter.com/tu-usuario",
+      label: "Twitter",
+      color: "hover:text-sky-400",
+    },
   ];
 
   const contactInfo = [
-    { icon: HiMail, text: 'aquilarjuan123@gmail.com', href: 'mailto:aquilarjuan123@gmail.com' },
-    { icon: HiPhone, text: '+57 311 3678555', href: 'tel:+573113678555' },
-    { icon: HiLocationMarker, text: 'Colombia', href: null },
+    {
+      icon: HiMail,
+      text: "aquilarjuan123@gmail.com",
+      href: "mailto:aquilarjuan123@gmail.com",
+    },
+    { icon: HiPhone, text: "+57 311 3678555", href: "tel:+573113678555" },
+    { icon: HiLocationMarker, text: "Colombia", href: null },
   ];
 
   return (
@@ -32,27 +62,27 @@ export default function Footer() {
       {/* Efectos de fondo */}
       <div className="absolute inset-0">
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03]
+            opacity: [0.03, 0.06, 0.03],
           }}
-          transition={{ 
+          transition={{
             duration: 10,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.03, 0.06, 0.03]
+            opacity: [0.03, 0.06, 0.03],
           }}
-          transition={{ 
+          transition={{
             duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2
+            delay: 2,
           }}
           className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
         />
@@ -77,12 +107,14 @@ export default function Footer() {
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
                   Juan David Aguilar
                 </h3>
-                <p className="text-sm text-gray-400">Desarrollador Full Stack</p>
+                <p className="text-sm text-gray-400">
+                  Desarrollador Full Stack
+                </p>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              Creando soluciones digitales innovadoras.
-              Transformo ideas en aplicaciones funcionales y elegantes.
+              Creando soluciones digitales innovadoras. Transformo ideas en
+              aplicaciones funcionales y elegantes.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
@@ -113,7 +145,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-lg font-bold mb-6 text-white">Enlaces Rápidos</h4>
+            <h4 className="text-lg font-bold mb-6 text-white">
+              Enlaces Rápidos
+            </h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li

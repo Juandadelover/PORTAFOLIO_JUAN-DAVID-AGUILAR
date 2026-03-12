@@ -1,8 +1,8 @@
-import { projects } from '../../config/projects';
+import { projects } from "../../config/projects";
 
 export async function generateStaticParams() {
   return projects.map((_, index) => ({
-    id: index.toString()
+    id: index.toString(),
   }));
 }
 

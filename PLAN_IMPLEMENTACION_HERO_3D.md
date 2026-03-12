@@ -10,19 +10,20 @@
 
 ## 🎯 Decisiones de Diseño Confirmadas
 
-| Aspecto | Decisión |
-|---------|----------|
-| **Contenido del texto** | Mantener todo el texto actual (¡Hola! 👋 Soy Juan David Aguilar, etc.) |
-| **Escena 3D** | Usar el robot del demo: `https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode` |
-| **Foto de perfil** | Mover a la sección "Sobre Mí" (`/public/img/FotoJuanda.webp`) |
-| **Spotlight** | Ibelick (interactivo, sigue el mouse) con colores de marca (azul/púrpura) |
-| **Responsive** | Optimizado para móviles con fallback/layout adaptativo |
+| Aspecto                 | Decisión                                                                               |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| **Contenido del texto** | Mantener todo el texto actual (¡Hola! 👋 Soy Juan David Aguilar, etc.)                 |
+| **Escena 3D**           | Usar el robot del demo: `https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode` |
+| **Foto de perfil**      | Mover a la sección "Sobre Mí" (`/public/img/FotoJuanda.webp`)                          |
+| **Spotlight**           | Ibelick (interactivo, sigue el mouse) con colores de marca (azul/púrpura)              |
+| **Responsive**          | Optimizado para móviles con fallback/layout adaptativo                                 |
 
 ---
 
 ## 📁 Estructura de Archivos a Crear/Modificar
 
 ### Archivos Nuevos
+
 ```
 app/components/ui/
 ├── splite.tsx          # Componente de escena Spline
@@ -31,6 +32,7 @@ app/components/ui/
 ```
 
 ### Archivos a Modificar
+
 ```
 app/
 ├── sections/Hero.tsx   # Nuevo Hero 3D (reemplazar completamente)
@@ -55,6 +57,7 @@ npm install @splinetool/runtime @splinetool/react-spline
 ## 🔄 Fases de Implementación
 
 ### **FASE 1: Preparación del Entorno** ⏱️ ~5 min
+
 - [ ] Instalar dependencias de Spline
 - [ ] Verificar que framer-motion está correctamente instalado
 - [ ] Crear backup del Hero actual (ya existe en git)
@@ -62,41 +65,40 @@ npm install @splinetool/runtime @splinetool/react-spline
 ### **FASE 2: Crear Componentes UI** ⏱️ ~10 min
 
 #### 2.1 Crear `app/components/ui/splite.tsx`
-```tsx
-'use client'
 
-import { Suspense, lazy } from 'react'
-const Spline = lazy(() => import('@splinetool/react-spline'))
+```tsx
+"use client";
+
+import { Suspense, lazy } from "react";
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 interface SplineSceneProps {
-  scene: string
-  className?: string
+  scene: string;
+  className?: string;
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
   return (
-    <Suspense 
+    <Suspense
       fallback={
         <div className="w-full h-full flex items-center justify-center">
           <span className="loader"></span>
         </div>
       }
     >
-      <Spline
-        scene={scene}
-        className={className}
-      />
+      <Spline scene={scene} className={className} />
     </Suspense>
-  )
+  );
 }
 ```
 
 #### 2.2 Crear `app/components/ui/spotlight.tsx` (Versión Ibelick - Interactiva)
+
 ```tsx
-'use client';
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useSpring, useTransform, SpringOptions } from 'framer-motion';
-import { cn } from '@/app/lib/utils';
+"use client";
+import React, { useRef, useState, useCallback, useEffect } from "react";
+import { motion, useSpring, useTransform, SpringOptions } from "framer-motion";
+import { cn } from "@/app/lib/utils";
 
 type SpotlightProps = {
   className?: string;
@@ -123,8 +125,8 @@ export function Spotlight({
     if (containerRef.current) {
       const parent = containerRef.current.parentElement;
       if (parent) {
-        parent.style.position = 'relative';
-        parent.style.overflow = 'hidden';
+        parent.style.position = "relative";
+        parent.style.overflow = "hidden";
         setParentElement(parent);
       }
     }
@@ -137,20 +139,22 @@ export function Spotlight({
       mouseX.set(event.clientX - left);
       mouseY.set(event.clientY - top);
     },
-    [mouseX, mouseY, parentElement]
+    [mouseX, mouseY, parentElement],
   );
 
   useEffect(() => {
     if (!parentElement) return;
 
-    parentElement.addEventListener('mousemove', handleMouseMove);
-    parentElement.addEventListener('mouseenter', () => setIsHovered(true));
-    parentElement.addEventListener('mouseleave', () => setIsHovered(false));
+    parentElement.addEventListener("mousemove", handleMouseMove);
+    parentElement.addEventListener("mouseenter", () => setIsHovered(true));
+    parentElement.addEventListener("mouseleave", () => setIsHovered(false));
 
     return () => {
-      parentElement.removeEventListener('mousemove', handleMouseMove);
-      parentElement.removeEventListener('mouseenter', () => setIsHovered(true));
-      parentElement.removeEventListener('mouseleave', () => setIsHovered(false));
+      parentElement.removeEventListener("mousemove", handleMouseMove);
+      parentElement.removeEventListener("mouseenter", () => setIsHovered(true));
+      parentElement.removeEventListener("mouseleave", () =>
+        setIsHovered(false),
+      );
     };
   }, [parentElement, handleMouseMove]);
 
@@ -158,11 +162,11 @@ export function Spotlight({
     <motion.div
       ref={containerRef}
       className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200',
+        "pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200",
         // Colores de marca: azul y púrpura
-        'from-blue-400 via-purple-500 to-pink-400',
-        isHovered ? 'opacity-100' : 'opacity-0',
-        className
+        "from-blue-400 via-purple-500 to-pink-400",
+        isHovered ? "opacity-100" : "opacity-0",
+        className,
       )}
       style={{
         width: size,
@@ -176,9 +180,10 @@ export function Spotlight({
 ```
 
 #### 2.3 Crear `app/components/ui/card.tsx`
+
 ```tsx
-import * as React from "react"
-import { cn } from "@/app/lib/utils"
+import * as React from "react";
+import { cn } from "@/app/lib/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -192,8 +197,8 @@ const Card = React.forwardRef<
     )}
     {...props}
   />
-))
-Card.displayName = "Card"
+));
+Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -204,8 +209,8 @@ const CardHeader = React.forwardRef<
     className={cn("flex flex-col space-y-1.5 p-6", className)}
     {...props}
   />
-))
-CardHeader.displayName = "CardHeader"
+));
+CardHeader.displayName = "CardHeader";
 
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -219,8 +224,8 @@ const CardTitle = React.forwardRef<
     )}
     {...props}
   />
-))
-CardTitle.displayName = "CardTitle"
+));
+CardTitle.displayName = "CardTitle";
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -231,16 +236,16 @@ const CardDescription = React.forwardRef<
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
-))
-CardDescription.displayName = "CardDescription"
+));
+CardDescription.displayName = "CardDescription";
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-))
-CardContent.displayName = "CardContent"
+));
+CardContent.displayName = "CardContent";
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
@@ -251,15 +256,23 @@ const CardFooter = React.forwardRef<
     className={cn("flex items-center p-6 pt-0", className)}
     {...props}
   />
-))
-CardFooter.displayName = "CardFooter"
+));
+CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+};
 ```
 
 ### **FASE 3: Actualizar Estilos Globales** ⏱️ ~3 min
 
 Agregar en `globals.css`:
+
 ```css
 /* Loader para Spline Scene */
 .loader {
@@ -299,12 +312,14 @@ Agregar en `globals.css`:
 ### **FASE 4: Implementar Nuevo Hero** ⏱️ ~15 min
 
 El nuevo `Hero.tsx` tendrá:
+
 - Layout de dos columnas (texto izquierda, 3D derecha)
 - Contenido personal mantenido
 - Spotlight interactivo con colores de marca
 - Responsive: en móviles el 3D se oculta o se muestra más pequeño debajo
 
 **Estructura del nuevo Hero:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │                    Spotlight (interactivo)          │
@@ -328,6 +343,7 @@ El nuevo `Hero.tsx` tendrá:
 ### **FASE 5: Mover Foto de Perfil a "Sobre Mí"** ⏱️ ~5 min
 
 Integrar la foto circular animada actual en la sección About:
+
 - Mantener el efecto de glow y rotating border
 - Ajustar tamaño para la nueva ubicación
 - Mantener animaciones existentes
@@ -346,6 +362,7 @@ Integrar la foto circular animada actual en la sección About:
 ## ⚠️ Consideraciones de Rendimiento
 
 ### Móviles
+
 - La escena 3D puede ser pesada en móviles de gama baja
 - **Solución implementada:**
   - Ocultar escena 3D en pantallas < 768px (md breakpoint)
@@ -353,6 +370,7 @@ Integrar la foto circular animada actual en la sección About:
   - O simplemente mostrar solo el contenido textual
 
 ### Lazy Loading
+
 - Spline se carga con `lazy()` de React
 - El loader se muestra mientras carga
 - No bloquea el renderizado inicial
@@ -361,12 +379,12 @@ Integrar la foto circular animada actual en la sección About:
 
 ## 🎨 Colores de Marca a Usar
 
-| Color | Valor | Uso |
-|-------|-------|-----|
-| Azul primario | `#3b82f6` / `blue-500` | Spotlight, acentos |
-| Púrpura | `#8b5cf6` / `purple-500` | Spotlight, gradientes |
-| Rosa/Pink | `#ec4899` / `pink-500` | Gradientes, acentos |
-| Fondo oscuro | `#0a0a0a` | Background del card |
+| Color         | Valor                    | Uso                   |
+| ------------- | ------------------------ | --------------------- |
+| Azul primario | `#3b82f6` / `blue-500`   | Spotlight, acentos    |
+| Púrpura       | `#8b5cf6` / `purple-500` | Spotlight, gradientes |
+| Rosa/Pink     | `#ec4899` / `pink-500`   | Gradientes, acentos   |
+| Fondo oscuro  | `#0a0a0a`                | Background del card   |
 
 ---
 

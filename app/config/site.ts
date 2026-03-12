@@ -1,29 +1,29 @@
-import { SiteConfig } from '../lib/types/site'
+import { SiteConfig } from "../lib/types/site";
 
 export const siteConfig: SiteConfig = {
-  name: 'Juan David Aguilar',
-  description: 'Portfolio personal y proyectos de desarrollo de software',
+  name: "Juan David Aguilar",
+  description: "Portfolio personal y proyectos de desarrollo de software",
   mainNav: [
     {
-      title: 'Inicio',
-      href: '/',
+      title: "Inicio",
+      href: "/",
     },
     {
-      title: 'Sobre Mí',
-      href: '/#sobre-mi',
+      title: "Sobre Mí",
+      href: "/#sobre-mi",
     },
     {
-      title: 'Proyectos',
-      href: '/#proyectos',
+      title: "Proyectos",
+      href: "/#proyectos",
     },
     {
-      title: 'Contacto',
-      href: '/#contacto',
+      title: "Contacto",
+      href: "/#contacto",
     },
   ],
   links: {
-    github: 'https://github.com/tuusuario',
-    linkedin: 'https://linkedin.com/in/tuusuario',
-    twitter: 'https://twitter.com/tuusuario',
+    github: "https://github.com/tuusuario",
+    linkedin: "https://linkedin.com/in/tuusuario",
+    twitter: "https://twitter.com/tuusuario",
   },
-}
+};

@@ -1,83 +1,124 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { FormEvent, useState } from 'react';
-import { HiMail, HiPhone, HiLocationMarker, HiChatAlt2, HiCheckCircle } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { FormEvent, useState } from "react";
+import {
+  HiMail,
+  HiPhone,
+  HiLocationMarker,
+  HiChatAlt2,
+  HiCheckCircle,
+} from "react-icons/hi";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    nombre: '',
-    asunto: '',
-    mensaje: ''
+    nombre: "",
+    asunto: "",
+    mensaje: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Crear el mensaje formateado para WhatsApp
     const mensaje = `*Nuevo contacto desde el portafolio*%0A%0A*Nombre:* ${formData.nombre}%0A*Asunto:* ${formData.asunto}%0A*Mensaje:* ${formData.mensaje}`;
 
     // Número de WhatsApp (incluye el código de país)
-    const telefono = '573113678555';
-    
+    const telefono = "573113678555";
+
     // Crear el enlace de WhatsApp
     const whatsappUrl = `https://wa.me/${telefono}?text=${mensaje}`;
-    
+
     // Abrir WhatsApp en una nueva pestaña
     setTimeout(() => {
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappUrl, "_blank");
       setIsSubmitting(false);
     }, 500);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const contactInfo = [
-    { icon: HiPhone, label: 'Teléfono', value: '+57 311 3678555', href: 'tel:+573113678555' },
-    { icon: HiMail, label: 'Email', value: 'aquilarjuan123@gmail.com', href: 'mailto:aquilarjuan123@gmail.com' },
-    { icon: HiLocationMarker, label: 'Ubicación', value: 'Colombia', href: null },
+    {
+      icon: HiPhone,
+      label: "Teléfono",
+      value: "+57 311 3678555",
+      href: "tel:+573113678555",
+    },
+    {
+      icon: HiMail,
+      label: "Email",
+      value: "aquilarjuan123@gmail.com",
+      href: "mailto:aquilarjuan123@gmail.com",
+    },
+    {
+      icon: HiLocationMarker,
+      label: "Ubicación",
+      value: "Colombia",
+      href: null,
+    },
   ];
 
   const socialLinks = [
-    { icon: FaGithub, label: 'GitHub', href: 'https://github.com/Juandadelover', color: 'hover:text-gray-400' },
-    { icon: FaLinkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/tu-perfil', color: 'hover:text-blue-400' },
-    { icon: FaWhatsapp, label: 'WhatsApp', href: 'https://wa.me/573113678555', color: 'hover:text-green-400' },
+    {
+      icon: FaGithub,
+      label: "GitHub",
+      href: "https://github.com/Juandadelover",
+      color: "hover:text-gray-400",
+    },
+    {
+      icon: FaLinkedin,
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/tu-perfil",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: FaWhatsapp,
+      label: "WhatsApp",
+      href: "https://wa.me/573113678555",
+      color: "hover:text-green-400",
+    },
   ];
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800" id="contacto">
+    <section
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800"
+      id="contacto"
+    >
       {/* Efectos de fondo */}
       <div className="absolute inset-0">
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05]
+            opacity: [0.05, 0.1, 0.05],
           }}
-          transition={{ 
+          transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute top-20 right-10 w-96 h-96 bg-green-500 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.05, 0.1, 0.05]
+            opacity: [0.05, 0.1, 0.05],
           }}
-          transition={{ 
+          transition={{
             duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 1
+            delay: 1,
           }}
           className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
         />
@@ -103,7 +144,7 @@ export default function Contact() {
             Contacto
           </motion.span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Trabajemos{' '}
+            Trabajemos{" "}
             <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-transparent bg-clip-text">
               juntos
             </span>
@@ -115,8 +156,9 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            ¿Tienes un proyecto en mente? Estoy disponible para nuevas oportunidades.
-            Conversemos sobre cómo puedo ayudarte a alcanzar tus objetivos.
+            ¿Tienes un proyecto en mente? Estoy disponible para nuevas
+            oportunidades. Conversemos sobre cómo puedo ayudarte a alcanzar tus
+            objetivos.
           </motion.p>
         </motion.div>
 
@@ -134,7 +176,10 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                      <label
+                        htmlFor="nombre"
+                        className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
+                      >
                         Nombre completo
                       </label>
                       <input
@@ -149,7 +194,10 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="asunto" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                      <label
+                        htmlFor="asunto"
+                        className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
+                      >
                         Asunto
                       </label>
                       <input
@@ -165,7 +213,10 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="mensaje" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                    <label
+                      htmlFor="mensaje"
+                      className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
+                    >
                       Mensaje
                     </label>
                     <textarea
@@ -190,7 +241,11 @@ export default function Contact() {
                       <>
                         <motion.div
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                           className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                         />
                         <span>Enviando...</span>
@@ -242,8 +297,12 @@ export default function Contact() {
                         <info.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{info.label}</p>
-                        <p className="text-gray-900 dark:text-white font-semibold">{info.value}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                          {info.label}
+                        </p>
+                        <p className="text-gray-900 dark:text-white font-semibold">
+                          {info.value}
+                        </p>
                       </div>
                     </a>
                   ) : (
@@ -252,8 +311,12 @@ export default function Contact() {
                         <info.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{info.label}</p>
-                        <p className="text-gray-900 dark:text-white font-semibold">{info.value}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                          {info.label}
+                        </p>
+                        <p className="text-gray-900 dark:text-white font-semibold">
+                          {info.value}
+                        </p>
                       </div>
                     </div>
                   )}
@@ -312,8 +375,12 @@ export default function Contact() {
                 <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Disponible para proyectos</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Respondo en menos de 24 horas</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                  Disponible para proyectos
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  Respondo en menos de 24 horas
+                </p>
               </div>
             </motion.div>
           </motion.div>

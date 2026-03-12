@@ -3,22 +3,26 @@
 ## Cambios Realizados para Corregir el Error 404
 
 ### 1. Configuración de Next.js
+
 - ✅ Eliminado `output: 'export'` (incompatible con rutas dinámicas en Vercel)
 - ✅ Consolidado múltiples archivos de configuración en uno solo (`next.config.js`)
 - ✅ Configurado `images.unoptimized: true` para mejor compatibilidad
 
 ### 2. Rutas Dinámicas
+
 - ✅ Actualizado `params` para ser una Promise (Next.js 15)
 - ✅ Configurado `generateStaticParams()` correctamente
 - ✅ Añadido `dynamicParams: false` para prevenir rutas no definidas
 
 ### 3. Archivos de Configuración
+
 - ✅ Creado `vercel.json` con configuración mínima
 - ✅ Creado `.vercelignore` para excluir archivos innecesarios
 
 ## Pasos para Deployar en Vercel
 
 1. **Commit y Push de los cambios:**
+
    ```bash
    git add .
    git commit -m "Fix: Corregir configuración para Vercel deployment"
@@ -47,6 +51,7 @@
 ## Troubleshooting
 
 Si aún ves errores 404:
+
 1. Verifica que todos los cambios estén en el repositorio
 2. Limpia el cache de Vercel (Settings > General > Clear Cache)
 3. Fuerza un nuevo deployment

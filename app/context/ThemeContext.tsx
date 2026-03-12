@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = 'light' | 'dark';
+type Theme = "light" | "dark";
 
 interface ThemeContextType {
   theme: Theme;
@@ -11,7 +11,7 @@ interface ThemeContextType {
 }
 
 const defaultContext: ThemeContextType = {
-  theme: 'dark',
+  theme: "dark",
   toggleTheme: () => {},
   isReady: false,
 };
@@ -20,58 +20,60 @@ const ThemeContext = createContext<ThemeContextType>(defaultContext);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isReady, setIsReady] = useState(false);
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     try {
       // Intentar obtener el tema guardado
-      const stored = localStorage.getItem('theme');
+      const stored = localStorage.getItem("theme");
       let initialTheme: Theme;
 
-      if (stored && (stored === 'light' || stored === 'dark')) {
+      if (stored && (stored === "light" || stored === "dark")) {
         initialTheme = stored;
       } else {
         // Si no hay tema guardado, usar la preferencia del sistema
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        initialTheme = prefersDark ? 'dark' : 'light';
-        localStorage.setItem('theme', initialTheme);
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        initialTheme = prefersDark ? "dark" : "light";
+        localStorage.setItem("theme", initialTheme);
       }
 
       // Aplicar el tema
       setTheme(initialTheme);
-      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.remove("light", "dark");
       document.documentElement.classList.add(initialTheme);
-      
+
       // Escuchar cambios en las preferencias del sistema
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       const handleChange = (e: MediaQueryListEvent) => {
-        if (!localStorage.getItem('theme')) {
-          const newTheme = e.matches ? 'dark' : 'light';
+        if (!localStorage.getItem("theme")) {
+          const newTheme = e.matches ? "dark" : "light";
           setTheme(newTheme);
-          document.documentElement.classList.remove('light', 'dark');
+          document.documentElement.classList.remove("light", "dark");
           document.documentElement.classList.add(newTheme);
         }
       };
 
-      mediaQuery.addEventListener('change', handleChange);
+      mediaQuery.addEventListener("change", handleChange);
       setIsReady(true);
 
-      return () => mediaQuery.removeEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
     } catch (e) {
-      console.error('Error initializing theme:', e);
+      console.error("Error initializing theme:", e);
       setIsReady(true);
     }
   }, []);
 
   const toggleTheme = () => {
     try {
-      const newTheme = theme === 'dark' ? 'light' : 'dark';
+      const newTheme = theme === "dark" ? "light" : "dark";
       setTheme(newTheme);
-      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.remove("light", "dark");
       document.documentElement.classList.add(newTheme);
-      localStorage.setItem('theme', newTheme);
+      localStorage.setItem("theme", newTheme);
     } catch (e) {
-      console.error('Error toggling theme:', e);
+      console.error("Error toggling theme:", e);
     }
   };
 
@@ -89,7 +91,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 }

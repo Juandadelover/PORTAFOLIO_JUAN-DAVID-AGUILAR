@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 import { NavBar } from "./components/ui/tubelight-navbar";
 import { navItems } from "./components/ui/navbar-config";
 import Footer from "./components/shared/Footer";
@@ -10,12 +10,12 @@ import Providers from "./providers/Providers";
 import "./globals.css";
 
 // Optimización de fuentes con next/font
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
   preload: true,
-  variable: '--font-inter',
-  weight: ['300', '400', '500', '600', '700'],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 // Componente para registrar Service Worker
@@ -42,9 +42,20 @@ function ServiceWorker() {
 }
 
 export const metadata: Metadata = {
-  title: "Juan David Aguilar | Desarrollador Full Stack - Portafolio Profesional",
-  description: "Portafolio de Juan David Aguilar, desarrollador full stack especializado en React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
-  keywords: ["desarrollador web", "portafolio desarrollador", "desarrollo móvil", "full stack developer", "react", "next.js", "typescript", "desarrollo de software"],
+  title:
+    "Juan David Aguilar | Desarrollador Full Stack - Portafolio Profesional",
+  description:
+    "Portafolio de Juan David Aguilar, desarrollador full stack especializado en React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
+  keywords: [
+    "desarrollador web",
+    "portafolio desarrollador",
+    "desarrollo móvil",
+    "full stack developer",
+    "react",
+    "next.js",
+    "typescript",
+    "desarrollo de software",
+  ],
   authors: [{ name: "Juan David Aguilar" }],
   creator: "Juan David Aguilar",
   publisher: "Juan David Aguilar",
@@ -53,32 +64,34 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://eljuandadeloper.vercel.app'),
+  metadataBase: new URL("https://eljuandadeloper.vercel.app"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
     title: "Juan David Aguilar | Desarrollador Full Stack",
-    description: "Portafolio profesional de desarrollador especializado en aplicaciones web modernas. Explora mis proyectos y habilidades.",
-    url: 'https://eljuandadeloper.vercel.app',
-    siteName: 'Juan David Aguilar Portfolio',
+    description:
+      "Portafolio profesional de desarrollador especializado en aplicaciones web modernas. Explora mis proyectos y habilidades.",
+    url: "https://eljuandadeloper.vercel.app",
+    siteName: "Juan David Aguilar Portfolio",
     images: [
       {
-        url: 'https://eljuandadeloper.vercel.app/img/FotoJuanda.webp',
+        url: "https://eljuandadeloper.vercel.app/img/FotoJuanda.webp",
         width: 1200,
         height: 630,
-        alt: 'Juan David Aguilar - Desarrollador Full Stack',
+        alt: "Juan David Aguilar - Desarrollador Full Stack",
       },
     ],
-    locale: 'es_CO',
-    type: 'website',
+    locale: "es_CO",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "Juan David Aguilar | Desarrollador Full Stack",
-    description: "Portafolio profesional de desarrollador especializado en Flutter, Supabase y aplicaciones web modernas.",
-    images: ['/img/FotoJuanda.webp'],
-    creator: '@juandadeloper', // Reemplaza con tu Twitter
+    description:
+      "Portafolio profesional de desarrollador especializado en Flutter, Supabase y aplicaciones web modernas.",
+    images: ["/img/FotoJuanda.webp"],
+    creator: "@juandadeloper", // Reemplaza con tu Twitter
   },
   robots: {
     index: true,
@@ -88,13 +101,13 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
-    google: 'google56f152f973b4f71f', // Código de verificación de Google Search Console
+    google: "google56f152f973b4f71f", // Código de verificación de Google Search Console
   },
 };
 
@@ -110,17 +123,18 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Juan David Aguilar",
-    "jobTitle": "Desarrollador Full Stack",
-    "description": "Desarrollador full stack especializado en Flutter, Supabase, React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
-    "url": "https://eljuandadeloper.vercel.app",
-    "image": "https://eljuandadeloper.vercel.app/img/FotoJuanda.webp",
-    "sameAs": [
+    name: "Juan David Aguilar",
+    jobTitle: "Desarrollador Full Stack",
+    description:
+      "Desarrollador full stack especializado en Flutter, Supabase, React y Next.js. Crea aplicaciones móviles y web innovadoras con código limpio y arquitectura escalable.",
+    url: "https://eljuandadeloper.vercel.app",
+    image: "https://eljuandadeloper.vercel.app/img/FotoJuanda.webp",
+    sameAs: [
       "https://github.com/tuusuario",
       "https://linkedin.com/in/tuusuario",
-      "https://twitter.com/tuusuario"
+      "https://twitter.com/tuusuario",
     ],
-    "knowsAbout": [
+    knowsAbout: [
       "Desarrollo web",
       "Flutter",
       "Supabase",
@@ -128,16 +142,16 @@ export default function RootLayout({
       "Next.js",
       "TypeScript",
       "Desarrollo móvil",
-      "Full Stack Development"
+      "Full Stack Development",
     ],
-    "hasOccupation": {
+    hasOccupation: {
       "@type": "Occupation",
-      "name": "Desarrollador de Software",
-      "occupationLocation": {
+      name: "Desarrollador de Software",
+      occupationLocation: {
         "@type": "Country",
-        "name": "Colombia"
-      }
-    }
+        name: "Colombia",
+      },
+    },
   };
 
   return (
@@ -146,6 +160,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://prod.spline.design" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -153,15 +169,15 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased bg-gray-100 dark:bg-gray-900`}>
+      <body
+        className={`${inter.className} antialiased bg-gray-100 dark:bg-gray-900`}
+      >
         <ServiceWorker />
         <Analytics />
         <Providers>
           <Suspense fallback={<Loading />}>
             <NavBar items={navItems} />
-            <main>
-              {children}
-            </main>
+            <main>{children}</main>
             <Footer />
             <WhatsAppButton />
           </Suspense>

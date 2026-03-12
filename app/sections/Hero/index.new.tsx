@@ -1,26 +1,33 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useAnimation } from 'framer-motion';
-import { 
-  HiCode, 
-  HiChip, 
-  HiOutlineArrowRight, 
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+  useAnimation,
+} from "framer-motion";
+import {
+  HiCode,
+  HiChip,
+  HiOutlineArrowRight,
   HiDownload,
   HiCheckCircle,
   HiLightningBolt,
   HiStar,
-  HiChevronDown
-} from 'react-icons/hi';
-import { 
-  SiFlutter, 
-  SiSupabase, 
-  SiNextdotjs, 
+  HiChevronDown,
+} from "react-icons/hi";
+import {
+  SiFlutter,
+  SiSupabase,
+  SiNextdotjs,
   SiReact,
   SiTailwindcss,
-  SiTypescript
-} from 'react-icons/si';
+  SiTypescript,
+} from "react-icons/si";
 
 interface HeroProps {}
 
@@ -34,12 +41,12 @@ const Hero: React.FC<HeroProps> = () => {
 
   // Detectar preferencia de movimiento reducido
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = () => setPrefersReducedMotion(mediaQuery.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   // Tracking del mouse para efectos de iluminación
@@ -54,50 +61,81 @@ const Hero: React.FC<HeroProps> = () => {
       mouseY.set(e.clientY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
   // Parallax suave con spring physics
   const { scrollYProgress } = useScroll();
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
-  const y1 = useSpring(useTransform(scrollYProgress, [0, 1], [0, 200]), springConfig);
-  const y2 = useSpring(useTransform(scrollYProgress, [0, 1], [0, -100]), springConfig);
+  const y1 = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 200]),
+    springConfig,
+  );
+  const y2 = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -100]),
+    springConfig,
+  );
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Tecnologías con iconos y experiencia
   const technologies = [
-    { name: 'Flutter', icon: SiFlutter, color: '#02569B', experience: '3 años' },
-    { name: 'Supabase', icon: SiSupabase, color: '#3ECF8E', experience: '2 años' },
-    { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', experience: '2 años' },
-    { name: 'React', icon: SiReact, color: '#61DAFB', experience: '3 años' },
-    { name: 'Tailwind', icon: SiTailwindcss, color: '#06B6D4', experience: '2 años' },
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6', experience: '2 años' }
+    {
+      name: "Flutter",
+      icon: SiFlutter,
+      color: "#02569B",
+      experience: "3 años",
+    },
+    {
+      name: "Supabase",
+      icon: SiSupabase,
+      color: "#3ECF8E",
+      experience: "2 años",
+    },
+    {
+      name: "Next.js",
+      icon: SiNextdotjs,
+      color: "#FFFFFF",
+      experience: "2 años",
+    },
+    { name: "React", icon: SiReact, color: "#61DAFB", experience: "3 años" },
+    {
+      name: "Tailwind",
+      icon: SiTailwindcss,
+      color: "#06B6D4",
+      experience: "2 años",
+    },
+    {
+      name: "TypeScript",
+      icon: SiTypescript,
+      color: "#3178C6",
+      experience: "2 años",
+    },
   ];
 
   // Estadísticas animadas con iconos y colores
   const stats = [
-    { 
-      value: 25, 
-      label: 'Proyectos', 
-      suffix: '+',
+    {
+      value: 25,
+      label: "Proyectos",
+      suffix: "+",
       icon: HiCode,
-      color: 'from-blue-500 to-purple-500' 
+      color: "from-blue-500 to-purple-500",
     },
-    { 
-      value: 3, 
-      label: 'Años Exp.', 
-      suffix: '+',
+    {
+      value: 3,
+      label: "Años Exp.",
+      suffix: "+",
       icon: HiStar,
-      color: 'from-purple-500 to-pink-500'
+      color: "from-purple-500 to-pink-500",
     },
-    { 
-      value: 15, 
-      label: 'Clientes', 
-      suffix: '+',
+    {
+      value: 15,
+      label: "Clientes",
+      suffix: "+",
       icon: HiCheckCircle,
-      color: 'from-pink-500 to-blue-500'
-    }
+      color: "from-pink-500 to-blue-500",
+    },
   ];
 
   // Variantes de animación para stagger children
@@ -107,9 +145,9 @@ const Hero: React.FC<HeroProps> = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -120,21 +158,21 @@ const Hero: React.FC<HeroProps> = () => {
       transition: {
         type: "spring" as const,
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   // Animación de escritura para el nombre
-  const [displayedText, setDisplayedText] = useState('');
-  const fullText = 'Juan David Aguilar';
-  
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText = "Juan David Aguilar";
+
   useEffect(() => {
     if (prefersReducedMotion) {
       setDisplayedText(fullText);
       return;
     }
-    
+
     let index = 0;
     const interval = setInterval(() => {
       if (index <= fullText.length) {
@@ -144,28 +182,28 @@ const Hero: React.FC<HeroProps> = () => {
         clearInterval(interval);
       }
     }, 80);
-    
+
     return () => clearInterval(interval);
   }, [prefersReducedMotion]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0F1C]"
       aria-label="Hero section"
     >
       {/* Grid de fondo animado con efecto de profundidad */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           style={{ y: y1 }}
           className="absolute inset-0 bg-[linear-gradient(to_right,#080B14_1px,transparent_1px),linear-gradient(to_bottom,#080B14_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]"
         />
-        <motion.div 
+        <motion.div
           style={{ y: y2 }}
           className="absolute inset-0 bg-[linear-gradient(to_right,#080B14_1px,transparent_1px),linear-gradient(to_bottom,#080B14_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"
         />
       </div>
-      
+
       {/* Efectos de iluminación dinámica mejorados siguiendo el cursor */}
       <motion.div
         className="absolute inset-0 opacity-40 pointer-events-none"
@@ -180,7 +218,7 @@ const Hero: React.FC<HeroProps> = () => {
               rgba(236, 72, 153, 0.1),
               transparent 40%
             )
-          `
+          `,
         }}
       />
 
@@ -191,12 +229,11 @@ const Hero: React.FC<HeroProps> = () => {
       </div>
 
       {/* Contenido principal */}
-      <motion.div 
+      <motion.div
         style={{ opacity }}
         className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10"
       >
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-7xl mx-auto">
-          
           {/* Columna izquierda - Contenido */}
           <motion.div
             variants={containerVariants}
@@ -205,7 +242,10 @@ const Hero: React.FC<HeroProps> = () => {
             className="w-full lg:w-1/2 text-center lg:text-left space-y-6"
           >
             {/* Badge de estado disponible */}
-            <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center lg:justify-start"
+            >
               <motion.div
                 initial={{ scale: 1 }}
                 animate={{ scale: prefersReducedMotion ? 1 : [1, 1.05, 1] }}
@@ -213,9 +253,9 @@ const Hero: React.FC<HeroProps> = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md border border-gray-700/50 shadow-lg shadow-blue-500/10"
               >
                 <motion.div
-                  animate={{ 
+                  animate={{
                     scale: prefersReducedMotion ? 1 : [1, 1.2, 1],
-                    opacity: prefersReducedMotion ? 1 : [1, 0.5, 1]
+                    opacity: prefersReducedMotion ? 1 : [1, 0.5, 1],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
@@ -227,7 +267,10 @@ const Hero: React.FC<HeroProps> = () => {
             </motion.div>
 
             {/* Badge de rol con efecto mejorado */}
-            <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center lg:justify-start"
+            >
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="relative group"
@@ -243,13 +286,13 @@ const Hero: React.FC<HeroProps> = () => {
                 </div>
               </motion.div>
             </motion.div>
-            
+
             {/* Título con efecto de escritura */}
             <motion.h1
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold"
               style={{
-                fontSize: 'clamp(2rem, 5vw, 4.5rem)'
+                fontSize: "clamp(2rem, 5vw, 4.5rem)",
               }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 inline-block">
@@ -267,16 +310,16 @@ const Hero: React.FC<HeroProps> = () => {
               variants={itemVariants}
               className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
               style={{
-                fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)'
+                fontSize: "clamp(0.875rem, 1.5vw, 1.125rem)",
               }}
             >
-              Desarrollador móvil. 
-              Creando soluciones digitales innovadoras y experiencias de usuario excepcionales 
-              con código limpio y arquitectura escalable.
+              Desarrollador móvil. Creando soluciones digitales innovadoras y
+              experiencias de usuario excepcionales con código limpio y
+              arquitectura escalable.
             </motion.p>
 
             {/* Estadísticas */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex flex-wrap justify-center lg:justify-start gap-6 py-4"
             >
@@ -288,19 +331,25 @@ const Hero: React.FC<HeroProps> = () => {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.1 }}
-                    transition={{ delay: 0.8 + index * 0.1, type: 'spring' }}
+                    transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
                     className="relative group"
                   >
                     <motion.div
                       className={`absolute inset-0 bg-gradient-to-r ${stat.color} opacity-20 blur-xl group-hover:opacity-30 transition-opacity rounded-xl`}
                     />
                     <div className="relative bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 shadow-lg">
-                      <Icon className={`w-8 h-8 mb-2 mx-auto bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
-                      <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                      <Icon
+                        className={`w-8 h-8 mb-2 mx-auto bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                      />
+                      <div
+                        className={`text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                      >
                         <CountUp end={stat.value} duration={2000} />
                         {stat.suffix}
                       </div>
-                      <div className="text-xs sm:text-sm text-gray-400 mt-1 font-medium">{stat.label}</div>
+                      <div className="text-xs sm:text-sm text-gray-400 mt-1 font-medium">
+                        {stat.label}
+                      </div>
                     </div>
                   </motion.div>
                 );
@@ -308,7 +357,7 @@ const Hero: React.FC<HeroProps> = () => {
             </motion.div>
 
             {/* Botones CTA */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
             >
@@ -321,7 +370,7 @@ const Hero: React.FC<HeroProps> = () => {
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700"
-                  initial={{ x: '-100%' }}
+                  initial={{ x: "-100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -331,20 +380,23 @@ const Hero: React.FC<HeroProps> = () => {
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-white/20"
-                  initial={{ x: '-100%', skewX: -20 }}
-                  animate={{ x: '200%' }}
-                  transition={{ 
-                    repeat: Infinity, 
+                  initial={{ x: "-100%", skewX: -20 }}
+                  animate={{ x: "200%" }}
+                  transition={{
+                    repeat: Infinity,
                     duration: 3,
-                    ease: 'linear',
-                    repeatDelay: 2
+                    ease: "linear",
+                    repeatDelay: 2,
                   }}
                 />
               </motion.a>
-              
+
               <motion.a
                 href="#contacto"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(59, 130, 246, 0.5)' }}
+                whileHover={{
+                  scale: 1.05,
+                  borderColor: "rgba(59, 130, 246, 0.5)",
+                }}
                 whileTap={{ scale: 0.95 }}
                 className="group px-8 py-4 bg-gray-800/50 backdrop-blur-sm border-2 border-gray-700 hover:border-blue-500 text-gray-300 hover:text-white rounded-xl font-semibold transition-all duration-300 min-h-[44px] flex items-center justify-center shadow-lg"
                 aria-label="Contactar"
@@ -369,18 +421,20 @@ const Hero: React.FC<HeroProps> = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 + index * 0.1 }}
-                    whileHover={{ 
-                      scale: 1.1, 
+                    whileHover={{
+                      scale: 1.1,
                       y: -5,
-                      boxShadow: `0 10px 30px -10px ${tech.color}40`
+                      boxShadow: `0 10px 30px -10px ${tech.color}40`,
                     }}
                     className="group relative px-4 py-2 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl transition-all duration-300 cursor-pointer min-h-[44px] flex items-center justify-center"
                   >
                     <div className="flex items-center gap-2">
                       <Icon className="w-5 h-5 text-gray-400 group-hover:text-gray-200 transition-colors" />
-                      <span className="text-xs sm:text-sm text-gray-300 font-medium">{tech.name}</span>
+                      <span className="text-xs sm:text-sm text-gray-300 font-medium">
+                        {tech.name}
+                      </span>
                     </div>
-                    
+
                     {/* Tooltip con experiencia */}
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -389,12 +443,12 @@ const Hero: React.FC<HeroProps> = () => {
                     >
                       {tech.experience}
                     </motion.div>
-                    
+
                     {/* Efecto de glow */}
                     <motion.div
                       className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
                       style={{
-                        background: `radial-gradient(circle at center, ${tech.color}15, transparent 70%)`
+                        background: `radial-gradient(circle at center, ${tech.color}15, transparent 70%)`,
                       }}
                     />
                   </motion.div>
@@ -407,16 +461,15 @@ const Hero: React.FC<HeroProps> = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ 
-              duration: 0.8, 
+            transition={{
+              duration: 0.8,
               delay: 0.4,
-              type: 'spring',
-              stiffness: 100
+              type: "spring",
+              stiffness: 100,
             }}
             className="w-full lg:w-1/2 flex justify-center"
           >
             <div className="relative w-full max-w-[400px] aspect-square">
-              
               {/* Círculos orbitales estáticos */}
               <div className="absolute inset-0 rounded-full border-2 border-gray-700/30 border-dashed" />
               <div className="absolute inset-6 rounded-full border border-gray-700/20" />
@@ -424,16 +477,17 @@ const Hero: React.FC<HeroProps> = () => {
 
               {/* Contenedor principal de la imagen con glassmorphism */}
               <div className="absolute inset-16 sm:inset-20">
-                <motion.div 
+                <motion.div
                   className="relative w-full h-full rounded-full overflow-hidden"
                   whileHover={{ scale: 1.05 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   {/* Borde estático con gradiente */}
                   <div
                     className="absolute inset-0 rounded-full p-1.5"
                     style={{
-                      background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6)'
+                      background:
+                        "conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6)",
                     }}
                   >
                     <div className="w-full h-full rounded-full bg-gray-900" />
@@ -450,17 +504,15 @@ const Hero: React.FC<HeroProps> = () => {
                       sizes="(max-width: 768px) 300px, 400px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/30" />
-                    
+
                     {/* Overlay de brillo al hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-purple-500/0 to-pink-500/0 hover:from-blue-500/10 hover:via-purple-500/10 hover:to-pink-500/10 transition-all duration-500"
-                    />
+                    <motion.div className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-purple-500/0 to-pink-500/0 hover:from-blue-500/10 hover:via-purple-500/10 hover:to-pink-500/10 transition-all duration-500" />
                   </div>
 
                   {/* Sombra de neón estática */}
                   <div
                     className="absolute inset-0 rounded-full"
-                    style={{ boxShadow: '0 0 60px rgba(59, 130, 246, 0.5)' }}
+                    style={{ boxShadow: "0 0 60px rgba(59, 130, 246, 0.5)" }}
                   />
                 </motion.div>
               </div>
@@ -468,25 +520,33 @@ const Hero: React.FC<HeroProps> = () => {
               {/* Iconos orbitales estáticos con tooltips */}
               <div className="absolute inset-0">
                 {[
-                  { Icon: HiCode, rotation: 0, label: 'Código limpio' },
-                  { Icon: HiLightningBolt, rotation: 72, label: 'Alto rendimiento' },
-                  { Icon: HiStar, rotation: 144, label: 'Mejor calidad' },
-                  { Icon: HiCheckCircle, rotation: 216, label: 'Probado' },
-                  { Icon: HiChip, rotation: 288, label: 'Tecnología' }
+                  { Icon: HiCode, rotation: 0, label: "Código limpio" },
+                  {
+                    Icon: HiLightningBolt,
+                    rotation: 72,
+                    label: "Alto rendimiento",
+                  },
+                  { Icon: HiStar, rotation: 144, label: "Mejor calidad" },
+                  { Icon: HiCheckCircle, rotation: 216, label: "Probado" },
+                  { Icon: HiChip, rotation: 288, label: "Tecnología" },
                 ].map(({ Icon, rotation, label }, index) => (
                   <div
                     key={rotation}
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group"
                     style={{
-                      transform: `rotate(${rotation}deg) translateY(-${window.innerWidth < 640 ? '140px' : '180px'}) rotate(-${rotation}deg)`
+                      transform: `rotate(${rotation}deg) translateY(-${window.innerWidth < 640 ? "140px" : "180px"}) rotate(-${rotation}deg)`,
                     }}
                   >
                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800/80 backdrop-blur-md border border-gray-700/50 flex items-center justify-center shadow-lg cursor-pointer">
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7" style={{
-                        background: 'linear-gradient(to right, #60a5fa, #a78bfa, #f472b6)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent'
-                      }} />
+                      <Icon
+                        className="w-6 h-6 sm:w-7 sm:h-7"
+                        style={{
+                          background:
+                            "linear-gradient(to right, #60a5fa, #a78bfa, #f472b6)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                        }}
+                      />
                     </div>
 
                     {/* Tooltip */}
@@ -504,21 +564,21 @@ const Hero: React.FC<HeroProps> = () => {
       {/* Indicador de scroll animado */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ 
-          opacity: 1, 
-          y: prefersReducedMotion ? 0 : [0, 10, 0] 
+        animate={{
+          opacity: 1,
+          y: prefersReducedMotion ? 0 : [0, 10, 0],
         }}
-        transition={{ 
+        transition={{
           opacity: { delay: 1.5 },
-          y: { duration: 2, repeat: Infinity }
+          y: { duration: 2, repeat: Infinity },
         }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.2 }}
           className="flex flex-col items-center gap-2 cursor-pointer group"
           onClick={() => {
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
           }}
         >
           <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
@@ -538,7 +598,10 @@ const Hero: React.FC<HeroProps> = () => {
 };
 
 // Componente de contador animado
-const CountUp: React.FC<{ end: number; duration: number }> = ({ end, duration }) => {
+const CountUp: React.FC<{ end: number; duration: number }> = ({
+  end,
+  duration,
+}) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -548,7 +611,7 @@ const CountUp: React.FC<{ end: number; duration: number }> = ({ end, duration })
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      
+
       setCount(Math.floor(progress * end));
 
       if (progress < 1) {

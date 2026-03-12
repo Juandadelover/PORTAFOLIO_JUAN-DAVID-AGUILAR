@@ -1,65 +1,70 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState, useCallback } from "react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { LucideIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useActiveSection } from "@/lib/hooks/useActiveSection"
-import { useTheme } from "@/context/ThemeContext"
-import { HiSun, HiMoon } from "react-icons/hi"
+import React, { useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/lib/hooks/useActiveSection";
+import { useTheme } from "@/context/ThemeContext";
+import { HiSun, HiMoon } from "react-icons/hi";
 
 export interface NavItem {
-  name: string
-  url: string
-  icon: LucideIcon
+  name: string;
+  url: string;
+  icon: LucideIcon;
 }
 
 interface NavBarProps {
-  items: NavItem[]
-  className?: string
+  items: NavItem[];
+  className?: string;
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [isMobile, setIsMobile] = useState(false)
-  const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
-  
+  const [isMobile, setIsMobile] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
+
   // Hook personalizado para detección automática de sección activa
-  const activeSection = useActiveSection(['sobre-mi', 'proyectos', 'contacto'])
-  
+  const activeSection = useActiveSection(["sobre-mi", "proyectos", "contacto"]);
+
   // Mapear sección a nombre de nav item usando useCallback para optimización
   const getActiveTab = useCallback(() => {
-    switch(activeSection) {
-      case 'sobre-mi': return 'Sobre Mí'
-      case 'proyectos': return 'Proyectos'  
-      case 'contacto': return 'Contacto'
-      case 'inicio': return 'Inicio'
-      default: return 'Inicio' // Default cuando no hay sección detectada
+    switch (activeSection) {
+      case "sobre-mi":
+        return "Sobre Mí";
+      case "proyectos":
+        return "Proyectos";
+      case "contacto":
+        return "Contacto";
+      case "inicio":
+        return "Inicio";
+      default:
+        return "Inicio"; // Default cuando no hay sección detectada
     }
-  }, [activeSection])
+  }, [activeSection]);
 
-  const activeTab = getActiveTab()
+  const activeTab = getActiveTab();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
     // ✅ Optimización: Debounce para resize listener
-    let timeoutId: NodeJS.Timeout
+    let timeoutId: NodeJS.Timeout;
     const debouncedResize = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(handleResize, 150)
-    }
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleResize, 150);
+    };
 
-    handleResize()
-    window.addEventListener("resize", debouncedResize)
+    handleResize();
+    window.addEventListener("resize", debouncedResize);
     return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener("resize", debouncedResize)
-    }
-  }, [])
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", debouncedResize);
+    };
+  }, []);
 
   return (
     <div
@@ -70,8 +75,8 @@ export function NavBar({ items, className }: NavBarProps) {
     >
       <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.name
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
 
           return (
             <Link
@@ -106,9 +111,9 @@ export function NavBar({ items, className }: NavBarProps) {
                 </motion.div>
               )}
             </Link>
-          )
+          );
         })}
-        
+
         {/* Theme Toggle Button */}
         <motion.button
           whileHover={{ scale: 1.1 }}
@@ -116,15 +121,15 @@ export function NavBar({ items, className }: NavBarProps) {
           onClick={toggleTheme}
           className={cn(
             "relative cursor-pointer p-2.5 rounded-full transition-all duration-300",
-            isDark 
-              ? "bg-gray-800 hover:bg-gray-700 text-yellow-400" 
-              : "bg-blue-100 hover:bg-blue-200 text-blue-600"
+            isDark
+              ? "bg-gray-800 hover:bg-gray-700 text-yellow-400"
+              : "bg-blue-100 hover:bg-blue-200 text-blue-600",
           )}
           aria-label="Cambiar tema"
         >
           <motion.div
             initial={false}
-            animate={{ 
+            animate={{
               rotate: isDark ? 0 : 360,
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -138,5 +143,5 @@ export function NavBar({ items, className }: NavBarProps) {
         </motion.button>
       </div>
     </div>
-  )
+  );
 }

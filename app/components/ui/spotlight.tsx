@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useSpring, useTransform, SpringOptions } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import React, { useRef, useState, useCallback, useEffect } from "react";
+import { motion, useSpring, useTransform, SpringOptions } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type SpotlightProps = {
   className?: string;
@@ -29,8 +29,8 @@ export function Spotlight({
     if (containerRef.current) {
       const parent = containerRef.current.parentElement;
       if (parent) {
-        parent.style.position = 'relative';
-        parent.style.overflow = 'hidden';
+        parent.style.position = "relative";
+        parent.style.overflow = "hidden";
         setParentElement(parent);
       }
     }
@@ -43,7 +43,7 @@ export function Spotlight({
       mouseX.set(event.clientX - left);
       mouseY.set(event.clientY - top);
     },
-    [mouseX, mouseY, parentElement]
+    [mouseX, mouseY, parentElement],
   );
 
   useEffect(() => {
@@ -52,14 +52,14 @@ export function Spotlight({
     const handleEnter = () => setIsHovered(true);
     const handleLeave = () => setIsHovered(false);
 
-    parentElement.addEventListener('mousemove', handleMouseMove);
-    parentElement.addEventListener('mouseenter', handleEnter);
-    parentElement.addEventListener('mouseleave', handleLeave);
+    parentElement.addEventListener("mousemove", handleMouseMove);
+    parentElement.addEventListener("mouseenter", handleEnter);
+    parentElement.addEventListener("mouseleave", handleLeave);
 
     return () => {
-      parentElement.removeEventListener('mousemove', handleMouseMove);
-      parentElement.removeEventListener('mouseenter', handleEnter);
-      parentElement.removeEventListener('mouseleave', handleLeave);
+      parentElement.removeEventListener("mousemove", handleMouseMove);
+      parentElement.removeEventListener("mouseenter", handleEnter);
+      parentElement.removeEventListener("mouseleave", handleLeave);
     };
   }, [parentElement, handleMouseMove]);
 
@@ -67,11 +67,11 @@ export function Spotlight({
     <motion.div
       ref={containerRef}
       className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_70%)] blur-2xl transition-opacity duration-300',
+        "pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_70%)] blur-2xl transition-opacity duration-300",
         // Color blanco brillante
-        'from-white via-white/80 to-white/40',
-        isHovered ? 'opacity-100' : 'opacity-0',
-        className
+        "from-white via-white/80 to-white/40",
+        isHovered ? "opacity-100" : "opacity-0",
+        className,
       )}
       style={{
         width: size,

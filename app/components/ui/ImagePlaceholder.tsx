@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 interface ImagePlaceholderProps {
-  title: string
-  width?: string
-  height?: string
+  title: string;
+  width?: string;
+  height?: string;
 }
 
-export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ 
-  title, 
-  width = 'w-full', 
-  height = 'h-48' 
+export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
+  title,
+  width = "w-full",
+  height = "h-48",
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0.6 }}
       animate={{ opacity: 1 }}
-      transition={{ repeat: Infinity, duration: 2, repeatType: 'reverse' }}
+      transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
       className={`${width} ${height} bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center`}
     >
       <div className="text-center p-4">
@@ -40,5 +40,5 @@ export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};

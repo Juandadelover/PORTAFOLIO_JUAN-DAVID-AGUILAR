@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface FadeInProps {
   children: React.ReactNode;
-  direction?: 'up' | 'down' | 'left' | 'right';
+  direction?: "up" | "down" | "left" | "right";
   delay?: number;
   className?: string;
   duration?: number;
@@ -13,19 +13,19 @@ interface FadeInProps {
 
 export const FadeIn = ({
   children,
-  direction = 'up',
+  direction = "up",
   delay = 0,
-  className = '',
+  className = "",
   duration = 0.7,
   distance = 40,
 }: FadeInProps) => {
   const getInitialOffset = () => {
     switch (direction) {
-      case 'down':
+      case "down":
         return { y: -distance, opacity: 0 };
-      case 'left':
+      case "left":
         return { x: distance, opacity: 0 };
-      case 'right':
+      case "right":
         return { x: -distance, opacity: 0 };
       default:
         return { y: distance, opacity: 0 };

@@ -1,29 +1,34 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { HiSparkles, HiTrendingUp, HiLightningBolt, HiArrowRight } from 'react-icons/hi';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import {
+  HiSparkles,
+  HiTrendingUp,
+  HiLightningBolt,
+  HiArrowRight,
+} from "react-icons/hi";
+import Link from "next/link";
 
 export default function CTA() {
   const features = [
     {
       icon: HiSparkles,
-      title: 'Presencia Digital',
-      description: 'Tu negocio visible 24/7 en el mundo digital',
-      gradient: 'from-blue-500 to-cyan-500'
+      title: "Presencia Digital",
+      description: "Tu negocio visible 24/7 en el mundo digital",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: HiTrendingUp,
-      title: 'Crecimiento Real',
-      description: 'Soluciones que generan resultados medibles',
-      gradient: 'from-purple-500 to-pink-500'
+      title: "Crecimiento Real",
+      description: "Soluciones que generan resultados medibles",
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: HiLightningBolt,
-      title: 'Tecnología Moderna',
-      description: 'Tecnologías modernas al servicio de tu marca',
-      gradient: 'from-orange-500 to-yellow-500'
-    }
+      title: "Tecnología Moderna",
+      description: "Tecnologías modernas al servicio de tu marca",
+      gradient: "from-orange-500 to-yellow-500",
+    },
   ];
 
   return (
@@ -44,7 +49,7 @@ export default function CTA() {
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl" />
-          
+
           <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl border border-gray-200/50 dark:border-gray-700/50">
             {/* Header */}
             <motion.div
@@ -64,17 +69,18 @@ export default function CTA() {
                 <HiSparkles className="w-4 h-4" />
                 Transformación Digital
               </motion.div>
-              
+
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Potencia la presencia digital de{' '}
+                Potencia la presencia digital de{" "}
                 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
                   tu negocio
                 </span>
               </h2>
-              
+
               <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Si tu negocio no está en el mundo digital, no existe para miles de clientes potenciales.
-                Transformo ideas en soluciones que trabajan para ti 24/7.
+                Si tu negocio no está en el mundo digital, no existe para miles
+                de clientes potenciales. Transformo ideas en soluciones que
+                trabajan para ti 24/7.
               </p>
             </motion.div>
 
@@ -96,9 +102,13 @@ export default function CTA() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="relative group"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                  />
                   <div className="relative bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-600 group-hover:border-transparent transition-all">
-                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.gradient} mb-4 shadow-lg`}>
+                    <div
+                      className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.gradient} mb-4 shadow-lg`}
+                    >
                       <feature.icon className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -127,7 +137,7 @@ export default function CTA() {
                 <br />
                 Invertir en tecnología hoy es asegurar tu posición mañana.
               </p>
-              
+
               <Link href="#contacto">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -138,7 +148,7 @@ export default function CTA() {
                   <HiArrowRight className="w-6 h-6" />
                 </motion.button>
               </Link>
-              
+
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}

@@ -1,70 +1,71 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
+const path = require("path");
 
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: false, // ✅ Habilitada optimización de imágenes
-    formats: ['image/avif', 'image/webp'], // ✅ AVIF es más eficiente que WebP
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    unoptimized: false,
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 86400,
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
+    contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Configuración vacía de Turbopack para silenciar warnings
-  // Indica la raíz del proyecto para Turbopack (evita que infiera `/app` como root)
   turbopack: {
-    // Use an absolute string path to be explicit and match docs recommendations
     root: path.resolve(__dirname),
   },
-  // Optimizaciones de rendimiento
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-  
-  // ✅ Optimización de módulos externos para reducir bundle size
+
+  // Optimizaci\u00f3n de m\u00f3dulos: tree-shaking agresivo para librer\u00edas grandes
   experimental: {
-    optimizeCss: true, // Optimizar CSS
-    optimizePackageImports: ['framer-motion', 'lucide-react', 'react-icons'], // Tree-shaking
+    optimizeCss: true,
+    optimizePackageImports: [
+      "framer-motion",
+      "lucide-react",
+      "react-icons",
+      "@splinetool/react-spline",
+    ],
   },
-  
-  // Headers de caché para recursos estáticos
+
+  // Headers de cach\u00e9 para recursos est\u00e1ticos
   async headers() {
     return [
       {
-        source: '/_next/static/(.*)',
+        source: "/_next/static/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
-        source: '/public/(.*)',
+        source: "/img/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=86400, stale-while-revalidate=604800',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
-        source: '/img/(.*)',
+        source: "/(.*\\.webp)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

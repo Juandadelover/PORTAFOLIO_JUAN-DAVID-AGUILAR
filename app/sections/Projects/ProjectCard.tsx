@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { motion, useSpring, useTransform } from 'framer-motion';
-import { HiEye, HiStar } from 'react-icons/hi';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { Project } from '../../config/projects';
+import { motion, useSpring, useTransform } from "framer-motion";
+import { HiEye, HiStar } from "react-icons/hi";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Project } from "../../config/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -14,9 +14,19 @@ interface ProjectCardProps {
   onHoverEnd: () => void;
 }
 
-export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEnd }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  index,
+  isHovered,
+  onHoverStart,
+  onHoverEnd,
+}: ProjectCardProps) {
   const router = useRouter();
-  const glowOpacity = useTransform(useSpring(isHovered ? 1 : 0, { stiffness: 150, damping: 20 }), [0, 1], [0, 0.6]);
+  const glowOpacity = useTransform(
+    useSpring(isHovered ? 1 : 0, { stiffness: 150, damping: 20 }),
+    [0, 1],
+    [0, 0.6],
+  );
 
   const handleNavigate = () => {
     router.push(`/proyectos/${project.id}`);
@@ -27,7 +37,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
     if (!project.demo) {
       return;
     }
-    window.open(project.demo, '_blank', 'noopener,noreferrer');
+    window.open(project.demo, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -43,7 +53,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
       role="button"
       onClick={handleNavigate}
       onKeyDown={(event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
+        if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           handleNavigate();
         }
@@ -54,7 +64,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
         className={`absolute -inset-0.5 bg-gradient-to-r ${project.gradient} rounded-2xl blur-xl pointer-events-none`}
         style={{ opacity: glowOpacity }}
       />
-      
+
       <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-blue-500/10">
         {/* Indicador de clic */}
         <div className="hidden sm:flex absolute top-4 right-4 items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium z-10">
@@ -71,14 +81,14 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
             className="object-cover"
             sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 420px"
           />
-          <motion.div 
+          <motion.div
             className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`}
             animate={{
               scale: isHovered ? 1.1 : 1,
             }}
             transition={{ duration: 0.4 }}
           />
-          
+
           {/* Category badge */}
           <div className="absolute top-4 left-4 z-10">
             <span className="px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-900 dark:text-white">
@@ -109,7 +119,7 @@ export function ProjectCard({ project, index, isHovered, onHoverStart, onHoverEn
           <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
             {project.title}
           </h3>
-          
+
           <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed line-clamp-3">
             {isHovered ? project.longDescription : project.description}
           </p>

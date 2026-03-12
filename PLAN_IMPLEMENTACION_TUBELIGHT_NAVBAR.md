@@ -9,12 +9,14 @@ Migración completa del navbar actual a un nuevo componente `tubelight-navbar` c
 ## 🎯 FASE 1: Instalación de Dependencias y Preparación del Entorno
 
 ### 📚 Documentación a Consultar:
+
 - [npm - lucide-react](https://www.npmjs.com/package/lucide-react)
 - [Lucide React Official Docs](https://lucide.dev/guide/packages/lucide-react)
 - [clsx Documentation](https://github.com/lukeed/clsx)
 - [Tailwind Merge Documentation](https://github.com/dcastil/tailwind-merge)
 
 ### 🔧 Comandos a Ejecutar:
+
 ```bash
 # Instalar dependencias necesarias
 npm install lucide-react clsx tailwind-merge
@@ -26,17 +28,20 @@ npm list lucide-react clsx tailwind-merge
 ### 📦 Dependencias Actuales vs Requeridas:
 
 **✅ Ya Instaladas:**
+
 - `framer-motion: ^12.23.24`
 - `next: ^16.0.1`
 - `react: ^19.2.0`
 - `typescript: ^5.0.0`
 
 **❌ Faltantes (a instalar):**
+
 - `lucide-react`: Para iconos SVG optimizados
 - `clsx`: Para condicionales de clases CSS
 - `tailwind-merge`: Para merge inteligente de clases Tailwind
 
 ### ✅ Resultados Esperados:
+
 - ✅ Dependencias instaladas correctamente
 - ✅ Sin conflictos en package.json
 - ✅ TypeScript types disponibles para lucide-react
@@ -46,6 +51,7 @@ npm list lucide-react clsx tailwind-merge
 ## 🛠️ FASE 2: Creación de Utilidad cn() y Setup Base
 
 ### 📚 Documentación a Consultar:
+
 - [Tailwind Merge - Usage](https://github.com/dcastil/tailwind-merge#usage)
 - [clsx - API Reference](https://github.com/lukeed/clsx#api)
 - [TypeScript Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
@@ -53,8 +59,8 @@ npm list lucide-react clsx tailwind-merge
 ### 📁 Archivo a Crear: `app/lib/utils.ts`
 
 ```typescript
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 /**
  * Combina clases CSS de manera inteligente
@@ -62,12 +68,14 @@ import { twMerge } from "tailwind-merge"
  * - twMerge: resuelve conflictos entre clases de Tailwind
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 ```
 
 ### 🔍 Validación del Path Alias:
+
 **Verificar en `tsconfig.json`:**
+
 ```json
 {
   "compilerOptions": {
@@ -80,6 +88,7 @@ export function cn(...inputs: ClassValue[]) {
 ```
 
 ### ✅ Resultados Esperados:
+
 - ✅ Archivo `app/lib/utils.ts` creado
 - ✅ Función `cn()` disponible en `@/lib/utils`
 - ✅ TypeScript reconoce los tipos correctamente
@@ -90,6 +99,7 @@ export function cn(...inputs: ClassValue[]) {
 ## 🎨 FASE 3: Implementación del Componente Base Tubelight Navbar
 
 ### 📚 Documentación a Consultar:
+
 - [Framer Motion - Layout Animations](https://www.framer.com/motion/layout-animations/)
 - [Lucide Icons - Icon Catalog](https://lucide.dev/icons/)
 - [Next.js - Link Component](https://nextjs.org/docs/app/api-reference/components/link)
@@ -98,38 +108,38 @@ export function cn(...inputs: ClassValue[]) {
 ### 📁 Archivo a Crear: `app/components/ui/tubelight-navbar.tsx`
 
 ```tsx
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { LucideIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
-  name: string
-  url: string
-  icon: LucideIcon
+  name: string;
+  url: string;
+  icon: LucideIcon;
 }
 
 interface NavBarProps {
-  items: NavItem[]
-  className?: string
+  items: NavItem[];
+  className?: string;
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
+  const [activeTab, setActiveTab] = useState(items[0].name);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
@@ -140,8 +150,8 @@ export function NavBar({ items, className }: NavBarProps) {
     >
       <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.name
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
 
           return (
             <Link
@@ -177,30 +187,33 @@ export function NavBar({ items, className }: NavBarProps) {
                 </motion.div>
               )}
             </Link>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 ```
 
 ### 🎨 Análisis del Componente:
 
 **Estructura del Estado:**
+
 ```tsx
-const [activeTab, setActiveTab] = useState(items[0].name)  // Tab activo
-const [isMobile, setIsMobile] = useState(false)           // Detección mobile
+const [activeTab, setActiveTab] = useState(items[0].name); // Tab activo
+const [isMobile, setIsMobile] = useState(false); // Detección mobile
 ```
 
 **Responsive Design:**
+
 ```tsx
 // Desktop: fixed top-0 sm:pt-6 (navbar arriba)
 // Mobile: fixed bottom-0 mb-6 (navbar abajo)
-"fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6"
+"fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6";
 ```
 
 **Efecto Tubelight:**
+
 ```tsx
 // Layout ID "lamp" permite animación suave entre tabs
 <motion.div layoutId="lamp" ...>
@@ -215,6 +228,7 @@ const [isMobile, setIsMobile] = useState(false)           // Detección mobile
 ```
 
 ### ✅ Resultados Esperados:
+
 - ✅ Componente `NavBar` creado en `app/components/ui/tubelight-navbar.tsx`
 - ✅ TypeScript interfaces correctas
 - ✅ Importaciones funcionando correctamente
@@ -225,6 +239,7 @@ const [isMobile, setIsMobile] = useState(false)           // Detección mobile
 ## 🔗 FASE 4: Configuración de Navegación y Items
 
 ### 📚 Documentación a Consultar:
+
 - [Lucide Icons - Navigation Icons](https://lucide.dev/icons/home)
 - [Next.js - Hash Links](https://nextjs.org/docs/app/api-reference/components/link#hash-links)
 - [MDN - URL Fragments](https://developer.mozilla.org/en-US/docs/Web/API/URL/hash)
@@ -232,44 +247,45 @@ const [isMobile, setIsMobile] = useState(false)           // Detección mobile
 ### 📁 Archivo a Crear: `app/components/ui/navbar-config.ts`
 
 ```typescript
-import { Home, User, Briefcase, Mail } from "lucide-react"
-import { NavItem } from "./tubelight-navbar"
+import { Home, User, Briefcase, Mail } from "lucide-react";
+import { NavItem } from "./tubelight-navbar";
 
 /**
  * Configuración de items de navegación
  * Basado en las secciones actuales del portafolio:
  * - Inicio: Página principal
  * - Sobre Mí: Sección #sobre-mi
- * - Proyectos: Sección #proyectos  
+ * - Proyectos: Sección #proyectos
  * - Contacto: Sección #contacto
  */
 export const navItems: NavItem[] = [
   {
     name: "Inicio",
     url: "/",
-    icon: Home
+    icon: Home,
   },
   {
-    name: "Sobre Mí", 
+    name: "Sobre Mí",
     url: "/#sobre-mi",
-    icon: User
+    icon: User,
   },
   {
     name: "Proyectos",
-    url: "/#proyectos", 
-    icon: Briefcase
+    url: "/#proyectos",
+    icon: Briefcase,
   },
   {
     name: "Contacto",
     url: "/#contacto",
-    icon: Mail
-  }
-]
+    icon: Mail,
+  },
+];
 ```
 
 ### 🎯 Mapeo de Secciones Actuales:
 
 **Desde `app/page.tsx`:**
+
 ```tsx
 // Sección Hero (sin ID específico - scroll to top)
 <Hero />
@@ -284,7 +300,7 @@ export const navItems: NavItem[] = [
   <Projects />
 </div>
 
-// Sección Contact con ID  
+// Sección Contact con ID
 <div id="contacto">
   <Contact />
 </div>
@@ -292,14 +308,15 @@ export const navItems: NavItem[] = [
 
 ### 📱 Iconos Seleccionados (Lucide React):
 
-| Sección | Icono | Justificación |
-|---------|-------|---------------|
-| Inicio | `Home` | Representa página principal |
-| Sobre Mí | `User` | Representa información personal |
-| Proyectos | `Briefcase` | Representa trabajo/portafolio |
-| Contacto | `Mail` | Representa comunicación |
+| Sección   | Icono       | Justificación                   |
+| --------- | ----------- | ------------------------------- |
+| Inicio    | `Home`      | Representa página principal     |
+| Sobre Mí  | `User`      | Representa información personal |
+| Proyectos | `Briefcase` | Representa trabajo/portafolio   |
+| Contacto  | `Mail`      | Representa comunicación         |
 
 ### ✅ Resultados Esperados:
+
 - ✅ Archivo de configuración creado
 - ✅ Items mapeados correctamente a secciones existentes
 - ✅ Iconos de Lucide importados correctamente
@@ -310,6 +327,7 @@ export const navItems: NavItem[] = [
 ## 🎨 FASE 5: Integración con Sistema de Temas
 
 ### 📚 Documentación a Consultar:
+
 - [Tailwind CSS - Dark Mode](https://tailwindcss.com/docs/dark-mode)
 - [CSS Custom Properties - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 - [React Context - Consuming Context](https://react.dev/reference/react/useContext)
@@ -344,30 +362,31 @@ export const navItems: NavItem[] = [
 
 ```tsx
 // Clases CSS que usan las variables del tema
-"bg-background/5"       // → var(--background) con 5% opacidad
-"border-border"         // → var(--border)
-"text-foreground/80"    // → var(--foreground) con 80% opacidad
-"text-primary"          // → var(--primary)
-"hover:text-primary"    // → var(--primary) en hover
-"bg-muted"              // → var(--muted)
-"bg-primary/5"          // → var(--primary) con 5% opacidad
-"bg-primary/20"         // → var(--primary) con 20% opacidad
+"bg-background/5"; // → var(--background) con 5% opacidad
+"border-border"; // → var(--border)
+"text-foreground/80"; // → var(--foreground) con 80% opacidad
+"text-primary"; // → var(--primary)
+"hover:text-primary"; // → var(--primary) en hover
+"bg-muted"; // → var(--muted)
+"bg-primary/5"; // → var(--primary) con 5% opacidad
+"bg-primary/20"; // → var(--primary) con 20% opacidad
 ```
 
 ### 📁 Integración con ThemeContext (Opcional):
 
 ```typescript
 // Si necesitas acceso directo al tema en el componente
-import { useTheme } from "@/lib/hooks/useTheme"
+import { useTheme } from "@/lib/hooks/useTheme";
 
 export function NavBar({ items, className }: NavBarProps) {
-  const { theme } = useTheme() // 'light' | 'dark'
-  
+  const { theme } = useTheme(); // 'light' | 'dark'
+
   // Resto del componente...
 }
 ```
 
 ### ✅ Resultados Esperados:
+
 - ✅ Navbar respeta variables CSS del tema
 - ✅ Transición automática light/dark mode
 - ✅ Colores coherentes con diseño existente
@@ -378,6 +397,7 @@ export function NavBar({ items, className }: NavBarProps) {
 ## 🔄 FASE 6: Reemplazo del Navbar Actual
 
 ### 📚 Documentación a Consultar:
+
 - [Next.js - Layout Files](https://nextjs.org/docs/app/api-reference/file-conventions/layout)
 - [React - Component Composition](https://react.dev/learn/passing-props-to-a-component)
 - [Framer Motion - AnimatePresence](https://www.framer.com/motion/animate-presence/)
@@ -385,49 +405,52 @@ export function NavBar({ items, className }: NavBarProps) {
 ### 🔍 Ubicación Actual del Navbar:
 
 **En `app/layout.tsx`:**
+
 ```tsx
 // ANTES (navbar actual)
-import { Navbar } from "@/components/shared/Navbar"
+import { Navbar } from "@/components/shared/Navbar";
 
 export default function RootLayout({ children }) {
   return (
     <html>
       <body>
         <Providers>
-          <Navbar />  {/* ← Navbar actual a reemplazar */}
+          <Navbar /> {/* ← Navbar actual a reemplazar */}
           {children}
         </Providers>
       </body>
     </html>
-  )
+  );
 }
 ```
 
 ### 🔄 Modificación a Implementar:
 
 **En `app/layout.tsx` (DESPUÉS):**
+
 ```tsx
 // DESPUÉS (nuevo tubelight navbar)
-import { NavBar } from "@/components/ui/tubelight-navbar"
-import { navItems } from "@/components/ui/navbar-config"
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { navItems } from "@/components/ui/navbar-config";
 
 export default function RootLayout({ children }) {
   return (
     <html>
       <body>
         <Providers>
-          <NavBar items={navItems} />  {/* ← Nuevo navbar */}
+          <NavBar items={navItems} /> {/* ← Nuevo navbar */}
           {children}
         </Providers>
       </body>
     </html>
-  )
+  );
 }
 ```
 
 ### 📱 Consideraciones de Posicionamiento:
 
 **Navbar Actual:**
+
 ```css
 /* Posición: Fixed top, full width */
 .navbar-current {
@@ -439,12 +462,13 @@ export default function RootLayout({ children }) {
 ```
 
 **Tubelight Navbar:**
+
 ```css
 /* Posición: Centrado, responsive */
 .tubelight-navbar {
   position: fixed;
-  bottom: 0;        /* Mobile: bottom */
-  top: 0;           /* Desktop: top (sm:) */
+  bottom: 0; /* Mobile: bottom */
+  top: 0; /* Desktop: top (sm:) */
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
@@ -454,10 +478,12 @@ export default function RootLayout({ children }) {
 ### 🧹 Archivos a Mantener/Remover:
 
 **Mantener (como backup):**
+
 - `app/components/shared/Navbar.tsx` → Renombrar a `Navbar.backup.tsx`
 - `app/components/shared/ThemeToggle.tsx` → Mantener (puede reutilizarse)
 
 **Modificar:**
+
 - `app/layout.tsx` → Cambiar import y componente
 
 ### ⚠️ Ajustes de Spacing:
@@ -465,12 +491,14 @@ export default function RootLayout({ children }) {
 **Problema:** El navbar actual puede afectar el padding del contenido.
 
 **Solución:** Verificar en `app/page.tsx` si hay clases como:
+
 ```tsx
 // Puede necesitar ajuste si había padding-top para navbar fijo
 <main className="pt-20"> {/* ← Revisar si es necesario */}
 ```
 
 ### ✅ Resultados Esperados:
+
 - ✅ Navbar actual reemplazado exitosamente
 - ✅ Tubelight navbar renderizado correctamente
 - ✅ Sin problemas de z-index o posicionamiento
@@ -482,6 +510,7 @@ export default function RootLayout({ children }) {
 ## 🔧 FASE 7: Optimizaciones y Funcionalidad Avanzada
 
 ### 📚 Documentación a Consultar:
+
 - [MDN - Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 - [React - useCallback Hook](https://react.dev/reference/react/useCallback)
 - [Next.js - Scroll Restoration](https://nextjs.org/docs/app/api-reference/components/link#scroll)
@@ -490,35 +519,35 @@ export default function RootLayout({ children }) {
 
 ```typescript
 // Hook personalizado para detección de scroll
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback } from "react";
 
 export function useActiveSection(sections: string[]) {
-  const [activeSection, setActiveSection] = useState(sections[0])
+  const [activeSection, setActiveSection] = useState(sections[0]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
+            setActiveSection(entry.target.id);
           }
-        })
+        });
       },
       {
         threshold: 0.5, // 50% visible
-        rootMargin: "-20% 0px -80% 0px" // Offset para mejor UX
-      }
-    )
+        rootMargin: "-20% 0px -80% 0px", // Offset para mejor UX
+      },
+    );
 
     sections.forEach((section) => {
-      const element = document.getElementById(section)
-      if (element) observer.observe(element)
-    })
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
 
-    return () => observer.disconnect()
-  }, [sections])
+    return () => observer.disconnect();
+  }, [sections]);
 
-  return activeSection
+  return activeSection;
 }
 ```
 
@@ -527,22 +556,26 @@ export function useActiveSection(sections: string[]) {
 ```tsx
 // Modificación del componente para scroll activo
 export function NavBar({ items, className }: NavBarProps) {
-  const [isMobile, setIsMobile] = useState(false)
-  
+  const [isMobile, setIsMobile] = useState(false);
+
   // Detección automática de sección activa
-  const activeSection = useActiveSection(['sobre-mi', 'proyectos', 'contacto'])
-  
+  const activeSection = useActiveSection(["sobre-mi", "proyectos", "contacto"]);
+
   // Mapear sección a nombre de nav item
   const getActiveTab = useCallback(() => {
-    switch(activeSection) {
-      case 'sobre-mi': return 'Sobre Mí'
-      case 'proyectos': return 'Proyectos'  
-      case 'contacto': return 'Contacto'
-      default: return 'Inicio'
+    switch (activeSection) {
+      case "sobre-mi":
+        return "Sobre Mí";
+      case "proyectos":
+        return "Proyectos";
+      case "contacto":
+        return "Contacto";
+      default:
+        return "Inicio";
     }
-  }, [activeSection])
+  }, [activeSection]);
 
-  const activeTab = getActiveTab()
+  const activeTab = getActiveTab();
 
   // Resto del componente...
 }
@@ -569,8 +602,8 @@ html {
 // Variantes de animación para Framer Motion
 const navVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.3,
@@ -589,6 +622,7 @@ const navVariants = {
 ```
 
 ### ✅ Resultados Esperados:
+
 - ✅ Detección automática de sección activa (opcional)
 - ✅ Smooth scroll mejorado
 - ✅ Animaciones de entrada fluidas
@@ -600,23 +634,27 @@ const navVariants = {
 ## 📋 CHECKLIST FINAL DE IMPLEMENTACIÓN
 
 ### ✅ Dependencias:
+
 - [ ] `lucide-react` instalado
-- [ ] `clsx` instalado  
+- [ ] `clsx` instalado
 - [ ] `tailwind-merge` instalado
 - [ ] Sin errores en `npm install`
 
 ### ✅ Archivos Creados:
+
 - [ ] `app/lib/utils.ts` con función `cn()`
 - [ ] `app/components/ui/tubelight-navbar.tsx`
 - [ ] `app/components/ui/navbar-config.ts` (opcional)
 
 ### ✅ Integración:
+
 - [ ] Import correcto en `app/layout.tsx`
 - [ ] Navbar actual reemplazado/backup
 - [ ] Items de navegación mapeados
 - [ ] Variables CSS del tema funcionando
 
 ### ✅ Testing:
+
 - [ ] Navegación funciona en todas las secciones
 - [ ] Responsive design (mobile/desktop)
 - [ ] Dark/Light mode correcto
@@ -625,6 +663,7 @@ const navVariants = {
 - [ ] Sin errores en consola
 
 ### ✅ Performance:
+
 - [ ] Bundle size aceptable
 - [ ] Animaciones 60fps
 - [ ] Sin memory leaks
@@ -635,7 +674,9 @@ const navVariants = {
 ## 🚨 Posibles Problemas y Soluciones
 
 ### ❌ **Error: "Cannot resolve '@/lib/utils'"**
+
 **Solución:**
+
 ```json
 // Verificar tsconfig.json
 {
@@ -649,14 +690,18 @@ const navVariants = {
 ```
 
 ### ❌ **Error: "cn is not a function"**
+
 **Solución:**
+
 ```bash
 # Reinstalar dependencias
 npm install clsx tailwind-merge
 ```
 
 ### ❌ **Efecto tubelight no visible**
+
 **Solución:**
+
 ```css
 /* Verificar variables CSS en globals.css */
 :root {
@@ -665,7 +710,9 @@ npm install clsx tailwind-merge
 ```
 
 ### ❌ **Layout shifts en mobile**
+
 **Solución:**
+
 ```css
 /* Añadir padding bottom al body en mobile */
 @media (max-width: 768px) {
@@ -680,13 +727,15 @@ npm install clsx tailwind-merge
 ## 📈 Próximos Pasos Post-Implementación
 
 ### 🔮 Mejoras Futuras:
+
 1. **Breadcrumbs dinámicos** para navegación de proyectos
-2. **Keyboard navigation** (Tab, Enter, Arrows)  
+2. **Keyboard navigation** (Tab, Enter, Arrows)
 3. **Gestures móviles** (swipe para cambiar tabs)
 4. **Preloading** de secciones al hover
 5. **Analytics** de navegación con Google Analytics
 
 ### 🎯 A/B Testing:
+
 - Comparar engagement vs navbar anterior
 - Medir tiempo en cada sección
 - Evaluar tasa de contacto
@@ -695,4 +744,4 @@ npm install clsx tailwind-merge
 
 **🎉 ¡Plan de Implementación Completo!**
 
-*Cada fase debe ser ejecutada secuencialmente, consultando la documentación oficial correspondiente y solicitando autorización antes de proceder a la siguiente fase.*
+_Cada fase debe ser ejecutada secuencialmente, consultando la documentación oficial correspondiente y solicitando autorización antes de proceder a la siguiente fase._

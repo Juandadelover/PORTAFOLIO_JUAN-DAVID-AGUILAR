@@ -3,12 +3,14 @@
 ## ✅ Cambios Aplicados
 
 ### 1. Configuración actualizada para Next.js 16 + Turbopack
+
 - ✅ Removido `webpack` config (incompatible con Turbopack)
 - ✅ Removido `eslint` config (deprecado en Next.js 16)
 - ✅ Añadido `turbopack: {}` para silenciar warnings
 - ✅ Actualizado scripts para usar `--turbopack` flag
 
 ### 2. Configuración Final (`next.config.js`)
+
 ```javascript
 const nextConfig = {
   reactStrictMode: true,
@@ -19,12 +21,13 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   turbopack: {},
-}
+};
 ```
 
 ## 📋 Cómo Hacer el Build
 
 ### Opción 1: Desde WSL (Recomendado)
+
 ```bash
 # Asegúrate de estar en WSL Ubuntu
 cd ~/myportafolio
@@ -32,11 +35,13 @@ npm run build
 ```
 
 ### Opción 2: Desde Windows con WSL
+
 ```powershell
 wsl -d Ubuntu-22.04 -e bash -c "cd ~/myportafolio && npm run build"
 ```
 
 ### Opción 3: Build para Vercel
+
 ```bash
 # Commit y push - Vercel hará el build automáticamente
 git add .
@@ -47,7 +52,9 @@ git push origin main
 ## 🔧 Troubleshooting
 
 ### Error: "next no se reconoce como comando"
+
 **Solución:** Ejecuta desde WSL, no desde PowerShell de Windows
+
 ```bash
 # Abre WSL Ubuntu
 wsl -d Ubuntu-22.04
@@ -60,9 +67,11 @@ npm run build
 ```
 
 ### Error: "Call retries were exceeded"
+
 **Solución:** Ya corregido. La configuración ahora usa Turbopack correctamente.
 
 ### Error: "Invalid next.config.js options"
+
 **Solución:** Ya corregido. Removidas opciones deprecadas (`eslint`, `webpack`).
 
 ## 📦 Scripts Disponibles
@@ -84,6 +93,7 @@ npm run lint
 ## 🌐 Deploy a Vercel
 
 1. **Commit los cambios:**
+
 ```bash
 git add .
 git commit -m "fix: Configuración Next.js 16 Turbopack"

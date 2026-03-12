@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface GlowEffectProps {
   children: React.ReactNode;
@@ -11,8 +11,8 @@ interface GlowEffectProps {
 
 export const GlowEffect = ({
   children,
-  className = '',
-  glowColor = 'rgba(66, 153, 225, 0.6)', // Color azul por defecto
+  className = "",
+  glowColor = "rgba(66, 153, 225, 0.6)", // Color azul por defecto
   intensity = 20,
 }: GlowEffectProps) => {
   return (

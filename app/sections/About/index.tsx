@@ -1,20 +1,28 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
-import { useRef } from 'react';
-import { HiCode, HiDeviceMobile, HiDatabase, HiChip, HiAcademicCap, HiLocationMarker, HiSparkles } from 'react-icons/hi';
+import { useRef } from "react";
+import {
+  HiCode,
+  HiDeviceMobile,
+  HiDatabase,
+  HiChip,
+  HiAcademicCap,
+  HiLocationMarker,
+  HiSparkles,
+} from "react-icons/hi";
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
@@ -25,60 +33,63 @@ export default function About() {
       transition: {
         type: "spring" as const,
         stiffness: 100,
-        damping: 12
-      }
-    }
+        damping: 12,
+      },
+    },
   };
 
   const skills = [
     {
-      title: 'Frontend',
+      title: "Frontend",
       icon: HiCode,
-      items: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Flutter', 'Dart'],
-      gradient: 'from-blue-500 to-cyan-500',
+      items: ["HTML5", "CSS3", "JavaScript", "React", "Flutter", "Dart"],
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
-      title: 'Backend',
+      title: "Backend",
       icon: HiDatabase,
-      items: ['Supabase', 'MySQL', 'Node.js', 'REST APIs'],
-      gradient: 'from-purple-500 to-pink-500',
+      items: ["Supabase", "MySQL", "Node.js", "REST APIs"],
+      gradient: "from-purple-500 to-pink-500",
     },
     {
-      title: 'Mobile',
+      title: "Mobile",
       icon: HiDeviceMobile,
-      items: ['Flutter', 'Dart', 'Android Studio', 'iOS'],
-      gradient: 'from-green-500 to-teal-500',
+      items: ["Flutter", "Dart", "Android Studio", "iOS"],
+      gradient: "from-green-500 to-teal-500",
     },
     {
-      title: 'Herramientas',
+      title: "Herramientas",
       icon: HiChip,
-      items: ['Git', 'VS Code', 'Figma', 'Firebase'],
-      gradient: 'from-orange-500 to-yellow-500',
-    }
+      items: ["Git", "VS Code", "Figma", "Firebase"],
+      gradient: "from-orange-500 to-yellow-500",
+    },
   ];
 
   const education = [
     {
-      title: 'Ingeniería de Software',
-      institution: 'Por definir',
-      period: 'Próximamente',
-      description: 'Programa planificado orientado al diseño, desarrollo y despliegue de soluciones de software escalables.',
-      status: 'Próximamente'
+      title: "Ingeniería de Software",
+      institution: "Por definir",
+      period: "Próximamente",
+      description:
+        "Programa planificado orientado al diseño, desarrollo y despliegue de soluciones de software escalables.",
+      status: "Próximamente",
     },
     {
-      title: 'Tecnólogo en Análisis y Desarrollo de Software',
-      institution: 'SENA',
-      period: '2024-2026',
-      description: 'Formación especializada en desarrollo de software, metodologías ágiles y arquitectura de sistemas.',
-      status: 'En curso'
+      title: "Tecnólogo en Análisis y Desarrollo de Software",
+      institution: "SENA",
+      period: "2024-2026",
+      description:
+        "Formación especializada en desarrollo de software, metodologías ágiles y arquitectura de sistemas.",
+      status: "En curso",
     },
     {
-      title: 'Técnico en Sistemas',
-      institution: 'SENA',
-      period: '2021-2023',
-      description: 'Fundamentos de programación, redes y mantenimiento de sistemas informáticos.',
-      status: 'Completado'
-    }
+      title: "Técnico en Sistemas",
+      institution: "SENA",
+      period: "2021-2023",
+      description:
+        "Fundamentos de programación, redes y mantenimiento de sistemas informáticos.",
+      status: "Completado",
+    },
   ];
 
   return (
@@ -94,7 +105,6 @@ export default function About() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header Section - Foto + Info Personal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -107,7 +117,7 @@ export default function About() {
           <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
             {/* Gradiente decorativo */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/5 via-purple-500/5 to-transparent" />
-            
+
             <div className="relative flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
               {/* Foto de perfil */}
               <motion.div
@@ -122,17 +132,25 @@ export default function About() {
                   {/* Glow effect */}
                   <motion.div
                     className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-2xl"
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.15, 1],
-                      opacity: [0.4, 0.6, 0.4]
+                      opacity: [0.4, 0.6, 0.4],
                     }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
                   {/* Rotating border */}
                   <motion.div
                     className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[4px]"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <div className="w-full h-full rounded-full bg-white dark:bg-gray-800" />
                   </motion.div>
@@ -163,22 +181,23 @@ export default function About() {
                     <HiSparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Sobre Mí
                   </span>
-                  
+
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-                    Juan David{' '}
+                    Juan David{" "}
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
                       Aguilar
                     </span>
                   </h2>
-                  
+
                   <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium mb-3 sm:mb-4">
                     Desarrollador Full Stack
                   </p>
-                  
+
                   <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-4 sm:mb-6">
-                    Desarrollador apasionado por crear soluciones tecnológicas innovadoras. 
-                    Transformo ideas en aplicaciones funcionales y elegantes. Me enfoco en escribir 
-                    código limpio y crear experiencias de usuario excepcionales.
+                    Desarrollador apasionado por crear soluciones tecnológicas
+                    innovadoras. Transformo ideas en aplicaciones funcionales y
+                    elegantes. Me enfoco en escribir código limpio y crear
+                    experiencias de usuario excepcionales.
                   </p>
 
                   {/* Info adicional */}
@@ -230,10 +249,12 @@ export default function About() {
                 key={skill.title}
                 variants={itemVariants}
                 whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 16 }}
+                transition={{ type: "spring", stiffness: 200, damping: 16 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${skill.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${skill.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`}
+                />
                 <div className="relative h-full bg-white dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent transition-all duration-300 flex flex-col items-center sm:items-start text-center sm:text-left">
                   <motion.div
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
@@ -251,7 +272,9 @@ export default function About() {
                         key={item}
                         className="text-gray-600 dark:text-gray-400 flex items-center justify-center sm:justify-start text-sm"
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${skill.gradient} mr-2 flex-shrink-0`} />
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${skill.gradient} mr-2 flex-shrink-0`}
+                        />
                         {item}
                       </li>
                     ))}
@@ -290,13 +313,13 @@ export default function About() {
                   className="relative pl-8 pb-8 border-l-2 border-blue-500/30 last:pb-0 last:border-l-transparent"
                 >
                   {/* Timeline dot */}
-                  <motion.div 
+                  <motion.div
                     className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg flex items-center justify-center"
                     whileHover={{ scale: 1.2 }}
                   >
                     <div className="w-2 h-2 rounded-full bg-white" />
                   </motion.div>
-                  
+
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                     <div>
                       <h4 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -310,18 +333,20 @@ export default function About() {
                       <span className="text-sm text-gray-500 dark:text-gray-400">
                         {edu.period}
                       </span>
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
-                        edu.status === 'En curso' 
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
-                          : edu.status === 'Completado'
-                          ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                          : 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
-                      }`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+                          edu.status === "En curso"
+                            ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                            : edu.status === "Completado"
+                              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                              : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
+                        }`}
+                      >
                         {edu.status}
                       </span>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                     {edu.description}
                   </p>

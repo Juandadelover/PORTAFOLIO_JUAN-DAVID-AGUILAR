@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { HiChevronRight, HiHome } from 'react-icons/hi'
+import Link from "next/link";
+import { HiChevronRight, HiHome } from "react-icons/hi";
 
 interface BreadcrumbItem {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 interface BreadcrumbProps {
-  items: BreadcrumbItem[]
+  items: BreadcrumbItem[];
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
@@ -45,5 +45,5 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         ))}
       </ol>
     </nav>
-  )
+  );
 }

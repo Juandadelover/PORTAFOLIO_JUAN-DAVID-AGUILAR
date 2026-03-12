@@ -1,32 +1,33 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void
+    gtag: (...args: any[]) => void;
   }
 }
 
+// Reemplaza con tu ID real de Google Analytics (ej: "G-XXXXXXXXXX")
+// Deja en blanco para desactivar Analytics
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+
 export default function Analytics() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Track page views
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
-        page_path: pathname,
-      })
-    }
-  }, [pathname])
+    if (!GA_ID || typeof window === "undefined" || !window.gtag) return;
+    window.gtag("config", GA_ID, { page_path: pathname });
+  }, [pathname]);
+
+  if (!GA_ID) return null;
 
   return (
     <>
-      {/* Google Analytics */}
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       />
       <script
         dangerouslySetInnerHTML={{
@@ -34,10 +35,10 @@ export default function Analytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'GA_MEASUREMENT_ID');
+            gtag('config', '${GA_ID}');
           `,
         }}
       />
     </>
-  )
+  );
 }

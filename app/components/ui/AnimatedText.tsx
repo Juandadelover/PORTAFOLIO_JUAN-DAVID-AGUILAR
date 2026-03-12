@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
 }
 
-export const AnimatedText = ({ text, className = '' }: AnimatedTextProps) => {
-  const words = text.split(' ');
+export const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
+  const words = text.split(" ");
 
   const container: Variants = {
     hidden: { opacity: 0 },
